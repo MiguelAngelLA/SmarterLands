@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { PrimengModule } from './primeng/primeng.module';
 
 import { AppComponent } from './app.component';
 
