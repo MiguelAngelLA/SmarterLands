@@ -1,0 +1,19 @@
+{
+  "SqlServer": {
+    "ServerName": "SAMTRAY",
+    "Database": "SmarterLands",
+    "User": "sa",
+    "Password": "123"
+  },
+  "Root":  "https://localhost:7137/assets/",
+  "Files": {
+    "Plants": "plants/"
+  },
+  "Format": {
+    "Date": "dd-MM-yyyy",
+    "Time": "hh:mm"
+  },
+  "Paths": {
+    "Local":  "/Errors"
+  }
+}
