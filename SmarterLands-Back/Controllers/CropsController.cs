@@ -44,12 +44,12 @@ namespace SmarterLands_Back.Controllers
             {
                 vm.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessages), vm.Status);
+            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
             return Ok(vm);
 
         }
 
-        // PUT api/<CropsController>/5
+        // PUT api/<CropsController>
         [HttpPut]
         public ActionResult PutCrop([FromForm] CropPostModel p)
         {
@@ -69,7 +69,7 @@ namespace SmarterLands_Back.Controllers
             {
                 vm.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessages), vm.Status);
+            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
             return Ok(vm);
 
         }
@@ -89,7 +89,7 @@ namespace SmarterLands_Back.Controllers
             {
                 vm.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessages), vm.Status);
+            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
             return Ok(vm);
         }
     }

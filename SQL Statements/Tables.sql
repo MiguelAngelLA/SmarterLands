@@ -24,12 +24,14 @@ create table bins (
 	[date_created] datetime default current_timestamp not null,
 	[width_dimension] int not null,
 	[height_dimension] int not null,
-	[crop_capacity] int not null
+	[total_capacity] int not null,
+	[remaining_capacity] int not null
 )
 go
 
 create table bin_crop (
 	[id] int primary key identity(1000, 1),
+	[quantity] int not null,
 	[bin_id] int,
 	[crop_id] int,
 	foreign key ([bin_id]) REFERENCES bins([id]),
