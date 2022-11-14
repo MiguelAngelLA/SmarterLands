@@ -10,8 +10,8 @@ public class CropMapper
             crop.Name = Convert.ToString(row, aliases[1]);
             crop.Photo = Convert.ToString(row, aliases[2]);
             crop.Description = Convert.ToString(row, aliases[3]);
-            crop.Optimal_moisture = Convert.ToFloat(row, aliases[4]);
-            crop.Optimal_temperature = Convert.ToFloat(row, aliases[4]);
+            crop.Optimal_moisture = Convert.ToDouble(row, aliases[4]);
+            crop.Optimal_temperature = Convert.ToDouble(row, aliases[5]);
         return crop;
         }
 

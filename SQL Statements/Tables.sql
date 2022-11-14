@@ -4,6 +4,9 @@ go
 use SmarterLands;
 go
 
+--EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'
+--EXEC sp_msforeachtable 'DROP TABLE ?'
+
 create table crops (
 	[id] int primary key identity(1000, 1),
 	[name] varchar(50) not null,

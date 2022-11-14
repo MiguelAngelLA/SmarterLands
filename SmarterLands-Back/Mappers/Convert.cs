@@ -61,5 +61,15 @@ public class Convert
         }
         return value;
     }
+
+    public static double ToDouble(DataRow row, string fieldName)
+    {
+        double value = 0.0;
+        if (row[fieldName] != DBNull.Value)
+        {
+            return (double)row[fieldName];
+        }
+        return value;
+    }
 }
 
