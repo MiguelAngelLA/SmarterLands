@@ -152,8 +152,9 @@ as
 begin
 -- validate
 	set @status = 0; -- no error
-	if (@width < 0 or @width > 10000 or @height < 0 or @height > 10000) set @status = 4
-	if ((@width * @height) < (select [total_capacity] from bins where id = @id)) set @status = 5
+	if (@width <= 0 or @width > 50 or @height <= 0 or @height > 50) set @status = 4
+	if ((@width * @height) < ((select [total_capacity] from bins where id = @id) -
+	(select [remaining_capacity] from bins where id = @id))) set @status = 5
 	if @status = 0 begin	
 		--transaction
 		begin transaction
