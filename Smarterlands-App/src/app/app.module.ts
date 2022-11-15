@@ -4,11 +4,13 @@ import { PrimengModule } from './primeng/primeng.module';
 
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
+import { CagadaComponent } from './components/cagada/cagada.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraficasComponent
+    GraficasComponent,
+    CagadaComponent
   ],
   imports: [
     BrowserModule
@@ -16,7 +18,8 @@ import { GraficasComponent } from './components/graficas/graficas.component';
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    GraficasComponent
+    GraficasComponent,
+    CagadaComponent
   ]
 })
 export class AppModule { }

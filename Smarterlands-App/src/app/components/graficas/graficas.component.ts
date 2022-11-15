@@ -11,37 +11,59 @@ export class GraficasComponent implements OnInit {
 
   constructor() { }
 
-  chartTest:any;
+  tempChart:any;
+  humidityChart:any;
+  soilHumidityChart:any;
+
   ngOnInit(): void {
-    this.chartTest = new Chart( "newChart", {
-      type:'bar',
+    this.charts();
+  }
+
+  charts(){
+    this.tempChart = new Chart( "tempChart", {
+      type:'line',
       data:{
         labels: ["tavo","tavo2","tavotest","tavest","tavusi","tachurro","churrosi"],
         datasets: [{
           label: 'My First Dataset',
           data: [65, 59, 80, 81, 56, 55, 40],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
-          ],
-          borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
-          ],
-          borderWidth: 1
+          fill: true,
+          borderColor: '#378C53', // Add custom color border (Line)
+          backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)
+          borderWidth: 1 // Specify bar border width
         }]
       },
-    })
+    });
+
+    this.humidityChart = new Chart( "humidityChart", {
+      type:'line',
+      data:{
+        labels: ["tavo","tavo2","tavotest","tavest","tavusi","tachurro","churrosi"],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: true,
+          borderColor: '#378C53', // Add custom color border (Line)
+          backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)
+          borderWidth: 1 // Specify bar border width
+        }]
+      },
+    });
+
+    this.humidityChart = new Chart( "soilHumidityChart", {
+      type:'line',
+      data:{
+        labels: ["tavo","tavo2","tavotest","tavest","tavusi","tachurro","churrosi"],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: true,
+          borderColor: '#378C53', // Add custom color border (Line)
+          backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)
+          borderWidth: 1 // Specify bar border width
+        }]
+      },
+    });
   }
 
 }
