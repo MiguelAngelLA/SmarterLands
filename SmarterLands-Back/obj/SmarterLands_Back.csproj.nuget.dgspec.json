@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< Updated upstream
     "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\SmarterLands_Back.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
+        "projectName": "SmarterLands_Back",
+        "projectPath": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
+        "packagesPath": "C:\\Users\\sammy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sammy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Stashed changes
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +89,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< Updated upstream
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
         }
       }
     }

@@ -281,3 +281,57 @@ begin
 	end;
 end;
 go
+
+
+create procedure SP_AddNotification
+  @message text,
+  @type tinyint,
+  @new_identity int = null output
+as
+begin
+    set nocount on;
+    insert into notifications values (@message, @type);
+	set @new_identity = scope_identity();
+	return @new_identity
+end
+go
+
+create procedure SP_AddSensorReading
+-- parameters
+	@time datetime,
+	@temperature float,
+	@humidity float,
+	@moisture float,
+	@precipitation int,
+	@bin_id int,
+	@notification_message text,
+	@notification_type tinyint,
+	@status int output
+as
+begin
+-- validate
+-- variables
+	
+	declare @notification_inserted_id int
+	set @status = 0; -- no error	
+	if not exists (select * from bins where id = @bin_id) set @status = 1 -- Bin does not exist
+	if @status = 0 begin	
+		--transaction
+		begin transaction
+			--try
+			begin try
+
+				exec SP_AddNotification @notification_message, @notification_type, @notification_inserted_id output;
+				insert into sensor_readings values(@time, @temperature, @humidity, @moisture, @precipitation,
+				@bin_id, @notification_inserted_id)
+
+				commit transaction;
+			end try
+			begin catch
+				rollback transaction;
+				set @status = 255;
+			end catch; 
+		select @status;
+	end;
+end;
+go

@@ -1,4 +1,5 @@
-﻿public class SensorReading
+﻿using System.Data.SqlClient;
+public class SensorReading
 {
 	private int _id;
 	private DateTime _time;
@@ -41,4 +42,20 @@
         Bin_id = 0;
         Notification_id = 0;
     }
+    public static int Post(DateTime time , double temperature, double humidity, double moisture, 
+        double precipitation, int bin_id, string notification_message, byte notification_type)
+    {
+        string statement = "SP_AddSensorReading";
+        SqlCommand command = new SqlCommand(statement);
+        command.Parameters.AddWithValue("@time", time);
+        command.Parameters.AddWithValue("@temperature", temperature);
+        command.Parameters.AddWithValue("@humidity", humidity);
+        command.Parameters.AddWithValue("@moisture", moisture);
+        command.Parameters.AddWithValue("@precipitation", precipitation);
+        command.Parameters.AddWithValue("@bin_id", bin_id);
+        command.Parameters.AddWithValue("@notification_message", notification_message);
+        command.Parameters.AddWithValue("@notification_type", notification_type);
+        return SqlServerConnection.ExecuteProcedure(command);
+    }
+
 }
