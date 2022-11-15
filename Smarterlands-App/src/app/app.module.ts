@@ -5,15 +5,21 @@ import { PrimengModule } from './primeng/primeng.module';
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
 import { CagadaComponent } from './components/cagada/cagada.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     GraficasComponent,
+    SidebarComponent
+    GraficasComponent,
     CagadaComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    PrimengModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
