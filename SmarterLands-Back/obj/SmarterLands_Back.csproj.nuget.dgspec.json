@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj": {}
+    "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\SmarterLands_Back.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj": {
+    "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\SmarterLands_Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\SmarterLands_Back.csproj",
         "projectName": "SmarterLands_Back",
-        "projectPath": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
-        "packagesPath": "C:\\Users\\gtorr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\obj\\",
+        "projectPath": "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\SmarterLands_Back.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LENOVO\\dev\\SmarterLands_3\\SmarterLands-Back\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gtorr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
