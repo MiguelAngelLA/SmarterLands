@@ -15,5 +15,3 @@ photo, [description], optimal_moisture, optimal_temperature
 from bin_crop bc 
 join crops c on bc.crop_id = c.id
 go
-
-select * from VW_GetCropsOnBin where bin_id = 1001
