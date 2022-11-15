@@ -1,0 +1,19 @@
+{
+	"SqlServer": {
+		"ServerName": "GUSTAVO",
+		"Database": "SmarterLands",
+		"User": "sa",
+		"Password": "123"
+	},
+	"Root": "https://localhost:5001/assets/",
+	"Files": {
+		"Plants": "plants/"
+	},
+	"Format": {
+		"Date": "dd-MM-yyyy",
+		"Time": "hh:mm"
+	},
+	"Paths": {
+		"Local": "/Errors"
+	}
+}
