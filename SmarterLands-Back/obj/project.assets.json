@@ -724,19 +724,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sammy\\.nuget\\packages\\": {}
+    "C:\\Users\\gtorr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
+      "projectUniqueName": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
       "projectName": "SmarterLands_Back",
-      "projectPath": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
-      "packagesPath": "C:\\Users\\sammy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sammy\\Documents\\GitHub\\SmarterLands\\SmarterLands-Back\\obj\\",
+      "projectPath": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\SmarterLands_Back.csproj",
+      "packagesPath": "C:\\Users\\gtorr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gtorr\\Desktop\\SmarterLands\\SmarterLands-Back\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sammy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gtorr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -794,7 +794,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
