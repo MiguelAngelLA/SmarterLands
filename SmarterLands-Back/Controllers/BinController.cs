@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,16 +15,27 @@ namespace SmarterLands_Back.Controllers
         public ActionResult<string> GetAll()
         {
             BinViewModel vm = new BinViewModel();
-            vm.Status = 0;
+            MessageResponse mr = new MessageResponse();
+
             vm.Bins = Bin.GetAll();
             return Ok(vm);
         }
 
         // GET api/<BinController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<string> Get(int id)
         {
-            return "value";
+            BinWithCropViewModel vm = new BinWithCropViewModel();
+            vm.Bins = BinWithCrop.Get(id);
+            vm.Status = 0;
+            if (!vm.Bins.Any()) { 
+                MessageResponse mr = new MessageResponse();
+                mr.Status = 1;
+                mr.Message = "BinNotFoundError/BinDoesNotContainCropsError";
+                return Ok(mr);
+            }
+
+            return Ok(vm);
         }
 
         // POST api/<BinController>
@@ -30,7 +43,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PostBin([FromForm] BinPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.name) &&
@@ -39,14 +52,14 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.height_dimension.ToString()))
 
             {
-                vm.Status = Bin.Post(p.name, p.description, p.width_dimension, p.height_dimension);
+                mr.Status = Bin.Post(p.name, p.description, p.width_dimension, p.height_dimension);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(BinMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(BinMessagesEnum), mr.Status);
+            return Ok(mr);
 
         }
 
@@ -55,7 +68,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PutBin([FromForm] BinPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.id.ToString()) &&
@@ -65,14 +78,14 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.height_dimension.ToString()))
 
             {
-                vm.Status = Bin.Put(p.id, p.name, p.description, p.width_dimension, p.height_dimension);
+                mr.Status = Bin.Put(p.id, p.name, p.description, p.width_dimension, p.height_dimension);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(BinMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(BinMessagesEnum), mr.Status);
+            return Ok(mr);
 
         }
 
@@ -80,19 +93,19 @@ namespace SmarterLands_Back.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteBin(int id)
         {
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
             if (!string.IsNullOrEmpty(id.ToString()))
 
             {
-                vm.Status = Bin.Del(id);
+                mr.Status = Bin.Del(id);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(BinMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(BinMessagesEnum), mr.Status);
+            return Ok(mr);
         }
 
         // POST api/<BinController>/AddCrop
@@ -100,7 +113,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PostAddCrop([FromForm] BinCropPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.bin_id.ToString()) &&
@@ -108,14 +121,14 @@ namespace SmarterLands_Back.Controllers
                 !string.IsNullOrEmpty(p.quantity.ToString()))
 
             {
-                vm.Status = Bin.AddCrop(p.bin_id, p.crop_id, p.quantity);
+                mr.Status = Bin.AddCrop(p.bin_id, p.crop_id, p.quantity);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(BinMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(BinMessagesEnum), mr.Status);
+            return Ok(mr);
         }
 
         // POST api/<BinController>/RemoveCrop
@@ -123,7 +136,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PostRemoveCrop([FromForm] BinCropPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.bin_id.ToString()) &&
@@ -131,14 +144,14 @@ namespace SmarterLands_Back.Controllers
                 !string.IsNullOrEmpty(p.quantity.ToString()))
 
             {
-                vm.Status = Bin.RemoveCrop(p.bin_id, p.crop_id, p.quantity);
+                mr.Status = Bin.RemoveCrop(p.bin_id, p.crop_id, p.quantity);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(BinMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(BinMessagesEnum), mr.Status);
+            return Ok(mr);
         }
     }
 }

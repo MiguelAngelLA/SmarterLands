@@ -27,7 +27,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PostCrop([FromForm] SensorReadingPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.time.ToString()) &&
@@ -40,14 +40,14 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.notification_type.ToString()))
 
             {
-                vm.Status = SensorReading.Post(p.time, p.temperature, p.humidity, p.moisture, p.precipitation, p.bin_id, p.notification_message, p.notification_type);
+                mr.Status = SensorReading.Post(p.time, p.temperature, p.humidity, p.moisture, p.precipitation, p.bin_id, p.notification_message, p.notification_type);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(SensorReadingMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(SensorReadingMessagesEnum), mr.Status);
+            return Ok(mr);
 
         }
 

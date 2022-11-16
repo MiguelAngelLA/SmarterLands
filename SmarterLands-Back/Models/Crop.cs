@@ -13,7 +13,7 @@ public class Crop
 
     public int Id { get => _id; set => _id = value; }
     public string Name { get => _name; set => _name = value; }
-    public string Photo { get => _photo; set => _photo = value; }
+    public string Photo { get => _photo; set => _photo = ProjectConfig.Configuration.Root + ProjectConfig.Configuration.Files.Crops + value; }
     public string Description { get => _description; set => _description = value; }
     public double Optimal_moisture { get => _optimal_moisture; set => _optimal_moisture = value; }
     public double Optimal_temperature { get => _optimal_temperature; set => _optimal_temperature = value; }
