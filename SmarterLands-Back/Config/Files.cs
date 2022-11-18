@@ -1,4 +1,4 @@
 ﻿    public class Files
     {
-        public string Plants { get; set; }
+        public string Crops { get; set; }
     }

@@ -30,7 +30,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PostCrop([FromForm] CropPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.name) &&
@@ -38,14 +38,17 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.optimal_moisture.ToString())) 
                 
             {
-                vm.Status = Crop.Post(p.name, p.description, p.photo, p.optimal_moisture, p.optimal_temperature);
+                if (!string.IsNullOrEmpty(p.photo)){ 
+                    p.photo = Utils.transformPhoto(p.photo);
+                }
+                mr.Status = Crop.Post(p.name, p.description, p.photo, p.optimal_moisture, p.optimal_temperature);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(CropMessagesEnum), mr.Status);
+            return Ok(mr);
 
         }
 
@@ -54,7 +57,7 @@ namespace SmarterLands_Back.Controllers
         public ActionResult PutCrop([FromForm] CropPostModel p)
         {
 
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
 
             if (!string.IsNullOrEmpty(p.id.ToString()) &&
@@ -63,14 +66,14 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.optimal_moisture.ToString()))
 
             {
-                vm.Status = Crop.Put(p.id, p.name, p.description, p.photo, p.optimal_moisture, p.optimal_temperature);
+                mr.Status = Crop.Put(p.id, p.name, p.description, p.photo, p.optimal_moisture, p.optimal_temperature);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(CropMessagesEnum), mr.Status);
+            return Ok(mr);
 
         }
 
@@ -78,19 +81,19 @@ namespace SmarterLands_Back.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteCrop(int id)
         {
-            MessageResponse vm = new MessageResponse();
+            MessageResponse mr = new MessageResponse();
 
             if (!string.IsNullOrEmpty(id.ToString()))
 
             {
-                vm.Status = Crop.Del(id);
+                mr.Status = Crop.Del(id);
             }
             else
             {
-                vm.Status = 255;
+                mr.Status = 255;
             }
-            vm.Message = Enum.GetName(typeof(CropMessagesEnum), vm.Status);
-            return Ok(vm);
+            mr.Message = Enum.GetName(typeof(CropMessagesEnum), mr.Status);
+            return Ok(mr);
         }
     }
 }
