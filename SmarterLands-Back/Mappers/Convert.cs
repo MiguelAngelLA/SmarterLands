@@ -71,5 +71,14 @@ public class Convert
         }
         return value;
     }
+    public static byte ToByte(DataRow row, string fieldName)
+    {
+        byte value = 0;
+        if (row[fieldName] != DBNull.Value)
+        {
+            return (byte)row[fieldName];
+        }
+        return value;
+    }
 }
 

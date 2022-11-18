@@ -18,5 +18,6 @@ go
 
 create view VW_GetSensorReading as
 select sr.id as sensor_id, time, temperature, humidity, moisture,
-precipitation, notification_id, [message], [type] from sensor_readings sr 
+precipitation, bin_id, notification_id, [message], [type] from sensor_readings sr 
 join notifications n on n.id = sr.notification_id
+go

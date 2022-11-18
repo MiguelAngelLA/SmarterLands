@@ -16,10 +16,21 @@ namespace SmarterLands_Back.Controllers
         }
 
         // GET api/<SensorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("SensorNotifications/{id}")]
+        public ActionResult<string> Get(int id)
         {
-            return "value";
+            SensorNotificationsViewModel vm = new SensorNotificationsViewModel();
+            vm.sensorNotfication = SensorNotfication.getSensorNotifications(id);
+            vm.Status = 0;
+            if (!vm.sensorNotfication.SensorReadings.Any() || !vm.sensorNotfication.Notifications.Any())
+            {
+                MessageResponse mr = new MessageResponse();
+                mr.Status = 1;
+                mr.Message = "NoReadingsError/BinNotFoundError";
+                return Ok(mr);
+            }
+
+            return Ok(vm);
         }
 
         // POST api/<SensorController>
