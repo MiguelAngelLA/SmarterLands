@@ -191,7 +191,7 @@ begin
 		begin transaction
 			--try
 			begin try
-					delete from crops where id = @id;
+					delete from bins where id = @id;
 				commit transaction;
 			end try
 			begin catch
