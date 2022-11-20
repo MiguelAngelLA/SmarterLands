@@ -1,8 +1,12 @@
-.wrapper{
-    display:flex;
-    flex-direction: row;
+.wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
-.right-panel{
-    margin-left: auto;
+.right-panel {
+  margin-left: auto;
+}
+
+.side-bar {
+  margin-right: 95px;
 }

@@ -1,0 +1,12 @@
+<p-sidebar
+  [visible]="true"
+  [modal]="false"
+  [style]="{ width: '100px' }"
+  [showCloseIcon]="false"
+  position="left"
+>
+  Content
+  <ul>
+    <li *ngFor="let item of bin"></li>
+  </ul>
+</p-sidebar>
