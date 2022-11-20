@@ -1,0 +1,13 @@
+li {
+  list-style: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.fa-chart-simple {
+  font-size: 30px;
+}
