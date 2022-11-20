@@ -11,6 +11,7 @@ export class CagadaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

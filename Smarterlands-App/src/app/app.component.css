@@ -1,0 +1,8 @@
+.wrapper{
+    display:flex;
+    flex-direction: row;
+}
+
+.right-panel{
+    margin-left: auto;
+}
