@@ -21,7 +21,8 @@ public class SensorNotificationsMapper
         Notification notification = new Notification();
         notification.Id = Convert.ToInt(row, aliases[0]);
         notification.Message = Convert.ToString(row, aliases[1]);
-        notification.Type = Convert.ToByte(row, aliases[2]);
+        notification.Time = Convert.ToDate(row, aliases[2]);
+        notification.Type = Convert.ToByte(row, aliases[3]);
         return notification;
     }
 
@@ -33,7 +34,7 @@ public class SensorNotificationsMapper
             sl.SensorReadings.Add(ToObjectSensorReading(row, new string[] { "sensor_id", "time", "temperature", "humidity", "moisture", "precipitation",
             "bin_id", "notification_id" }));
 
-            sl.Notifications.Add(ToObjectNotifications(row, new string[] { "notification_id", "message", "type" }));
+            sl.Notifications.Add(ToObjectNotifications(row, new string[] { "notification_id", "message", "time",  "type" }));
         }
         return sl;
     }
