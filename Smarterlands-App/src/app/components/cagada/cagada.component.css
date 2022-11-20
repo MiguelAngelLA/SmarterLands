@@ -1,5 +1,130 @@
+
+/* Title and Icon*/
+
 #right-sidepanel{
     height: 100vh;
     width: 350px;
     background: white;
 }
+
+.panel-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+.right-image{
+    display: flex;
+    background-color: #378C53;
+    border-radius: 100px;
+    padding: 5px;
+    width:75px;
+    height: 75px;
+    margin-top: 20px;
+}
+
+.fa-leaf{
+    margin: auto;
+    color:white;
+    font-size: 40px;
+}
+
+.right-text{
+    color: #378C53;
+    font-size: 20pt;
+    margin-top: 20px;
+}
+
+/*Sensor Information*/
+
+.sensors-outer{
+    margin-top: 40px;
+} 
+
+.sensors{
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-row: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 35px;
+    justify-content: center;
+}
+
+.sensors-title{
+    color: #378C53;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.sensor-state-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sensors-state{
+    color: #378C53;
+}
+
+.sensors-state-info{
+    color: #B0AAA2;
+}
+
+.card-outer{
+    position: relative;
+    background-color: #378C53;
+    height: 60px;
+    width:120px;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.card-properties{
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-outer{
+    display: flex;
+    margin: auto;
+    position:absolute;
+    background-color: #378C53;
+    top:-10px;
+    right:-10px;
+    border:3px solid white;
+    border-radius: 150px;
+    padding: 5px;
+    width:30px;
+    height: 30px;
+}
+
+.icon-properties{
+    margin: auto;
+    color:white;
+    font-size: 15px;
+}
+
+.text-percentage{
+    font-size: 20pt;
+    font-weight: bold;
+    margin: auto;
+    color:white;
+}
+
+.text-name{
+    position: absolute;
+    bottom:-10px;
+    right: 5.5px;
+    font-size: 10pt;
+    background-color: white;
+    border-radius: 10px;
+    width: 90%;
+    text-align: center;
+    border:1px solid #378C53;
+    color:#378C53;
+} 
+
+/*Logs*/
