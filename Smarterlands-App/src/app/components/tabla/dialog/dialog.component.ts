@@ -27,7 +27,7 @@ export class DialogComponent implements OnInit {
         next : (res)=>{
           alert("Crop Added sucessfully");
         },
-        error : ()=>{
+        error : (err)=>{
           alert("Error while adding the crop");
         }
       })
