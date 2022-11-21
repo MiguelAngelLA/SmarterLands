@@ -12,21 +12,21 @@ export class BinsService {
 
   constructor(private http: HttpClient) { }
 
-  getBins(): Observable<Bins[]> {
-    return this.http.get<Bins[]>(`${this.baseUrl}/bin`)
+  getBins(): Observable<Bins> {
+    return this.http.get<Bins>(`${this.baseUrl}/bin`)
   }
 
-  postCrop(data : any){
-    var formData : any = new FormData();
+  postCrop(data: any) {
+    var formData: any = new FormData();
     formData.append('name', data.name)
     formData.append('description', data.description)
     formData.append('photo', data.photo)
     formData.append('optimal_moisture', data.optimal_moisture)
     formData.append('optimal_temperature', data.optimal_temperature)
-    return this.http.post<any>(`${this.baseUrl}/crops`,formData);
+    return this.http.post<any>(`${this.baseUrl}/crops`, formData);
   }
 
-  getCrop(){
+  getCrop() {
     return this.http.get<any>(`${this.baseUrl}/crops`)
   }
 

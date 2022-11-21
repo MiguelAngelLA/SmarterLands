@@ -2,6 +2,7 @@ export interface Bins {
     bins: Bin[];
     status: number;
 }
+
 export interface Bin {
     id: number;
     name: string;

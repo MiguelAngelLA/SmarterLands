@@ -3,10 +3,10 @@
   <mat-sidenav-content></mat-sidenav-content>
   <mat-sidenav-content class="menu">
     <img class="logo" src="./../../../assets/logo.png" alt="" />
-    <div *ngFor="let item of bin" class="bins">
+    <div *ngFor="let bin of bins" class="bins">
       <mat-icon
-        (click)="setSelected(item.id)"
-        [ngClass]="{ selected: selectedId == item.id }"
+        (click)="setSelected(bin.id)"
+        [ngClass]="{ selected: selectedId == bin.id }"
         >dashboard</mat-icon
       >
     </div>

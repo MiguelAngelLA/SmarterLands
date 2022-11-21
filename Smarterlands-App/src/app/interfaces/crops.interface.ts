@@ -1,3 +1,8 @@
+export interface Crops {
+    crops: Crop[];
+    status: number;
+}
+
 export interface Crop {
     id: number;
     name: string;

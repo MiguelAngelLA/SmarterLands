@@ -10,15 +10,13 @@ import { Bin } from '../../interfaces/bins.interface';
 export class SidebarComponent implements OnInit {
 
   constructor(private binsService: BinsService) { }
-  bins: any;
-  bin: Bin[] = []
+  bins: Bin[] = [];
   selectedId: number = 0;
 
   ngOnInit(): void {
     this.binsService.getBins().subscribe(resp => {
-      this.bins = resp;
-      this.bin = this.bins.bins
-      console.log(this.bin[0].date_created)
+      this.bins = resp.bins;
+      console.log(this.bins[0].date_created)
     })
 
   }
