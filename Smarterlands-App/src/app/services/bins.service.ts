@@ -15,4 +15,6 @@ export class BinsService {
   getBins(): Observable<Bins[]> {
     return this.http.get<Bins[]>(`${this.baseUrl}/bin`)
   }
+
+
 }
