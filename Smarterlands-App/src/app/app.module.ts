@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MaterialModule } from './material/material.module';
+
 
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
@@ -22,7 +24,8 @@ import { TablaComponent } from './components/tabla/tabla.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
