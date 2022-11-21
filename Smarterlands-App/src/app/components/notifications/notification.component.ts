@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cagada',
-  templateUrl: './cagada.component.html',
-  styleUrls: ['./cagada.component.css'],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CagadaComponent implements OnInit {
+export class NotificationComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }

@@ -5,7 +5,7 @@ import { MaterialModule } from './material/material.module';
 
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
-import { CagadaComponent } from './components/cagada/cagada.component';
+import { NotificationComponent } from './components/notifications/notification.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     GraficasComponent,
     GraficasComponent,
-    CagadaComponent,
+    NotificationComponent,
     SidebarComponent,
     TablaComponent,
     DialogComponent
@@ -36,7 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   bootstrap: [AppComponent],
   exports: [
     GraficasComponent,
-    CagadaComponent,
+    NotificationComponent,
     TablaComponent
   ]
 })
