@@ -15,4 +15,14 @@ export class BinsService {
   getBins(): Observable<Bins[]> {
     return this.http.get<Bins[]>(`${this.baseUrl}/bin`)
   }
+
+  postCrop(data : any){
+    return this.http.post<any>(`${this.baseUrl}/crops`,data);
+  }
+
+  getCrop(){
+    return this.http.get<any>(`${this.baseUrl}/crops`)
+  }
+
+
 }

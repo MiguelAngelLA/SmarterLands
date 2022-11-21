@@ -3,4 +3,14 @@
     background-color: white;
     border-radius: 8px;
     padding: 10px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar {
+    background: #378C53;
+    color: #fff;
+    margin: 0;
   }

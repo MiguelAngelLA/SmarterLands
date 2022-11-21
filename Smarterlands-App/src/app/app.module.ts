@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TablaComponent } from './components/tabla/tabla.component';
+import { DialogComponent } from './components/tabla/dialog/dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,16 @@ import { TablaComponent } from './components/tabla/tabla.component';
     GraficasComponent,
     CagadaComponent,
     SidebarComponent,
-    TablaComponent
+    TablaComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
