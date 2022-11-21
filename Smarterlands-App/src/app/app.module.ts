@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { PrimengModule } from './primeng/primeng.module';
+import { MaterialModule } from './material/material.module';
+
 
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
@@ -20,9 +21,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    PrimengModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
