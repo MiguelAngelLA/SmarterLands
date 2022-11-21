@@ -17,7 +17,13 @@ export class BinsService {
   }
 
   postCrop(data : any){
-    return this.http.post<any>(`${this.baseUrl}/crops`,data);
+    var formData : any = new FormData();
+    formData.append('name', data.name)
+    formData.append('description', data.description)
+    formData.append('photo', data.photo)
+    formData.append('optimal_moisture', data.optimal_moisture)
+    formData.append('optimal_temperature', data.optimal_temperature)
+    return this.http.post<any>(`${this.baseUrl}/crops`,formData);
   }
 
   getCrop(){
