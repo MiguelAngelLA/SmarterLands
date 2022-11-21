@@ -128,3 +128,44 @@
 } 
 
 /*Logs*/
+
+
+.log-data-outer{
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr;
+    margin:10px;
+}
+
+.data-text{
+    display:flex;
+    background-color: white;
+    align-items: center;
+    border: solid 1px #378C53;
+    border-radius: 16px 0px 0px 16px;
+}
+
+.data-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 0px 16px 16px 0px;
+    padding: 5px;
+}
+
+.status-green{
+    background-color: #59C067;
+}
+
+.status-red{
+    background-color: #DE3730;
+}
+
+.status-yellow{
+    background-color: #EDC148;
+}
+
+.data-icon{
+    font-size: 20px;
+}
