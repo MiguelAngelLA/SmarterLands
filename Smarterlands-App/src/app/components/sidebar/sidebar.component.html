@@ -1,1 +1,15 @@
-
+<mat-sidenav-container class="sidenav">
+  <mat-sidenav mode="side" opened></mat-sidenav>
+  <mat-sidenav-content></mat-sidenav-content>
+  <mat-sidenav-content class="menu">
+    <img class="logo" src="./../../../assets/logo.png" alt="" />
+    <div *ngFor="let item of bin" class="bins">
+      <mat-icon
+        (click)="setSelected(item.id)"
+        [ngClass]="{ selected: selectedId == item.id }"
+        >dashboard</mat-icon
+      >
+    </div>
+    <mat-icon class="add">add</mat-icon>
+  </mat-sidenav-content>
+</mat-sidenav-container>

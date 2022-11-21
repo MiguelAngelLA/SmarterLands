@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BinsService } from '../../services/bins.service';
-import { Bin, Bins } from '../../interfaces/bins.interface';
+import { Bin } from '../../interfaces/bins.interface';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
   constructor(private binsService: BinsService) { }
   bins: any;
   bin: Bin[] = []
+  selectedId: number = 0;
 
   ngOnInit(): void {
     this.binsService.getBins().subscribe(resp => {
@@ -22,6 +23,9 @@ export class SidebarComponent implements OnInit {
 
   }
 
+  setSelected(id: number) {
+    this.selectedId = id;
+  }
 
 
 }
