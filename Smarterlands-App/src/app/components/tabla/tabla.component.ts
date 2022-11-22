@@ -66,6 +66,7 @@ export class TablaComponent implements OnInit {
     this.api.deleteCrop(row.id).subscribe({
       next :()=>{
         alert("Crop deleted")
+        this.getAllCrops();
       },
       error :() =>{
         alert("Error while deleting the crop")
