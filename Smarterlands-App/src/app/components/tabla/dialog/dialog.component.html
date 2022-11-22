@@ -1,5 +1,5 @@
-<div  class="title" mat-dialog-title>Add a new crop</div>
-<div class="dialogcont" mat-dialog-content>
+<h1 mat-dialog-title>Add a new Crop</h1>
+<div mat-dialog-content>
     <form [formGroup]="cropForm">
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
@@ -22,27 +22,15 @@
                 <input formControlName="optimal_temperature" matInput placeholder="Optimal Temperature">
             </mat-form-field>
         </div>
-
-        <div class="image-title">Select Image</div>
-        <div class="image-container-wrapper">
-            <div class="image-container">
-                <div *ngFor = "let image of photosArray" >
-                    <div class="image-wrapper">
-                        <img src="{{image}}" alt="cropicon" (click)="selectImage(image)">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- <mat-form-field appearance="outline">
+        
+        <mat-form-field appearance="outline">
             <mat-label>Photo</mat-label>
             <input formControlName="photo" matInput placeholder="Photo">
-        </mat-form-field> -->
+        </mat-form-field>
     </form>
-
 </div>
 
-<div  class="action-buttons" mat-dialog-action [align]="'end'">
+<div mat-dialog-action [align]="'end'">
     <button mat-flat-button style="margin-right:10px" class="save-button" (click)="addCrop()">{{actionButton}}</button>
     <button mat-flat-button color="warn" mat-dialog-close>Close</button>
 </div>

@@ -13,6 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { DialogComponent } from './components/tabla/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidebarDialogComponent } from './components/sidebar/sidebar-dialog/sidebar-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NotificationComponent,
     SidebarComponent,
     TablaComponent,
-    DialogComponent
+    DialogComponent,
+    SidebarDialogComponent
   ],
   imports: [
     BrowserModule,

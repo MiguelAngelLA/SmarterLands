@@ -37,7 +37,7 @@ export class BinsService {
     return this.http.put<any>(`${this.baseUrl}/crops`, formData);
   }
 
-  deleteCrop(data:any){
+  deleteCrop(data: any) {
     return this.http.delete<any>(`${this.baseUrl}/crops/` + data);
   }
 

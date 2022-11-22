@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BinsService } from 'src/app/services/bins.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
@@ -18,14 +18,14 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.cropForm = this.formBuilder.group({
       name : ['',Validators.required],
-      description : ['',Validators.required],
       optimal_moisture : ['',Validators.required],
+      description : ['',Validators.required],
       optimal_temperature : ['',Validators.required],
     });
 
 
 
-    if(this.editData){
+    if (this.editData) {
       this.actionButton = "Edit"
       this.cropForm.controls['name'].setValue(this.editData.name);
       this.cropForm.controls['description'].setValue(this.editData.description);
@@ -40,34 +40,34 @@ export class DialogComponent implements OnInit {
   addCrop(){
     if(!this.editData){
       if(this.cropForm.valid) {
-        this.api.postCrop(this.cropForm.value,this.selectedImage).subscribe({
+        this.api.postCrop(this.cropForm.value).subscribe({
           next : (res)=>{
             alert("Crop Added sucessfully");
             this.cropForm.reset();
             this.dialogRef.close('save');
           },
-          error : (err)=>{
+          error: (err) => {
             alert("Error while adding the crop");
           }
         })
       }
     }
-    else{
+    else {
       this.editCrop()
     }
 
   }
 
   editCrop(){
-    this.api.putCrop(this.cropForm.value,this.editData.id, this.selectedImage).subscribe({
+    this.api.putCrop(this.cropForm.value,this.editData.id).subscribe({
       next: (res)=>{
         alert("Crop Edited")
         console.log(res);
         this.cropForm.reset();
         this.dialogRef.close('update');
       },
-      error : (err) =>{
-        alert ("Error while editing the crop")
+      error: (err) => {
+        alert("Error while editing the crop")
         console.log(err);
       }
     })

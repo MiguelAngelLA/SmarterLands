@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BinsService } from '../../services/bins.service';
-import { Bin } from '../../interfaces/bins.interface';
+
+import { Bin } from 'src/app/interfaces/bins.interface';
+import { SidebarDialogComponent } from './sidebar-dialog/sidebar-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +12,7 @@ import { Bin } from '../../interfaces/bins.interface';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private binsService: BinsService) { }
+  constructor(private binsService: BinsService, private dialog: MatDialog) { }
   bins: Bin[] = [];
   selectedId: number = 0;
 
@@ -26,4 +29,13 @@ export class SidebarComponent implements OnInit {
   }
 
 
+  createBin() {
+    this.dialog.open(SidebarDialogComponent, {
+
+      width: '30%'
+    })
+
+  }
 }
+
+

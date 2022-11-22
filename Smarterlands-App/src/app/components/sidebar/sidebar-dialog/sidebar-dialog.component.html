@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Create new bin</h1>
+<div mat-dialog-content>
+  <form [formGroup]="binForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput />
+    </mat-form-field>
+
+    <div class="optimal-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Width</mat-label>
+        <input formControlName="width_dimension" matInput placeholder="Width" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Height</mat-label>
+        <input
+          formControlName="height_dimension"
+          matInput
+          placeholder="Height"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
