@@ -1,7 +1,9 @@
 ﻿using System.Data.SqlClient;
 public class SensorReading
 {
-	private int _id;
+    public static string select = "select * from VW_GetSensorReadings";
+
+    private int _id;
 	private DateTime _time;
 	private double _temperature;
 	private double _humidity;
@@ -58,4 +60,9 @@ public class SensorReading
         return SqlServerConnection.ExecuteProcedure(command);
     }
 
+    public static List<SensorReading> Get(int bin_id)
+    {
+        SqlCommand command = new SqlCommand(select + " where bin_id = " + bin_id + " order by time");
+        return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
+    }
 }

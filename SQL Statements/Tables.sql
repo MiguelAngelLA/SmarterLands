@@ -41,8 +41,11 @@ go
 
 create table notifications (
 	[id] int primary key identity(1000, 1),
-	[message] text,
-	[type] tinyint,
+	[message] text not null,
+	[type] tinyint not null,
+	[time] datetime not null,
+	[bin_id] int,
+	foreign key ([bin_id]) REFERENCES bins([id]),
 )
 go
 

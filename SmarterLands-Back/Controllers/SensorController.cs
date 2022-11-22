@@ -8,34 +8,10 @@ namespace SmarterLands_Back.Controllers
     [ApiController]
     public class SensorController : ControllerBase
     {
-        // GET: api/<SensorController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<SensorController>/5
-        [HttpGet("SensorNotifications/{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            SensorNotificationsViewModel vm = new SensorNotificationsViewModel();
-            vm.sensorNotfication = SensorNotfication.getSensorNotifications(id);
-            vm.Status = 0;
-            if (!vm.sensorNotfication.SensorReadings.Any() || !vm.sensorNotfication.Notifications.Any())
-            {
-                MessageResponse mr = new MessageResponse();
-                mr.Status = 1;
-                mr.Message = "NoReadingsError/BinNotFoundError";
-                return Ok(mr);
-            }
-
-            return Ok(vm);
-        }
-
+      
         // POST api/<SensorController>
         [HttpPost]
-        public ActionResult PostCrop([FromForm] SensorReadingPostModel p)
+        public ActionResult PostSensorNotification([FromForm] SensorReadingPostModel p)
         {
 
             MessageResponse mr = new MessageResponse();
@@ -62,16 +38,5 @@ namespace SmarterLands_Back.Controllers
 
         }
 
-        // PUT api/<SensorController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<SensorController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
