@@ -14,6 +14,7 @@ export class DialogComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) { }
 
   photosArray: any;
+  borderHolder:any;
 
   ngOnInit(): void {
     this.cropForm = this.formBuilder.group({
@@ -81,6 +82,6 @@ export class DialogComponent implements OnInit {
 
   selectImage(image: any) {
     this.selectedImage = image;
-    console.log(this.selectedImage);
+    this.borderHolder = image;
   }
 }

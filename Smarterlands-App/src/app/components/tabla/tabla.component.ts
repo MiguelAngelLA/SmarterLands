@@ -28,7 +28,8 @@ export class TablaComponent implements OnInit {
 
   openModal() {
     this.dialog.open(DialogComponent, {
-      width: '30%'
+      width: '30%',
+      height:'90%',
     }).afterClosed().subscribe(val => {
       if (val == 'save') {
         this.getAllCrops();
@@ -53,6 +54,7 @@ export class TablaComponent implements OnInit {
   editCrop(row: any) {
     this.dialog.open(DialogComponent, {
       width: '30%',
+      height:'90%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val == 'update') {

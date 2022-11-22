@@ -4,9 +4,9 @@
 mat-form-field{
     width: 100%;
 }
-.dialogcont{
-    overflow: hidden;
-}
+.mat-dialog-content {
+    max-height: initial;
+  }
 .optimal-wrapper{
     display: flex;
     flex-direction: row;
@@ -19,7 +19,7 @@ mat-form-field{
 }
 
 .action-buttons{
-    margin-top: 10px;
+    margin-top: 65px;
 }
 
 .image-container{
@@ -31,6 +31,14 @@ mat-form-field{
 .image-container-wrapper{
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
+}
+
+.image-wrapper{
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 img{
@@ -41,5 +49,9 @@ img{
 .image-title{
     font-size: 14pt;
     color: gray;
+    margin-bottom: 10px;
 }
 
+.selected{
+    border:solid 1px #378C53;
+}
