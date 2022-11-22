@@ -66,6 +66,10 @@ namespace SmarterLands_Back.Controllers
                !string.IsNullOrEmpty(p.optimal_moisture.ToString()))
 
             {
+                if (!string.IsNullOrEmpty(p.photo))
+                {
+                    p.photo = Utils.transformPhoto(p.photo);
+                }
                 mr.Status = Crop.Put(p.id, p.name, p.description, p.photo, p.optimal_moisture, p.optimal_temperature);
             }
             else
