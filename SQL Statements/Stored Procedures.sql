@@ -286,11 +286,13 @@ go
 create procedure SP_AddNotification
   @message text,
   @type tinyint,
+  @time datetime,
+  @bin_id int,
   @new_identity int = null output
 as
 begin
     set nocount on;
-    insert into notifications values (@message, @type);
+    insert into notifications values (@message, @type, @time, @bin_id);
 	set @new_identity = scope_identity();
 	return @new_identity
 end
@@ -321,7 +323,7 @@ begin
 			--try
 			begin try
 
-				exec SP_AddNotification @notification_message, @notification_type, @notification_inserted_id output;
+				exec SP_AddNotification @notification_message, @notification_type, @time, @bin_id, @notification_inserted_id output;
 				insert into sensor_readings values(@time, @temperature, @humidity, @moisture, @precipitation,
 				@bin_id, @notification_inserted_id)
 
