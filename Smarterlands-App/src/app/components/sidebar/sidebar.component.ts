@@ -17,7 +17,12 @@ export class SidebarComponent implements OnInit {
   selectedId: number = 0;
 
   ngOnInit(): void {
-    this.binsService.getBins().subscribe(resp => {
+    this.getBins()
+
+  }
+
+  getBins() {
+    this.binsService.getBins().subscribe((resp) => {
       this.bins = resp.bins;
       console.log(this.bins[0].date_created)
     })
@@ -31,8 +36,11 @@ export class SidebarComponent implements OnInit {
 
   createBin() {
     this.dialog.open(SidebarDialogComponent, {
-
       width: '30%'
+    }).afterClosed().subscribe(val => {
+      if (val == 'save') {
+        this.getBins();
+      }
     })
 
   }

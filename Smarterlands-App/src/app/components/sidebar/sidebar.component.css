@@ -38,3 +38,8 @@ mat-icon {
 .selected {
   color: #5cd279;
 }
+
+::ng-deep .tooltip {
+  background-color: #5cd279;
+  font-size: 16px;
+}

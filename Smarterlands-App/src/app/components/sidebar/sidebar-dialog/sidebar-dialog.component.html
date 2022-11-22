@@ -28,3 +28,15 @@
     </div>
   </form>
 </div>
+
+<div mat-dialog-action [align]="'end'">
+  <button
+    mat-flat-button
+    style="margin-right: 10px"
+    class="save-button"
+    (click)="addBin()"
+  >
+    {{ actionButton }}
+  </button>
+  <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+</div>

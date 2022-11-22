@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Bins } from '../interfaces/bins.interface';
+import { Bins, Bin } from '../interfaces/bins.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,16 @@ export class BinsService {
     return this.http.get<Bins>(`${this.baseUrl}/bin`)
   }
 
-  postCrop(data: any, image:string) {
+  postBin(bin: Bin) {
+    var formData: any = new FormData();
+    formData.append('name', bin.name)
+    formData.append('description', bin.description)
+    formData.append('width_dimension', bin.width_dimension)
+    formData.append('height_dimension', bin.height_dimension)
+    return this.http.post<Bin>(`${this.baseUrl}/bin`, formData)
+  }
+
+  postCrop(data: any, image: string) {
     var formData: any = new FormData();
     formData.append('name', data.name)
     formData.append('description', data.description)
@@ -26,7 +35,7 @@ export class BinsService {
     return this.http.post<any>(`${this.baseUrl}/crops`, formData);
   }
 
-  putCrop(data:any, data2:any, image:string){
+  putCrop(data: any, data2: any, image: string) {
     var formData: any = new FormData();
     formData.append('id', data2)
     formData.append('name', data.name)
@@ -45,9 +54,12 @@ export class BinsService {
     return this.http.get<any>(`${this.baseUrl}/crops`)
   }
 
-  getPhotos(){
+  getPhotos() {
     return this.http.get<any>(`${this.baseUrl}/photos`)
   }
 
+  getNotifications() {
+    return this.http.get<any>(`${this.baseUrl}/sensor/SensorNotifications/1001`)
+  }
 
 }

@@ -5,6 +5,9 @@
     <img class="logo" src="./../../../assets/logo.png" alt="" />
     <div *ngFor="let bin of bins" class="bins">
       <mat-icon
+        matTooltip="{{ bin.name }}"
+        matTooltipClass="tooltip"
+        matTooltipPosition="right"
         (click)="setSelected(bin.id)"
         [ngClass]="{ selected: selectedId == bin.id }"
         >dashboard</mat-icon

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BinsService } from '../../services/bins.service';
 
 @Component({
   selector: 'app-notification',
@@ -8,10 +9,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sensorNotification: BinsService) { }
 
   ngOnInit(): void {
-
+    this.getNotifications()
   }
 
+  getNotifications() {
+    this.sensorNotification.getNotifications().subscribe((resp) => {
+      console.log(resp);
+    })
+  }
 }
