@@ -1,8 +1,13 @@
-.tarjeta {
+.tarjeta-tabla {
     width: 700px;
     background-color: white;
     border-radius: 8px;
     padding: 10px;
+}
+
+.table-container{
+    max-height: 350px;
+    overflow: auto;
 }
 
 .example-spacer {

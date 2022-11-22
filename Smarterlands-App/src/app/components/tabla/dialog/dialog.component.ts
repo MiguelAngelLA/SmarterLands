@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { BinsService } from 'src/app/services/bins.service';
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -9,7 +9,8 @@ import { BinsService } from 'src/app/services/bins.service';
 })
 export class DialogComponent implements OnInit {
   cropForm!:FormGroup;
-  constructor(private formBuilder : FormBuilder, private api : BinsService) { }
+  actionButton : string = "Save";
+  constructor(private formBuilder : FormBuilder, private api : BinsService, @Inject(MAT_DIALOG_DATA) public editData : any, private dialogRef : MatDialogRef<DialogComponent>) { }
 
   ngOnInit(): void {
     this.cropForm = this.formBuilder.group({
@@ -19,18 +20,52 @@ export class DialogComponent implements OnInit {
       optimal_moisture : ['',Validators.required],
       optimal_temperature : ['',Validators.required],
     });
+
+
+
+    if(this.editData){
+      this.actionButton = "Edit"
+      this.cropForm.controls['name'].setValue(this.editData.name);
+      this.cropForm.controls['description'].setValue(this.editData.description);
+      this.cropForm.controls['photo'].setValue(this.editData.photo);
+      this.cropForm.controls['optimal_moisture'].setValue(this.editData.optimal_moisture);
+      this.cropForm.controls['optimal_temperature'].setValue(this.editData.optimal_temperature);
+    }
   }
 
   addCrop(){
-    if(this.cropForm.valid) {
-      this.api.postCrop(this.cropForm.value).subscribe({
-        next : (res)=>{
-          alert("Crop Added sucessfully");
-        },
-        error : (err)=>{
-          alert("Error while adding the crop");
-        }
-      })
+    if(!this.editData){
+      if(this.cropForm.valid) {
+        this.api.postCrop(this.cropForm.value).subscribe({
+          next : (res)=>{
+            alert("Crop Added sucessfully");
+            this.cropForm.reset();
+            this.dialogRef.close('save');
+          },
+          error : (err)=>{
+            alert("Error while adding the crop");
+          }
+        })
+      }
     }
+    else{
+      this.editCrop()
+    }
+
+  }
+
+  editCrop(){
+    this.api.putCrop(this.cropForm.value,this.editData.id).subscribe({
+      next: (res)=>{
+        alert("Crop Edited")
+        console.log(res);
+        this.cropForm.reset();
+        this.dialogRef.close('update');
+      },
+      error : (err) =>{
+        alert ("Error while editing the crop")
+        console.log(err);
+      }
+    })
   }
 }

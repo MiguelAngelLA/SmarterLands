@@ -14,7 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TablaComponent implements OnInit {
-  displayedColumns: string[] = ['photo','name', 'description', 'optimal_moisture', 'optimal_temperature'];
+  displayedColumns: string[] = ['photo','name', 'description', 'optimal_moisture', 'optimal_temperature','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,7 +30,11 @@ export class TablaComponent implements OnInit {
   openModal() {
     this.dialog.open(DialogComponent, {
       width:'30%'
-    });
+    }).afterClosed().subscribe(val=>{
+      if(val=='save'){
+        this.getAllCrops();
+      }
+    })
   }
 
   getAllCrops(){
@@ -42,10 +46,33 @@ export class TablaComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       error : (err) =>{
-        alert("Weeo Weeo Error brrrrrrr")
+       
       }
     })
   }
+
+  editCrop(row: any){
+    this.dialog.open(DialogComponent, {
+      width:'30%',
+      data : row
+    }).afterClosed().subscribe(val=>{
+      if(val=='update'){
+        this.getAllCrops();
+      }
+    })
+  }
+
+  deleteCrop(row:any){
+    this.api.deleteCrop(row.id).subscribe({
+      next :()=>{
+        alert("Crop deleted")
+      },
+      error :() =>{
+        alert("Error while deleting the crop")
+      }
+    })
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
