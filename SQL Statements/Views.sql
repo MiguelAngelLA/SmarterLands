@@ -24,6 +24,14 @@ create view VW_GetSensorReadings as
 select * from sensor_readings 
 go
 
+create view VW_GetNotificationsLimit as
+select top 5 * from notifications 
+go
+
+create view VW_GetSensorReadingsLimit as
+select top 5 * from sensor_readings 
+go
+
 --create view VW_GetSensorReading as
 --select sr.id as sensor_id, time, temperature, humidity, moisture,
 --precipitation, bin_id, notification_id, [message], [type] from sensor_readings sr 
