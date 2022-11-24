@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 public class Notification
 {
     public static string select = "select * from VW_GetNotifications";
+    public static string select_limit = "select * from VW_GetNotificationsLimit";
 
     private int _id;
     private string _message;
@@ -38,6 +39,12 @@ public class Notification
     public static List<Notification> Get(int notification_id)
     {
         SqlCommand command = new SqlCommand(select + " where bin_id = " + notification_id + " order by time");
+        return NotificationMapper.ToList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    public static List<Notification> GetLimit(int notification_id)
+    {
+        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + notification_id + " order by time");
         return NotificationMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 }
