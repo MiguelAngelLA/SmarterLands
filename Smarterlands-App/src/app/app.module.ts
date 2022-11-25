@@ -14,6 +14,7 @@ import { TablaComponent } from './components/tabla/tabla.component';
 import { DialogComponent } from './components/tabla/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarDialogComponent } from './components/sidebar/sidebar-dialog/sidebar-dialog.component';
+import { BinDimensionsComponent } from './components/notifications/bin-dimensions/bin-dimensions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SidebarDialogComponent } from './components/sidebar/sidebar-dialog/side
     SidebarComponent,
     TablaComponent,
     DialogComponent,
-    SidebarDialogComponent
+    SidebarDialogComponent,
+    BinDimensionsComponent
   ],
   imports: [
     BrowserModule,

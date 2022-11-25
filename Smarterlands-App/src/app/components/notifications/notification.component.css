@@ -169,3 +169,19 @@
 .data-icon{
     font-size: 20px;
 }
+
+/* Buttons */
+.button-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.bin-dimensions-button{
+    display: inline-block;
+    align-self: flex-end;
+    background-color:#378C53 !important;
+    color: white;
+    padding: 5px;
+    width: 200px;
+    font-size: 12pt;
+}

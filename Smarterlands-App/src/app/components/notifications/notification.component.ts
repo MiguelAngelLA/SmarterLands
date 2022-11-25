@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BinsService } from '../../services/bins.service';
+import { BinDimensionsComponent } from './bin-dimensions/bin-dimensions.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notification',
@@ -9,7 +11,7 @@ import { BinsService } from '../../services/bins.service';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor(private sensorNotification: BinsService) { }
+  constructor(private sensorNotification: BinsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getNotifications()
@@ -18,6 +20,13 @@ export class NotificationComponent implements OnInit {
   getNotifications() {
     this.sensorNotification.getNotifications().subscribe((resp) => {
       console.log(resp);
+    })
+  }
+
+  openBinDimensionDialog(){
+    this.dialog.open(BinDimensionsComponent, {
+      width: '30%',
+      // height:'90%',
     })
   }
 }
