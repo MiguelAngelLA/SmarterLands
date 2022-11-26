@@ -10,6 +10,6 @@ export interface Bin {
     date_created?: Date;
     width_dimension: number;
     height_dimension: number;
-    total_capacity?: number;
-    remaining_capacity?: number;
+    total_capacity: number;
+    remaining_capacity: number;
 }

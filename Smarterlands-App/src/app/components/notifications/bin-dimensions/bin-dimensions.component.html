@@ -1,35 +1,28 @@
-<div class="dimension-content">
-  <div class="title" mat-dialog-title>Bin dimensions</div>
+<div class="dimension-content" style="overflow: hidden;">
+    <div class="title" mat-dialog-title>Bin dimensions</div>
 
     <div class="wrappers">
-      <mat-form-field appearance="outline">
-        <mat-label>Number of rows</mat-label>
-        <input matInput [(ngModel)]="rows" placeholder="Enter a number"/>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Number of rows</mat-label>
+            <input matInput [(ngModel)]="rows" placeholder="Enter a number" />
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Number of columns</mat-label>
-        <input matInput [(ngModel)]="colums" placeholder="Enter a number"/>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Number of columns</mat-label>
+            <input matInput [(ngModel)]="columns" placeholder="Enter a number" />
+        </mat-form-field>
     </div>
 
-
     <button mat-fab class="woosh-button" aria-label="Example icon button with a delete icon" (click)="moveBin()"><mat-icon>swap_horiz</mat-icon></button>
-    <table class="table" [ngClass]="{'rotation': woosh}">
-        <thead>
-          <tr>
-            <td  *ngFor="let col of columnArray; index as i"><!-- {{i+1}}--></td> 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let col of rowArray; index as i">
-            <td *ngFor="let col of columnArray; index as j"><!-- {{j+1}}--></td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
 
-  <div class="action-buttons" mat-dialog-action [align]="'end'">
-    <button mat-flat-button style="margin-right:10px" class="save-button" (click)="setDimension()" >Change Dimension</button>
+    <!-- <div class="container" [ngClass]="{'rotation': woosh}"> -->
+    <mat-grid-list [cols]="columns" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let item of columnArray; index as i" [ngClass]="{'occupied': checkBin(i)}">1</mat-grid-tile>
+    </mat-grid-list>
+    <!-- </div> -->
+</div>
+
+<div class="action-buttons" mat-dialog-action [align]="'end'">
+    <button mat-flat-button style="margin-right:10px" class="save-button" (click)="setDimension()">Change Dimension</button>
     <button mat-flat-button color="warn" mat-dialog-close>Close</button>
 </div>
