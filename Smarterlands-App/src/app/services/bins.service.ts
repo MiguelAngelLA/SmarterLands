@@ -63,8 +63,8 @@ export class BinsService {
     return this.http.get<any>(`${this.baseUrl}/photos`)
   }
 
-  getNotifications() {
-    return this.http.get<any>(`${this.baseUrl}/Notifications/1001`)
+  getNotifications(id: any) {
+    return this.http.get<any>(`${this.baseUrl}/Notifications/${id}`)
   }
   
   postBinCrop(bin:any,crop:any,quantity:any){
