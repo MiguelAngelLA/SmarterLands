@@ -6,6 +6,7 @@ import { SidebarDialogComponent } from './sidebar-dialog/sidebar-dialog.componen
 import { MatDialog } from '@angular/material/dialog';
 import { AddCropTableComponent } from './add-crop-table/add-crop-table.component';
 import { InformationService } from 'src/app/services/information.service';
+import { pipe, switchMap } from 'rxjs';
 
 
 
@@ -17,33 +18,28 @@ import { InformationService } from 'src/app/services/information.service';
 export class SidebarComponent implements OnInit {
 
   constructor(private binsService: BinsService, private infService: InformationService, private dialog: MatDialog) { }
-  bins: Bin[] = [];
+  bins: any = [];
   selectedId: number = 0;
   crops: Bin[] = [];
   bin!: Bin;
-
+  x: any;
   ngOnInit(): void {
     this.getBins()
+
   }
 
-
-
-
   getBins() {
-    this.binsService.getBins().subscribe((res) => {
-      this.bins = res.bins;
-      // console.log(this.bins[0].date_created)
-    })
+    this.binsService.getBins().subscribe((resp => {
+      this.bins = resp.bins
+      this.infService.sendBin(this.bins[0].id)
+    }))
 
   }
 
   setSelected(id: number) {
     this.selectedId = id;
-    this.binsService.getBinsId(this.selectedId).subscribe((res) => {
-      this.crops = res.bins;
-      this.infService.sendCrop(this.crops)
-      // console.log(this.binsService);
-    })
+    this.infService.sendBin(this.selectedId)
+
   }
 
 
@@ -58,7 +54,7 @@ export class SidebarComponent implements OnInit {
 
   }
 
-  openTableDialog(){
+  openTableDialog() {
     this.dialog.open(AddCropTableComponent, {
     })
   }

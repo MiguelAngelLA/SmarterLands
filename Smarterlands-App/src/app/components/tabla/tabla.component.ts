@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Bin } from '../../interfaces/bins.interface';
+import { Subscription } from 'rxjs';
+import { InformationService } from '../../services/information.service';
 
 @Component({
   selector: 'app-tabla',
@@ -14,17 +16,26 @@ import { Bin } from '../../interfaces/bins.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TablaComponent implements OnInit {
+  susbcription1$!: Subscription
   displayedColumns: string[] = ['photo', 'name', 'description', 'optimal_moisture', 'optimal_temperature', 'quantity', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private dialog: MatDialog, private api: BinsService) { }
+  test: any;
+  constructor(private dialog: MatDialog, private api: BinsService, private infService: InformationService) { }
 
   cropData: any;
   ngOnInit(): void {
     this.getAllCrops();
+    setTimeout(() => {
+      this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
+        this.test
+        console.log(resp)
+      })
+        ,
+        10000
+    })
   }
 
   openModal() {

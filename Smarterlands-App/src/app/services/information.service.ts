@@ -5,11 +5,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs'
   providedIn: 'root'
 })
 export class InformationService {
-  private crop$ = new BehaviorSubject<any>({})
-  selectedCrop$ = this.crop$.asObservable();
+  private bin$ = new BehaviorSubject<any>({})
+  selectedBin$ = this.bin$.asObservable();
+
+  private cropsInBin$ = new BehaviorSubject<any>({})
+  selectedBins$ = this.cropsInBin$.asObservable();
   constructor() { }
 
-  sendCrop(crop: any) {
-    this.crop$.next(crop)
+  sendBin(bin: any) {
+    this.bin$.next(bin)
   }
+
+
 }

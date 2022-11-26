@@ -2,21 +2,33 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BinsService } from 'src/app/services/bins.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { InformationService } from '../../../services/information.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
+  susbcription1$!: Subscription
   cropForm!: FormGroup;
   actionButton: string = "Save";
   selectedImage: string = "https://localhost:7137/assets/crops/no-photo.png"
-  constructor(private formBuilder: FormBuilder, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) { }
-
+  constructor(private formBuilder: FormBuilder, private infService: InformationService, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) { }
+  test: any;
   photosArray: any;
-  borderHolder:any;
+  borderHolder: any;
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
+        this.test
+        console.log(resp)
+      })
+        ,
+        10000
+    })
+
     this.cropForm = this.formBuilder.group({
       name: ['', Validators.required],
       optimal_moisture: ['', Validators.required],

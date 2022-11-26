@@ -12,8 +12,7 @@ import { InformationService } from '../../services/information.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GraficasComponent implements OnInit {
-  susbcription1$!: Subscription
-  susbcription2$!: Subscription
+
   constructor(private api: BinsService, private ïnfService: InformationService) { }
   tempChart: any;
   humidityChart: any;
@@ -21,17 +20,7 @@ export class GraficasComponent implements OnInit {
   test: any;
 
   ngOnInit(): void {
-    this.susbcription1$ = this.ïnfService.selectedCrop$.subscribe(resp => {
-      this.test = []
-      console.log(resp);
-      for (const x of resp) {
-        this.test.push(x.id)
-      }
-      console.log(this.test);
-      this.charts()
-    })
-
-
+    this.charts()
 
   }
 
