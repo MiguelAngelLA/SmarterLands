@@ -15,11 +15,12 @@
 
     <button mat-fab class="woosh-button" aria-label="Example icon button with a delete icon" (click)="moveBin()"><mat-icon>swap_horiz</mat-icon></button>
 
+
     <!-- <div class="container" [ngClass]="{'rotation': woosh}"> -->
     <mat-grid-list [cols]="columns" rowHeight="2:1">
         <mat-grid-tile *ngFor="let item of columnArray; index as i" [ngClass]="{'occupied': checkBin(i)}">1</mat-grid-tile>
     </mat-grid-list>
-    <!-- </div> -->
+
 </div>
 
 <div class="action-buttons" mat-dialog-action [align]="'end'">

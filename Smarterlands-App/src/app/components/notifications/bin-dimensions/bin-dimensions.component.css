@@ -57,10 +57,10 @@ td {
     overflow-x: hidden;
 }
 
-.occupied {
-    background-color: #378C538A;
-}
 
 mat-grid-tile {
     background: rgb(205, 205, 205);
+}
+.occupied{
+	background-color: #378C5333;
 }

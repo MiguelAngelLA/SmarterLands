@@ -15,6 +15,8 @@ import { DialogComponent } from './components/tabla/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarDialogComponent } from './components/sidebar/sidebar-dialog/sidebar-dialog.component';
 import { BinDimensionsComponent } from './components/notifications/bin-dimensions/bin-dimensions.component';
+import { AddCropTableComponent } from './components/sidebar/add-crop-table/add-crop-table.component';
+import { AddCropDialogComponent } from './components/sidebar/add-crop-table/add-crop-dialog/add-crop-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BinDimensionsComponent } from './components/notifications/bin-dimension
     TablaComponent,
     DialogComponent,
     SidebarDialogComponent,
-    BinDimensionsComponent
+    BinDimensionsComponent,
+    AddCropTableComponent,
+    AddCropDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { BinDimensionsComponent } from './components/notifications/bin-dimension
   exports: [
     GraficasComponent,
     NotificationComponent,
-    TablaComponent
+    TablaComponent,
+    AddCropTableComponent
   ]
 })
 export class AppModule { }

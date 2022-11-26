@@ -12,18 +12,22 @@ export class BinDimensionsComponent implements OnInit {
   rowArray: any;
   columns: any;
   rows: any;
+  cropLength:any;
+  occupied:Boolean = false;
+
+  tempArray:any;
 
   woosh: Boolean = false;
-  cropsQuantity: number = 0;
+  cropsQuantity: number = 5;
   colorArray: any[] = [];
 
   constructor(private api: BinsService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.api.getBins().subscribe( res => {
-      this.columns = res.bins[0].width_dimension;
-      this.rows = res.bins[0].height_dimension;
-      this.cropsQuantity = res.bins[0].total_capacity - res.bins[0].remaining_capacity;
+      this.columns = res.bins[1].width_dimension;
+      this.rows = res.bins[1].height_dimension;
+      this.cropsQuantity = res.bins[1].total_capacity - res.bins[1].remaining_capacity;
       this.setDimension();
     });
   }
