@@ -67,8 +67,18 @@ export class BinsService {
     return this.http.get<any>(`${this.baseUrl}/Notifications/1001`)
   }
   
-  postBinCrop(bin:any,crop:any,quantity:any){
+  postBinCrop(bin:any,crop:any,data:any){
     var formData: any = new FormData();
+    formData.append('bin_id',bin);
+    formData.append('crop_id',crop);
+    formData.append('quantity',data.quantity);
     return this.http.post<Bins>(`${this.baseUrl}/bin/AddCrop`,formData)
+  }
+  postRemoveBinCrop(bin:any,crop:any,data:any){
+    var formData: any = new FormData();
+    formData.append('bin_id',bin);
+    formData.append('crop_id',crop);
+    formData.append('quantity',data.quantity);
+    return this.http.post<Bins>(`${this.baseUrl}/bin/RemoveCrop`,formData)
   }
 }

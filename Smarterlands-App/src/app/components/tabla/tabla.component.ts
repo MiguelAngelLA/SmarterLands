@@ -30,11 +30,12 @@ export class TablaComponent implements OnInit {
   cropData: any;
   binID:any;
   ngOnInit(): void {
-    this.getAllCrops();
+
     setTimeout(() => {
       this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
         this.test
-        console.log(resp)
+        this.binID = resp;
+        this.getAllCrops();
       })
         ,
         10000
@@ -44,7 +45,6 @@ export class TablaComponent implements OnInit {
   AddCrops() {
     this.dialog.open(DialogComponent, {
       width: '30%',
-      height: '90%',
     }).afterClosed().subscribe(val => {
       if (val == 'save') {
         this.getAllCrops();
@@ -53,7 +53,6 @@ export class TablaComponent implements OnInit {
   }
 
   getAllCrops() {
-    this.binID = 1001
     this.api.getBinsId(this.binID).subscribe({
       next: (res) => {
         this.cropData = res.bins
@@ -80,13 +79,12 @@ export class TablaComponent implements OnInit {
   }
 
   deleteCrop(row: any) {
-    this.api.deleteCrop(row.id).subscribe({
-      next: () => {
-        alert("Crop deleted")
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(val => {
+      if (val == 'update') {
         this.getAllCrops();
-      },
-      error: () => {
-        alert("Error while deleting the crop")
       }
     })
   }
