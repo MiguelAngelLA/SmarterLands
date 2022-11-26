@@ -66,6 +66,9 @@ export class BinsService {
   getNotifications() {
     return this.http.get<any>(`${this.baseUrl}/Notifications/1001`)
   }
-
-
+  
+  postBinCrop(bin:any,crop:any,quantity:any){
+    var formData: any = new FormData();
+    return this.http.post<Bins>(`${this.baseUrl}/bin/AddCrop`,formData)
+  }
 }

@@ -18,6 +18,8 @@ export class DialogComponent implements OnInit {
   test: any;
   photosArray: any;
   borderHolder: any;
+  cropsArray:any;
+  selectedCrop:any;
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -27,73 +29,42 @@ export class DialogComponent implements OnInit {
       })
         ,
         10000
-    })
+    });
 
+    this.api.getCrop().subscribe( res =>{
+      this.cropsArray = res.crops;
+    });
     this.cropForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      optimal_moisture: ['', Validators.required],
-      description: ['', Validators.required],
-      optimal_temperature: ['', Validators.required],
+      quantity: ['', Validators.required],
     });
+}
 
+addCrop() {
+  // this.api.postBinCrop().subscribe({
+  //   next: (res) => {
+  //     alert("Crop Added sucessfully");
+  //     this.cropForm.reset();
+  //     this.dialogRef.close('save');
+  //   },
+  //   error: (err) => {
+  //     alert("Error while adding the crop");
+  //   }
+  // })
+}
 
+saveSelectedCrop(item:any){
+  this.selectedCrop = item;
+}
 
-    if (this.editData) {
-      this.actionButton = "Edit"
-      this.cropForm.controls['name'].setValue(this.editData.name);
-      this.cropForm.controls['description'].setValue(this.editData.description);
-      this.cropForm.controls['optimal_moisture'].setValue(this.editData.optimal_moisture);
-      this.cropForm.controls['optimal_temperature'].setValue(this.editData.optimal_temperature);
-    }
+getPhotos() {
+  this.api.getPhotos().subscribe(resp => {
+    this.photosArray = resp.photos;
+  });
+}
 
-    this.getPhotos();
+selectImage(image: any) {
+  this.selectedImage = image;
+  this.borderHolder = image;
+}
 
-  }
-
-  addCrop() {
-    if (!this.editData) {
-      if (this.cropForm.valid) {
-        this.api.postCrop(this.cropForm.value, this.selectedImage).subscribe({
-          next: (res) => {
-            alert("Crop Added sucessfully");
-            this.cropForm.reset();
-            this.dialogRef.close('save');
-          },
-          error: (err) => {
-            alert("Error while adding the crop");
-          }
-        })
-      }
-    }
-    else {
-      this.editCrop()
-    }
-
-  }
-
-  editCrop() {
-    this.api.putCrop(this.cropForm.value, this.editData.id, this.selectedImage).subscribe({
-      next: (res) => {
-        alert("Crop Edited")
-        console.log(res);
-        this.cropForm.reset();
-        this.dialogRef.close('update');
-      },
-      error: (err) => {
-        alert("Error while editing the crop")
-        console.log(err);
-      }
-    })
-  }
-
-  getPhotos() {
-    this.api.getPhotos().subscribe(resp => {
-      this.photosArray = resp.photos;
-    });
-  }
-
-  selectImage(image: any) {
-    this.selectedImage = image;
-    this.borderHolder = image;
-  }
 }

@@ -6,8 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Bin } from '../../interfaces/bins.interface';
+import { InformationService } from 'src/app/services/information.service';
 import { Subscription } from 'rxjs';
-import { InformationService } from '../../services/information.service';
 
 @Component({
   selector: 'app-tabla',
@@ -15,6 +15,8 @@ import { InformationService } from '../../services/information.service';
   styleUrls: ['./tabla.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
+
 export class TablaComponent implements OnInit {
   susbcription1$!: Subscription
   displayedColumns: string[] = ['photo', 'name', 'description', 'optimal_moisture', 'optimal_temperature', 'quantity', 'action'];
@@ -26,6 +28,7 @@ export class TablaComponent implements OnInit {
   constructor(private dialog: MatDialog, private api: BinsService, private infService: InformationService) { }
 
   cropData: any;
+  binID:any;
   ngOnInit(): void {
     this.getAllCrops();
     setTimeout(() => {
@@ -38,7 +41,7 @@ export class TablaComponent implements OnInit {
     })
   }
 
-  openModal() {
+  AddCrops() {
     this.dialog.open(DialogComponent, {
       width: '30%',
       height: '90%',
@@ -50,9 +53,10 @@ export class TablaComponent implements OnInit {
   }
 
   getAllCrops() {
-    this.api.getCrop().subscribe({
+    this.binID = 1001
+    this.api.getBinsId(this.binID).subscribe({
       next: (res) => {
-        this.cropData = res.crops;
+        this.cropData = res.bins
         this.dataSource = new MatTableDataSource(this.cropData);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

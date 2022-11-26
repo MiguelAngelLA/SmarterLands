@@ -1,37 +1,17 @@
 <div class="title" mat-dialog-title>Add a new Crop</div>
 <div mat-dialog-content>
     <form [formGroup]="cropForm">
-        <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input  formControlName="name" matInput placeholder="Name">
-        </mat-form-field>
-    
-        <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea formControlName="description" matInput></textarea>
-        </mat-form-field>
-    
-        <div class="optimal-wrapper">
-            <mat-form-field appearance="outline">
-                <mat-label>Optimal Moisture</mat-label>
-                <input  formControlName="optimal_moisture" matInput placeholder="Optimal Moisture">
-            </mat-form-field>
-    
-            <mat-form-field appearance="outline">
-                <mat-label>Optimal Temperature</mat-label>
-                <input formControlName="optimal_temperature" matInput placeholder="Optimal Temperature">
-            </mat-form-field>
-        </div>
         
-        <div class="image-title">Select image</div>
-        <div class="image-container-wrapper">
-            <div class="image-container">
-                <div class="image-wrapper" *ngFor="let image of photosArray" [ngClass]="{ selected: borderHolder == image }">
-                    <img src="{{image}}" alt="cropimage" (click)="selectImage(image)">
-                </div>
-            </div>
-        </div>
-
+        <mat-selection-list #crops [multiple]="false">
+            <mat-list-option *ngFor="let item of cropsArray" [value]="item.id" (click)="saveSelectedCrop(item.id)">
+              {{item.name}}
+            </mat-list-option>
+        </mat-selection-list>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input  formControlName="quantity" matInput placeholder="Name">
+        </mat-form-field>
     </form>
 </div>
 

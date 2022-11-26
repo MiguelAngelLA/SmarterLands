@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatPaginatorModule,
     MatSortModule,
     MatTooltipModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
