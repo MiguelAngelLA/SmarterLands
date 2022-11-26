@@ -7,13 +7,18 @@ import { Bins, Bin } from '../interfaces/bins.interface';
   providedIn: 'root'
 })
 export class BinsService {
-
   baseUrl = "/api";
+
+  public crops: Bin[] = [];
 
   constructor(private http: HttpClient) { }
 
   getBins(): Observable<Bins> {
     return this.http.get<Bins>(`${this.baseUrl}/bin`)
+  }
+
+  getBinsId(id: number): Observable<Bins> {
+    return this.http.get<Bins>(`${this.baseUrl}/bin/${id}`);
   }
 
   postBin(bin: Bin) {
@@ -59,7 +64,8 @@ export class BinsService {
   }
 
   getNotifications() {
-    return this.http.get<any>(`${this.baseUrl}/sensor/SensorNotifications/1001`)
+    return this.http.get<any>(`${this.baseUrl}/Notifications/1001`)
   }
+
 
 }

@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { BinsService } from 'src/app/services/bins.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Bin } from '../../interfaces/bins.interface';
 
 @Component({
   selector: 'app-tabla',
@@ -29,7 +30,7 @@ export class TablaComponent implements OnInit {
   openModal() {
     this.dialog.open(DialogComponent, {
       width: '30%',
-      height:'90%',
+      height: '90%',
     }).afterClosed().subscribe(val => {
       if (val == 'save') {
         this.getAllCrops();
@@ -54,7 +55,7 @@ export class TablaComponent implements OnInit {
   editCrop(row: any) {
     this.dialog.open(DialogComponent, {
       width: '30%',
-      height:'90%',
+      height: '90%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val == 'update') {
@@ -83,4 +84,6 @@ export class TablaComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
 }

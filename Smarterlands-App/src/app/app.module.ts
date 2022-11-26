@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
 
 
+
 import { AppComponent } from './app.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
 import { NotificationComponent } from './components/notifications/notification.component';
@@ -15,6 +16,7 @@ import { DialogComponent } from './components/tabla/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarDialogComponent } from './components/sidebar/sidebar-dialog/sidebar-dialog.component';
 import { BinDimensionsComponent } from './components/notifications/bin-dimensions/bin-dimensions.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { BinDimensionsComponent } from './components/notifications/bin-dimension
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

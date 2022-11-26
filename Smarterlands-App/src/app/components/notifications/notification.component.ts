@@ -19,11 +19,11 @@ export class NotificationComponent implements OnInit {
 
   getNotifications() {
     this.sensorNotification.getNotifications().subscribe((resp) => {
-      console.log(resp);
+      // console.log(resp);
     })
   }
 
-  openBinDimensionDialog(){
+  openBinDimensionDialog() {
     this.dialog.open(BinDimensionsComponent, {
       width: '30%',
       // height:'90%',
