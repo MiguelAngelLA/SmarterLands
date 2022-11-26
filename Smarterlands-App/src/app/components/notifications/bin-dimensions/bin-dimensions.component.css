@@ -1,54 +1,66 @@
-table {
-    margin: 100px auto;
-	max-width: 500px;
-	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-	border-radius: 10px;
-	background: #fff;
-	transition: all .5s;
-	overflow-x: hid;
+.container {
+    max-width: 500px;
+    border-radius: 10px;
+    background: #fff;
+    transition: all .5s;
+    overflow: hidden;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    gap: 10px;
 }
 
-mat-form-field{
+mat-form-field {
     width: 100%;
 }
 
 .rotation {
-	transform: rotateX(65deg) rotateZ(-35deg);
+    transform: rotateX(65deg) rotateZ(-35deg);
 }
 
-.title{
-    color:gray;
+.title {
+    color: gray;
 }
 
-.wrappers{
-	display: flex;
+.wrappers {
+    display: flex;
     flex-direction: row;
-    gap:10px;
+    gap: 10px;
 }
-.save-button{
+
+.save-button {
     background-color: #378C53;
-    color:white;
+    color: white;
 }
 
-.mat-fab{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 50px !important;
-	width: 50px !important;
-	background-color: #378C53;
+.mat-fab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px !important;
+    width: 50px !important;
+    background-color: #378C53;
 }
 
-.woosh-button{	
-	float: right;
+.woosh-button {
+    float: right;
 }
 
-td{
-	border: 1px solid #dee2e6;
-	width: 50px;
-	height: 50px;
+td {
+    border: 1px solid #dee2e6;
+    width: 50px;
+    height: 50px;
 }
 
-.dimension-content{
-	overflow-x: hidden;
+.dimension-content {
+    overflow-x: hidden;
+}
+
+
+mat-grid-tile {
+    background: rgb(205, 205, 205);
+}
+.occupied{
+	background-color: #378C5333;
 }

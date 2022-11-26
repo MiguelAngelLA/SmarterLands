@@ -4,8 +4,7 @@ import { BinsService } from '../../services/bins.service';
 import { Bin } from 'src/app/interfaces/bins.interface';
 import { SidebarDialogComponent } from './sidebar-dialog/sidebar-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { InformationService } from '../../services/information.service';
+import { AddCropTableComponent } from './add-crop-table/add-crop-table.component';
 
 
 
@@ -56,6 +55,11 @@ export class SidebarComponent implements OnInit {
       }
     })
 
+  }
+
+  openTableDialog(){
+    this.dialog.open(AddCropTableComponent, {
+    })
   }
 }
 

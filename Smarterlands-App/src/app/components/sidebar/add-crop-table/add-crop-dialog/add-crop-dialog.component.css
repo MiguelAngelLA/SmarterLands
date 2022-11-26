@@ -1,60 +1,57 @@
-.title {
-    color: gray;
+.title{
+    color:gray;
 }
-
-mat-form-field {
+mat-form-field{
     width: 100%;
 }
-
 .mat-dialog-content {
     max-height: initial;
-}
-
-.optimal-wrapper {
+  }
+.optimal-wrapper{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap:10px;
 }
 
-.save-button {
+.save-button{
     background-color: #378C53;
-    color: white;
+    color:white;
 }
 
-.action-buttons {
+.action-buttons{
     margin-top: 65px;
 }
 
-.image-container {
+.image-container{
     display: grid;
     gap: 20px 60px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.image-container-wrapper {
+.image-container-wrapper{
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
 
-.image-wrapper {
+.image-wrapper{
     width: 100%;
     background-color: white;
     border-radius: 8px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-img {
+img{
     height: 96px;
     width: 96px;
 }
 
-.image-title {
+.image-title{
     font-size: 14pt;
     color: gray;
     margin-bottom: 10px;
 }
 
-.selected {
-    outline: solid 1px #378C53;
+.selected{
+    outline:solid 1px #378C53;
 }
