@@ -6,7 +6,6 @@ import { BinsService } from 'src/app/services/bins.service';
   styleUrls: ['./bin-dimensions.component.css']
 })
 
-
 export class BinDimensionsComponent implements OnInit {
   columnArray: any;
   rowArray: any;

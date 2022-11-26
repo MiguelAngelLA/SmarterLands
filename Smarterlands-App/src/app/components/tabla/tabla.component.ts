@@ -14,7 +14,7 @@ import { Bin } from '../../interfaces/bins.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TablaComponent implements OnInit {
-  displayedColumns: string[] = ['photo', 'name', 'description', 'optimal_moisture', 'optimal_temperature', 'action'];
+  displayedColumns: string[] = ['photo', 'name', 'description', 'optimal_moisture', 'optimal_temperature', 'quantity', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
