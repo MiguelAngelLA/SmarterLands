@@ -24,5 +24,22 @@ namespace SmarterLands_Back.Controllers
 
             return Ok(vm);
         }
+
+        [HttpGet("Limit/{id}")]
+        public ActionResult<string> GetLimit(int id)
+        {
+            NotificationViewModel vm = new NotificationViewModel();
+            vm.Notifications = Notification.GetLimit(id);
+            vm.Status = 0;
+            if (!vm.Notifications.Any())
+            {
+                MessageResponse mr = new MessageResponse();
+                mr.Status = 1;
+                mr.Message = "NoNotificationsFoundError";
+                return Ok(mr);
+            }
+
+            return Ok(vm);
+        }
     }
 }

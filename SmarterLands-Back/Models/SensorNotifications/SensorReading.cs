@@ -2,6 +2,7 @@
 public class SensorReading
 {
     public static string select = "select * from VW_GetSensorReadings";
+    public static string select_limit = "select * from VW_GetSensorReadingsLimit";
 
     private int _id;
 	private DateTime _time;
@@ -44,6 +45,7 @@ public class SensorReading
         Bin_id = 0;
         Notification_id = 0;
     }
+
     public static int Post(DateTime time , double temperature, double humidity, double moisture, 
         double precipitation, int bin_id, string notification_message, byte notification_type)
     {
@@ -63,6 +65,12 @@ public class SensorReading
     public static List<SensorReading> Get(int bin_id)
     {
         SqlCommand command = new SqlCommand(select + " where bin_id = " + bin_id + " order by time");
+        return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    public static List<SensorReading> GetLimit(int bin_id)
+    {
+        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + bin_id + " order by time");
         return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 }

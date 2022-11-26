@@ -282,7 +282,6 @@ begin
 end;
 go
 
-
 create procedure SP_AddNotification
   @message text,
   @type tinyint,

@@ -24,5 +24,22 @@ namespace SmarterLands_Back.Controllers
 
             return Ok(vm);
         }
+
+        [HttpGet("Limit/{id}")]
+        public ActionResult<string> GetLimit(int id)
+        {
+            SensorReadingViewModel vm = new SensorReadingViewModel();
+            vm.SensorReadings = SensorReading.GetLimit(id);
+            vm.Status = 0;
+            if (!vm.SensorReadings.Any())
+            {
+                MessageResponse mr = new MessageResponse();
+                mr.Status = 1;
+                mr.Message = "NoSensorReadingsFoundError";
+                return Ok(mr);
+            }
+
+            return Ok(vm);
+        }
     }
 }
