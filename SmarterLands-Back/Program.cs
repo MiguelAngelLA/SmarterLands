@@ -33,8 +33,7 @@ var app = builder.Build();
 // websocket feature
 app.UseWebSockets();
 app.MapSockets("/ws", app.Services.GetService<MessageSocket>());
-
-app.Urls.Add("http://0.0.0.0:5003");
+//app.Urls.Add("http://0.0.0.0:5003");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
