@@ -54,10 +54,13 @@
     </div>
   </div>
 
-  <div class="divLog" id="style1">
+  <div class="divLog" id="style1" *ngFor="let notification of notifications">
     <div class="log-data-outer">
-      <div class="data-text log-text">{{ message }}</div>
-      <div class="data-status status-green">
+      <div class="data-text log-text">{{ notification.message }}</div>
+      <div
+        class="data-status status-green"
+        ngClass="{{ notification.type | color }}"
+      >
         <div class="data-icon"><i class="fa-solid fa-check"></i></div>
         <div class="data-time">5PM</div>
       </div>
