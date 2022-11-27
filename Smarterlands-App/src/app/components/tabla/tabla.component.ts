@@ -28,12 +28,11 @@ export class TablaComponent implements OnInit {
   constructor(private dialog: MatDialog, private api: BinsService, private infService: InformationService) { }
 
   cropData: any;
-  binID:any;
+  binID: any;
   ngOnInit(): void {
 
     setTimeout(() => {
       this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
-        this.test
         this.binID = resp;
         this.getAllCrops();
       })

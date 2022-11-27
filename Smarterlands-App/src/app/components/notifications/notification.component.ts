@@ -4,6 +4,9 @@ import { BinDimensionsComponent } from './bin-dimensions/bin-dimensions.componen
 import { MatDialog } from '@angular/material/dialog';
 import { InformationService } from '../../services/information.service';
 import { Subscription } from 'rxjs';
+import { WebsocketsService } from '../../services/websockets.service';
+import { ChatService } from '../../services/chat.service';
+
 
 
 
@@ -19,8 +22,13 @@ export class NotificationComponent implements OnInit {
   message!: any;
   type!: any;
   time!: any;
+  lastThree!: any;
   notifications: any;
-  constructor(private changeDetector: ChangeDetectorRef, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) { }
+  constructor(private chatService: ChatService, private changeDetector: ChangeDetectorRef, private webSocket: WebsocketsService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
+    chatService.messages.subscribe(msg => {
+      console.log("Response from ws:" + JSON.stringify(msg));
+    })
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -37,11 +45,12 @@ export class NotificationComponent implements OnInit {
   getNotifications() {
     this.sensorNotification.getNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
+      this.lastThree = this.notifications.slice(-3).reverse()
       this.message = resp.notifications[0].message;
       this.type = resp.notifications[0].type;
       this.time = resp.notifications[0].time
       this.changeDetector.detectChanges();
-      console.log(this.notifications);
+      console.log(this.lastThree);
     })
   }
 
