@@ -152,18 +152,8 @@
   color: white;
   border-radius: 0px 16px 16px 0px;
   padding: 5px;
-}
-
-.status-green {
-  background-color: #59c067;
-}
-
-.status-red {
-  background-color: #de3730;
-}
-
-.status-yellow {
-  background-color: #edc148;
+  width: 50px;
+  font-size: 11px;
 }
 
 .data-icon {
@@ -177,25 +167,25 @@
 }
 
 .bin-dimensions-button {
-  display: inline-block;
-  align-self: flex-end;
   background-color: #378c53 !important;
   color: white;
   padding: 5px;
   width: 200px;
   font-size: 12pt;
   margin-top: 70px;
+  position: fixed;
+  bottom: 120px;
 }
 
 .stop-button {
-  display: inline-block;
-  align-self: flex-end;
   background-color: #d62828 !important;
   color: white;
   padding: 5px;
   width: 200px;
   font-size: 12pt;
   margin-top: 20px;
+  position: fixed;
+  bottom: 40px;
 }
 
 .more-logs {
@@ -224,4 +214,20 @@
 
 .yellow {
   background-color: #ffe047;
+}
+
+.red-outline {
+  border: solid 2px #d62828;
+}
+
+.green-outline {
+  border: solid 2px #5cd279;
+}
+
+.gray-outline {
+  border: solid 2px #cccccc;
+}
+
+.yellow-outline {
+  border: solid 2px #ffe047;
 }
