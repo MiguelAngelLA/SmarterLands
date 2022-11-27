@@ -38,13 +38,13 @@ public class Notification
 
     public static List<Notification> Get(int notification_id)
     {
-        SqlCommand command = new SqlCommand(select + " where bin_id = " + notification_id + " order by time asc");
+        SqlCommand command = new SqlCommand(select + " where bin_id = " + notification_id + " order by time desc");
         return NotificationMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 
     public static List<Notification> GetLimit(int notification_id)
     {
-        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + notification_id + " order by time asc");
+        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + notification_id + " order by time desc");
         return NotificationMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 }
