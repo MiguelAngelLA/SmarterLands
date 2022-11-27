@@ -23,6 +23,24 @@ namespace SmarterLands_Back.Controllers
 
         // GET api/<BinController>/5
         [HttpGet("{id}")]
+        public ActionResult<string> GetOne(int id)
+        {
+            SingleBinViewModel vm = new SingleBinViewModel();
+            vm.Bin = Bin.GetOne(id);
+            vm.Status = 0;
+            if (vm.Bin.Id == 0)
+            {
+                MessageResponse mr = new MessageResponse();
+                mr.Status = 1;
+                mr.Message = "BinNotFoundError";
+                return Ok(mr);
+            }
+
+            return Ok(vm);
+        }
+
+        // GET api/<BinController>/5
+        [HttpGet("Crops/{id}")]
         public ActionResult<string> Get(int id)
         {
             BinWithCropViewModel vm = new BinWithCropViewModel();
