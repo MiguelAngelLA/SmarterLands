@@ -1,72 +1,76 @@
-<div id="right-sidepanel">
-    <div class="panel-title">
-        <div class="right-image">
-            <i class="fa-solid fa-leaf"></i>
+<div id="right-sidepanel" ngClass="getNotifications() ">
+  <div class="panel-title">
+    <div class="right-image">
+      <i class="fa-solid fa-leaf"></i>
+    </div>
+    <div class="right-text-outer">
+      <p class="right-text">Cultivos Frutales</p>
+    </div>
+  </div>
+
+  <div class="sensors-outer">
+    <p class="sensors-title">Sensores</p>
+    <div class="sensors">
+      <div class="card-outer card-properties">
+        <div class="icon-outer">
+          <i class="fa-solid fa-droplet icon-properties"></i>
         </div>
-        <div class="right-text-outer">
-            <p class="right-text">Cultivos Frutales</p>
+
+        <div class="text-percentage">10%</div>
+        <div class="text-name">Humedad Tierra</div>
+      </div>
+
+      <div class="card-outer card-properties">
+        <div class="icon-outer">
+          <i class="fa-solid fa-temperature-half icon-properties"></i>
         </div>
+
+        <div class="text-percentage">10°C</div>
+        <div class="text-name">Temperatura</div>
+      </div>
+
+      <div class="card-outer card-properties">
+        <div class="icon-outer">
+          <i class="fa-solid fa-wind icon-properties"></i>
+        </div>
+
+        <div class="text-percentage">10%</div>
+        <div class="text-name">Humedad Aire</div>
+      </div>
+
+      <div class="card-outer card-properties">
+        <div class="icon-outer">
+          <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
+        </div>
+
+        <div class="text-percentage">10%</div>
+        <div class="text-name">Precipitación</div>
+      </div>
     </div>
 
-    <div class="sensors-outer">
-        <p class="sensors-title">Sensores</p>
-        <div class="sensors">
-            <div class="card-outer card-properties">
-                <div class="icon-outer">
-                    <i class="fa-solid fa-droplet icon-properties"></i>
-                </div>
-        
-                <div class="text-percentage">10%</div>
-                <div class="text-name">Humedad Tierra</div>
-            </div>
-
-            <div class="card-outer card-properties">
-                <div class="icon-outer">
-                    <i class="fa-solid fa-temperature-half icon-properties"></i>
-                </div>
-        
-                <div class="text-percentage">10°C</div>
-                <div class="text-name">Temperatura</div>
-            </div>
-
-            <div class="card-outer card-properties">
-                <div class="icon-outer">
-                    <i class="fa-solid fa-wind icon-properties"></i>
-                </div>
-        
-                <div class="text-percentage">10%</div>
-                <div class="text-name">Humedad Aire</div>
-            </div>
-
-            <div class="card-outer card-properties">
-                <div class="icon-outer">
-                    <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
-                </div>
-        
-                <div class="text-percentage">10%</div>
-                <div class="text-name">Precipitación</div>
-            </div>
-
-        </div>
-
-        <div class="sensor-state-wrapper">
-            <p class="sensors-state">Latest Status</p>
-            <p class="sensors-state-info">13-07-2022 9:55:02 PM</p>
-        </div>
+    <div class="sensor-state-wrapper">
+      <p class="sensors-state">Latest Status</p>
+      <p class="sensors-state-info">{{ time | date: "medium" }}</p>
     </div>
+  </div>
 
-    <div class="divLog" id="style1">
-        <div class="log-data-outer" >
-            <div class="data-text log-text"></div>
-            <div class="data-status status-green">
-                <div class="data-icon"><i class="fa-solid fa-check"></i></div>
-                <div class="data-time"> 5PM </div>
-            </div>
-        </div>
+  <div class="divLog" id="style1">
+    <div class="log-data-outer">
+      <div class="data-text log-text">{{ message }}</div>
+      <div class="data-status status-green">
+        <div class="data-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="data-time">5PM</div>
+      </div>
     </div>
+  </div>
 
-    <div class="button-wrapper">
-        <button class="bin-dimensions-button" mat-flat-button (click)="openBinDimensionDialog()">Bin dimensions</button>
-    </div>
-
+  <div class="button-wrapper">
+    <button
+      class="bin-dimensions-button"
+      mat-flat-button
+      (click)="openBinDimensionDialog()"
+    >
+      Bin dimensions
+    </button>
+  </div>
 </div>
