@@ -26,5 +26,15 @@ public class BinMapper
             }
             return list;
         }
+
+        public static Bin ToSingleObject(DataTable dataTable)
+        {
+            Bin bin = new Bin();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                bin = ToObject(row, new string[] { "id", "name", "description", "date_created", "width_dimension", "height_dimension", "total_capacity", "remaining_capacity" });
+            }
+            return bin;
+        }
 }
 

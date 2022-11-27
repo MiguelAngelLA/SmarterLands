@@ -50,6 +50,11 @@ public class Bin
         SqlCommand command = new SqlCommand(select + " order by [date_created] asc");
         return BinMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
+    public static Bin GetOne(int id)
+    {
+        SqlCommand command = new SqlCommand(select + " where id = " + id);
+        return BinMapper.ToSingleObject(SqlServerConnection.ExecuteQuery(command));
+    }
 
     public static int Post(string name, string description, int width_dimension, int height_dimension)
     {
