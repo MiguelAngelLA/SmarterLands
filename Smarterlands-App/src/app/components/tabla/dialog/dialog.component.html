@@ -1,24 +1,25 @@
-<div class="title" mat-dialog-title>Add a new Crop</div>
-<div mat-dialog-content>
+<div class="title" mat-dialog-title>{{dialogTitle}}</div>
+<div class="dialog" mat-dialog-content>
     <form [formGroup]="cropForm">
 
-
-        
-        <mat-selection-list #crops [multiple]="false" *ngIf="show">
-            <mat-list-option *ngFor="let item of cropsArray" [value]="item.id" (click)="saveSelectedCrop(item.id)">
-            <div class="list">
-                <div class="list__photo">
-                    <img src="{{item.photo}}" alt="cropImage"> 
-                </div>
-                <div class="list__wrapper">{{item.name}}</div>
-            </div>
-            </mat-list-option>
-        </mat-selection-list>
-        
         <mat-form-field appearance="outline">
             <mat-label>Quantity</mat-label>
             <input  formControlName="quantity" matInput placeholder="Name">
         </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="show">
+            <mat-label>Select an option</mat-label>
+            <mat-select>
+              <mat-option class="option" *ngFor="let item of cropsArray" value="item.id" (click)="saveSelectedCrop(item.id)">
+                <div class="list">
+                    <div class="list__photo">
+                        <img src="{{item.photo}}" alt="cropImage"> 
+                    </div>
+                    <div class="list__wrapper">{{item.name}}</div>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
     </form>
 </div>
 

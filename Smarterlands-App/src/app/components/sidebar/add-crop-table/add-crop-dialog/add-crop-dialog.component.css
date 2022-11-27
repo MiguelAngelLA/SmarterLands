@@ -1,11 +1,14 @@
-.title{
-    color:gray;
+.title {
+    color: #6c757d;
+    border-bottom: 1px #adb5bd8A solid;
 }
+
 mat-form-field{
     width: 100%;
 }
 .mat-dialog-content {
     max-height: initial;
+    overflow: hidden;
 }
 .optimal-wrapper{
     display: flex;

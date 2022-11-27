@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddCropDialogComponent } from './add-crop-dialog/add-crop-dialog.component';
-
+import * as alertify from 'alertifyjs';
 @Component({
   selector: 'app-add-crop-table',
   templateUrl: './add-crop-table.component.html',
@@ -27,7 +27,7 @@ export class AddCropTableComponent implements OnInit {
 
   openModal() {
     this.dialog.open(AddCropDialogComponent, {
-      height:'90%',
+ 
     }).afterClosed().subscribe(val => {
       if (val == 'save') {
         this.getAllCrops();
@@ -51,8 +51,6 @@ export class AddCropTableComponent implements OnInit {
 
   editCrop(row: any) {
     this.dialog.open(AddCropDialogComponent, {
-      width: '30%',
-      height:'90%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val == 'update') {
@@ -64,11 +62,13 @@ export class AddCropTableComponent implements OnInit {
   deleteCrop(row: any) {
     this.api.deleteCrop(row.id).subscribe({
       next: () => {
-        alert("Crop deleted")
+        alertify.set('notifier','position', 'top-center');
+        alertify.success('Crop deleted');
         this.getAllCrops();
       },
       error: () => {
-        alert("Error while deleting the crop")
+        alertify.set('notifier','position', 'top-center');
+        alertify.error('Error while deleting the crop');
       }
     })
   }

@@ -15,6 +15,7 @@ export class AddCropDialogComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<AddCropDialogComponent>) { }
   photosArray: any;
   borderHolder:any;
+  formTitle: String = "Add a new crop"
   ngOnInit(): void {
     this.cropForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -27,6 +28,7 @@ export class AddCropDialogComponent implements OnInit {
 
     if (this.editData) {
       this.actionButton = "Edit"
+      this.formTitle = "Edit a crop"
       this.cropForm.controls['name'].setValue(this.editData.name);
       this.cropForm.controls['description'].setValue(this.editData.description);
       this.cropForm.controls['optimal_moisture'].setValue(this.editData.optimal_moisture);

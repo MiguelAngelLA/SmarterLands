@@ -4,9 +4,13 @@
     border-radius: 8px;
     padding: 10px;
 }
+.title {
+    color: #6c757d;
+    border-bottom: 1px #adb5bd8A solid;
+}
 
 .table-container{
-    max-height: 350px;
+    max-height: 550px;
     overflow: auto;
 }
 

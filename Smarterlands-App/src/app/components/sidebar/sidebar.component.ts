@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCropTableComponent } from './add-crop-table/add-crop-table.component';
 import { InformationService } from 'src/app/services/information.service';
 import { pipe, switchMap } from 'rxjs';
+import { ViewEncapsulation } from '@angular/core';
 
 
 
@@ -16,7 +17,6 @@ import { pipe, switchMap } from 'rxjs';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
   constructor(private binsService: BinsService, private infService: InformationService, private dialog: MatDialog) { }
   bins: any = [];
   selectedId: number = 0;

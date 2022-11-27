@@ -23,6 +23,8 @@ export class DialogComponent implements OnInit {
   cropsArray:any;
   selectedCrop:any;
   binID:any;
+
+  dialogTitle: String = "Add a crop to bin";
   ngOnInit(): void {
     setTimeout(() => {
       this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
@@ -44,6 +46,7 @@ export class DialogComponent implements OnInit {
     if (this.editData) {
       console.log(this.editData);
       this.actionButton = "Remove"
+      this.dialogTitle = "Remove crop quantity"
       this.show = false;
       this.cropForm.controls['quantity'].setValue(this.editData.quantity);
     }
@@ -53,12 +56,14 @@ addCrop() {
   if(!this.editData){
     this.api.postBinCrop(this.binID,this.selectedCrop,this.cropForm.value).subscribe({
       next: (res) => {
-        alertify.success("Crop added successfully")
+        alertify.set('notifier','position', 'top-center');
+        alertify.success('Crop added successfully');
         this.cropForm.reset();
         this.dialogRef.close('save');
       },
       error: (err) => {
-        alert("Error while adding the crop");
+        alertify.set('notifier','position', 'top-center');
+        alertify.error('Error while adding the crop');
       }
     })
   }else{
@@ -70,12 +75,14 @@ addCrop() {
 removeCrop(){
    this.api.postRemoveBinCrop(this.binID,this.editData.crop_id,this.cropForm.value).subscribe({
      next: (res) => {
-       alert("Crop Removed sucessfully");
+      alertify.set('notifier','position', 'top-center');
+      alertify.success('Crop Removed sucessfully');
        this.cropForm.reset();
        this.dialogRef.close('update');
      },
      error: (err) => {
-       alert("Error while adding the crop");
+      alertify.set('notifier','position', 'top-center');
+      alertify.error('Error while adding the crop');
      }
    })
 }
