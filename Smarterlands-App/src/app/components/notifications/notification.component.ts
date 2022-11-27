@@ -19,7 +19,7 @@ import { ChatService } from '../../services/chat.service';
 export class NotificationComponent implements OnInit {
   susbcription1$!: Subscription
   binId: any;
-  message!: any;
+  message: any = "test";
   type!: any;
   time!: any;
   lastThree!: any;
@@ -42,13 +42,14 @@ export class NotificationComponent implements OnInit {
 
   }
 
+  sendMsg() {
+    this.chatService.messages.next(this.message)
+  }
+
   getNotifications() {
     this.sensorNotification.getNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
       this.lastThree = this.notifications.slice(-3).reverse()
-      this.message = resp.notifications[0].message;
-      this.type = resp.notifications[0].type;
-      this.time = resp.notifications[0].time
       this.changeDetector.detectChanges();
       console.log(this.lastThree);
     })
