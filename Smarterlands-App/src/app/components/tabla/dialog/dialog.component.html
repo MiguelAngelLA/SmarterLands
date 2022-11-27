@@ -2,7 +2,7 @@
 <div mat-dialog-content>
     <form [formGroup]="cropForm">
         
-        <mat-selection-list #crops [multiple]="false">
+        <mat-selection-list #crops [multiple]="false" *ngIf="show">
             <mat-list-option *ngFor="let item of cropsArray" [value]="item.id" (click)="saveSelectedCrop(item.id)">
               {{item.name}}
             </mat-list-option>

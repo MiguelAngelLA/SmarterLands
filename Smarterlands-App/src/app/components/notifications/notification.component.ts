@@ -26,7 +26,7 @@ export class NotificationComponent implements OnInit {
   openBinDimensionDialog() {
     this.dialog.open(BinDimensionsComponent, {
       width: '30%',
-      // height:'90%',
+      height:'90%',
     })
   }
 }

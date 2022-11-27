@@ -16,6 +16,8 @@ export class BinDimensionsComponent implements OnInit {
 
   tempArray:any;
 
+  tempColumns:any;
+
   woosh: Boolean = false;
   cropsQuantity: number = 5;
   colorArray: any[] = [];
@@ -24,6 +26,7 @@ export class BinDimensionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getBins().subscribe( res => {
+      
       this.columns = res.bins[1].width_dimension;
       this.rows = res.bins[1].height_dimension;
       this.cropsQuantity = res.bins[1].total_capacity - res.bins[1].remaining_capacity;
@@ -35,6 +38,8 @@ export class BinDimensionsComponent implements OnInit {
     this.columnArray = [];
     this.rowArray = [];
 
+
+    this.tempColumns = this.columns;
     for(let i = 0; i < this.columns * this.rows; i++){
       this.columnArray.push(i);
     }

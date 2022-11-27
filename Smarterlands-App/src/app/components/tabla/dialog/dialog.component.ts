@@ -14,6 +14,7 @@ export class DialogComponent implements OnInit {
   cropForm!: FormGroup;
   actionButton: string = "Save";
   selectedImage: string = "https://localhost:7137/assets/crops/no-photo.png"
+  show : Boolean = true;
   constructor(private formBuilder: FormBuilder, private infService: InformationService, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) { }
   test: any;
   photosArray: any;
@@ -41,6 +42,7 @@ export class DialogComponent implements OnInit {
     if (this.editData) {
       console.log(this.editData);
       this.actionButton = "Remove"
+      this.show = false;
       this.cropForm.controls['quantity'].setValue(this.editData.quantity);
     }
 }
