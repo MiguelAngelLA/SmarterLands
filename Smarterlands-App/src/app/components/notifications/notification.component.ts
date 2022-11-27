@@ -14,18 +14,18 @@ import { ChatService } from '../../services/chat.service';
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class NotificationComponent implements OnInit {
   susbcription1$!: Subscription
   binId: any;
-  message: any = "test";
+  message: any = "stop";
   type!: any;
   time!: any;
   lastThree!: any;
   notifications: any;
   constructor(private chatService: ChatService, private changeDetector: ChangeDetectorRef, private webSocket: WebsocketsService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
-    chatService.messages.subscribe(msg => {
+    this.chatService.messages.subscribe((msg: any) => {
       console.log("Response from ws:" + JSON.stringify(msg));
     })
   }
@@ -43,15 +43,15 @@ export class NotificationComponent implements OnInit {
   }
 
   sendMsg() {
-    this.chatService.messages.next(this.message)
+    this.chatService.messages.next(`${this.binId} ${this.message}`)
   }
 
   getNotifications() {
     this.sensorNotification.getNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
+      this.time = resp.notifications[this.notifications.length - 1].time
       this.lastThree = this.notifications.slice(-3).reverse()
-      this.changeDetector.detectChanges();
-      console.log(this.lastThree);
+      console.log(this.notifications);
     })
   }
 

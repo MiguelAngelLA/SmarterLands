@@ -20,6 +20,8 @@ import { RouterModule } from '@angular/router';
 import { AddCropTableComponent } from './components/sidebar/add-crop-table/add-crop-table.component';
 import { AddCropDialogComponent } from './components/sidebar/add-crop-table/add-crop-dialog/add-crop-dialog.component';
 import { ColorPipe } from './pipes/color.pipe';
+import { OutlinePipe } from './pipes/outline.pipe';
+import { IconPipe } from './pipes/icon.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ColorPipe } from './pipes/color.pipe';
     BinDimensionsComponent,
     AddCropTableComponent,
     AddCropDialogComponent,
-    ColorPipe
+    ColorPipe,
+    OutlinePipe,
+    IconPipe
   ],
   imports: [
     BrowserModule,

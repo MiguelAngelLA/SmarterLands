@@ -19,7 +19,7 @@ export class ChatService {
     this.messages = <Subject<any>>wsService
       .connect(CHAT_URL)
       .pipe(map((response: MessageEvent): any => {
-        let data = response.data;
+        let data = response.data
         return {
           data
         }
