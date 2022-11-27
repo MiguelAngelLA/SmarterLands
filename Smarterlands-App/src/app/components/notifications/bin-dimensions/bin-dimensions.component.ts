@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BinsService } from 'src/app/services/bins.service';
+import { BinCustom } from 'src/app/interfaces/bins.interface';
 @Component({
   selector: 'app-bin-dimensions',
   templateUrl: './bin-dimensions.component.html',
@@ -12,6 +13,11 @@ export class BinDimensionsComponent implements OnInit {
   columns: any;
   rows: any;
   cropLength:any;
+  binId:any;
+  binName:any;
+  binDesc:any;
+
+
   occupied:Boolean = false;
 
   tempArray:any;
@@ -26,7 +32,9 @@ export class BinDimensionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getBins().subscribe( res => {
-      
+      this.binId = res.bins[1].id;
+      this.binName = res.bins[1].name;
+      this.binDesc = res.bins[1].description;
       this.columns = res.bins[1].width_dimension;
       this.rows = res.bins[1].height_dimension;
       this.cropsQuantity = res.bins[1].total_capacity - res.bins[1].remaining_capacity;
@@ -38,7 +46,6 @@ export class BinDimensionsComponent implements OnInit {
     this.columnArray = [];
     this.rowArray = [];
 
-
     this.tempColumns = this.columns;
     for(let i = 0; i < this.columns * this.rows; i++){
       this.columnArray.push(i);
@@ -49,6 +56,42 @@ export class BinDimensionsComponent implements OnInit {
     }
   }
 
+  setDimensionAction(): void{
+    this.columnArray = [];
+    this.rowArray = [];
+    let bin : BinCustom = {
+      id: 0,
+      name: '',
+      description: '',
+      width_dimension: 0,
+      height_dimension: 0
+    };
+    bin.id = this.binId;
+    bin.name = this.binName;
+    bin.description = this.binDesc;
+    bin.width_dimension = this.columns;
+    bin.height_dimension = this.rows;
+
+    this.tempColumns = this.columns;
+    for(let i = 0; i < this.columns * this.rows; i++){
+      this.columnArray.push(i);
+    }
+
+    for(let i = 0; i < this.rows; i++){
+      this.rowArray.push(i);
+    }
+
+    console.log(bin.id);
+
+    this.api.putDimension(bin).subscribe({
+       next: (res) =>{
+         console.log(res);
+       },
+       error: (err) =>{
+         alert("Fucky wucky")
+       }
+     })
+  }
   checkBin(item: number): boolean{
     let array = [...Array(this.cropsQuantity).keys()]
     if (array.includes(item)){

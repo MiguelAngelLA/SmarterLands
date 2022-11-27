@@ -13,3 +13,11 @@ export interface Bin {
     total_capacity: number;
     remaining_capacity: number;
 }
+
+export interface BinCustom {
+    id: number;
+    name: string;
+    description: string;
+    width_dimension: number;
+    height_dimension: number;
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Bins, Bin } from '../interfaces/bins.interface';
+import { Bins, Bin, BinCustom } from '../interfaces/bins.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +80,15 @@ export class BinsService {
     formData.append('crop_id',crop);
     formData.append('quantity',data.quantity);
     return this.http.post<Bins>(`${this.baseUrl}/bin/RemoveCrop`,formData)
+  }
+
+  putDimension(bin:BinCustom){
+    var formData: any = new FormData();
+    formData.append('id',bin.id);
+    formData.append('name',bin.name);
+    formData.append('description',bin.description);
+    formData.append('width_dimension',bin.width_dimension);
+    formData.append('height_dimension',bin.height_dimension);
+    return this.http.put<Bin>(`${this.baseUrl}/bin`, formData)
   }
 }

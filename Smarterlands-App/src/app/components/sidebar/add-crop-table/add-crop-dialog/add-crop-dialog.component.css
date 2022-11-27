@@ -6,7 +6,7 @@ mat-form-field{
 }
 .mat-dialog-content {
     max-height: initial;
-  }
+}
 .optimal-wrapper{
     display: flex;
     flex-direction: row;
