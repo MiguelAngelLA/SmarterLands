@@ -49,9 +49,9 @@ export class NotificationComponent implements OnInit {
   getNotifications() {
     this.sensorNotification.getNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
-      this.time = resp.notifications[this.notifications.length - 1].time
-      this.lastThree = this.notifications.slice(-3).reverse()
-      console.log(this.notifications);
+      this.lastThree = this.notifications.slice(0, 3)
+      this.time = this.lastThree[0].time
+      console.log(this.lastThree);
     })
   }
 

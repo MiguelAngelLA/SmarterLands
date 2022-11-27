@@ -36,7 +36,7 @@ export class GraficasComponent implements OnInit {
     this.tempChart = new Chart("tempChart", {
       type: 'line',
       data: {
-        labels: this.test,
+        labels: ["tavo", "tavo2", "tavotest", "tavest", "tavusi", "tachurro", "churrosi"],
         datasets: [{
           label: 'My First Dataset',
           data: [65, 59, 80, 81, 56, 55, 40],

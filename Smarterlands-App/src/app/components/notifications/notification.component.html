@@ -67,7 +67,7 @@
         ngClass="{{ notification.type | color }}"
       >
         <div class="data-icon">
-          <i class="fa-solid" ngClass="{{ lastThree.type | icon }}"></i>
+          <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
         </div>
         <div class="data-time">{{ time | date: "shortTime" }}</div>
       </div>
