@@ -59,7 +59,7 @@
 .sensor-state-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 80px;
   justify-content: center;
   align-items: center;
 }
@@ -121,6 +121,7 @@
   background-color: white;
   border-radius: 10px;
   width: 90%;
+  padding: 2px;
   text-align: center;
   border: 1px solid #378c53;
   color: #378c53;
@@ -138,6 +139,7 @@
   display: flex;
   background-color: white;
   align-items: center;
+  justify-content: center;
   border: solid 1px #378c53;
   border-radius: 16px 0px 0px 16px;
 }
@@ -182,20 +184,44 @@
   padding: 5px;
   width: 200px;
   font-size: 12pt;
+  margin-top: 70px;
 }
 
+.stop-button {
+  display: inline-block;
+  align-self: flex-end;
+  background-color: #d62828 !important;
+  color: white;
+  padding: 5px;
+  width: 200px;
+  font-size: 12pt;
+  margin-top: 20px;
+}
+
+.more-logs {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+.more-logs-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #59c067;
+}
 .red {
-  background-color: red;
+  background-color: #d62828;
 }
 
 .green {
-  background-color: green;
+  background-color: #5cd279;
 }
 
 .gray {
-  background-color: gray;
+  background-color: #cccccc;
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #ffe047;
 }

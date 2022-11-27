@@ -28,6 +28,7 @@ export class SidebarComponent implements OnInit {
 
   }
 
+
   getBins() {
     this.binsService.getBins().subscribe((resp => {
       this.bins = resp.bins
