@@ -1,10 +1,17 @@
 <div class="title" mat-dialog-title>Add a new Crop</div>
 <div mat-dialog-content>
     <form [formGroup]="cropForm">
+
+
         
         <mat-selection-list #crops [multiple]="false" *ngIf="show">
             <mat-list-option *ngFor="let item of cropsArray" [value]="item.id" (click)="saveSelectedCrop(item.id)">
-              {{item.name}}
+            <div class="list">
+                <div class="list__photo">
+                    <img src="{{item.photo}}" alt="cropImage"> 
+                </div>
+                <div class="list__wrapper">{{item.name}}</div>
+            </div>
             </mat-list-option>
         </mat-selection-list>
         

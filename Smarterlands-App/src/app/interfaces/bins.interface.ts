@@ -3,6 +3,10 @@ export interface Bins {
     status: number;
 }
 
+export interface SingleBin {
+    bin: Bin;
+    status: number;
+}
 export interface Bin {
     id: number;
     name: string;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Bins, Bin, BinCustom } from '../interfaces/bins.interface';
+import { Bins, Bin, BinCustom, SingleBin } from '../interfaces/bins.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,12 @@ export class BinsService {
     return this.http.get<Bins>(`${this.baseUrl}/bin`)
   }
 
+  getOneBin(id: number): Observable<SingleBin> {
+    return this.http.get<SingleBin>(`${this.baseUrl}/bin/${id}`);
+  }
+
   getBinsId(id: number): Observable<Bins> {
-    return this.http.get<Bins>(`${this.baseUrl}/bin/${id}`);
+    return this.http.get<Bins>(`${this.baseUrl}/bin/crops/${id}`);
   }
 
   postBin(bin: Bin) {

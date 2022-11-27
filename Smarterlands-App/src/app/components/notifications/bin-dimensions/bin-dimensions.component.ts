@@ -1,6 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BinsService } from 'src/app/services/bins.service';
 import { BinCustom } from 'src/app/interfaces/bins.interface';
+import * as alertify from 'alertifyjs';
+import { InformationService } from 'src/app/services/information.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-bin-dimensions',
   templateUrl: './bin-dimensions.component.html',
@@ -8,6 +11,7 @@ import { BinCustom } from 'src/app/interfaces/bins.interface';
 })
 
 export class BinDimensionsComponent implements OnInit {
+  susbcription1$!: Subscription
   columnArray: any;
   rowArray: any;
   columns: any;
@@ -27,19 +31,28 @@ export class BinDimensionsComponent implements OnInit {
   woosh: Boolean = false;
   cropsQuantity: number = 5;
   colorArray: any[] = [];
+  binID: any;
 
-  constructor(private api: BinsService, private cdRef: ChangeDetectorRef) { }
+  constructor(private api: BinsService, private cdRef: ChangeDetectorRef, private infService: InformationService) { }
 
   ngOnInit(): void {
-    this.api.getBins().subscribe( res => {
-      this.binId = res.bins[1].id;
-      this.binName = res.bins[1].name;
-      this.binDesc = res.bins[1].description;
-      this.columns = res.bins[1].width_dimension;
-      this.rows = res.bins[1].height_dimension;
-      this.cropsQuantity = res.bins[1].total_capacity - res.bins[1].remaining_capacity;
-      this.setDimension();
-    });
+    setTimeout(() => {
+      this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
+        this.binID = resp;
+        this.api.getOneBin(this.binID).subscribe( res => {
+          console.log(res.bin.id);
+           this.binId = res.bin.id;
+           this.binName = res.bin.name;
+           this.binDesc = res.bin.description;
+           this.columns = res.bin.width_dimension;
+           this.rows = res.bin.height_dimension;
+           this.cropsQuantity = res.bin.total_capacity - res.bin.remaining_capacity;
+           this.setDimension();
+        });
+      })
+        ,
+        10000
+    })
   }
 
   setDimension(): void{
@@ -85,10 +98,11 @@ export class BinDimensionsComponent implements OnInit {
 
     this.api.putDimension(bin).subscribe({
        next: (res) =>{
-         console.log(res);
+        alertify.set('notifier','position', 'top-center');
+        alertify.success('Changed successfully');
        },
        error: (err) =>{
-         alert("Fucky wucky")
+        alertify.error("There has been a problem");
        }
      })
   }

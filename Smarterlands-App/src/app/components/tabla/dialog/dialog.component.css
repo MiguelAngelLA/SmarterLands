@@ -1,13 +1,10 @@
 .title {
-    color: gray;
+    color: #6c757d;
+    border-bottom: 1px #adb5bd8A solid;
 }
 
 mat-form-field {
     width: 100%;
-}
-
-.mat-dialog-content {
-    max-height: initial;
 }
 
 .optimal-wrapper {
@@ -57,4 +54,21 @@ img {
 
 .selected {
     outline: solid 1px #378C53;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.list{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.list__photo{
+    width: 50px;
+    height: 50px;
 }

@@ -4,6 +4,7 @@ import { BinsService } from 'src/app/services/bins.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { InformationService } from '../../../services/information.service';
+import * as alertify from 'alertifyjs';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -34,6 +35,7 @@ export class DialogComponent implements OnInit {
 
     this.api.getCrop().subscribe( res =>{
       this.cropsArray = res.crops;
+      console.log(this.cropsArray);
     });
     this.cropForm = this.formBuilder.group({
       quantity: ['', Validators.required],
@@ -51,7 +53,7 @@ addCrop() {
   if(!this.editData){
     this.api.postBinCrop(this.binID,this.selectedCrop,this.cropForm.value).subscribe({
       next: (res) => {
-        alert("Crop Added sucessfully");
+        alertify.success("Crop added successfully")
         this.cropForm.reset();
         this.dialogRef.close('save');
       },
