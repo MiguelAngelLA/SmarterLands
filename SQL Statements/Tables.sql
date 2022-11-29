@@ -62,3 +62,24 @@ create table sensor_readings(
 	foreign key ([notification_id]) REFERENCES notifications([id]),
 )
 go
+
+ALTER TABLE bin_crop
+   DROP CONSTRAINT FK__bin_crop__bin_id__2B3F6F97   
+
+ALTER TABLE bin_crop
+   ADD CONSTRAINT FK__bin_crop__bin_id__2B3F6F97_Cascade
+   FOREIGN KEY (bin_id) REFERENCES bins(id) ON DELETE CASCADE
+
+ALTER TABLE sensor_readings
+   DROP CONSTRAINT FK__sensor_re__notif__31EC6D26   
+
+ALTER TABLE sensor_readings
+   ADD CONSTRAINT FK__sensor_re__notif__31EC6D26_Cascade
+   FOREIGN KEY (bin_id) REFERENCES bins(id) ON DELETE CASCADE
+
+ALTER TABLE notifications
+   DROP CONSTRAINT FK__notificat__bin_i__2F10007B 
+
+ALTER TABLE notifications
+   ADD CONSTRAINT FK__notificat__bin_i__2F10007B_Cascade
+   FOREIGN KEY (bin_id) REFERENCES bins(id) ON DELETE CASCADE
