@@ -24,6 +24,7 @@ import { ColorPipe } from './pipes/color.pipe';
 import { OutlinePipe } from './pipes/outline.pipe';
 import { IconPipe } from './pipes/icon.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +40,8 @@ import { IconPipe } from './pipes/icon.pipe';
     AddCropDialogComponent,
     ColorPipe,
     OutlinePipe,
-    IconPipe,
     EditBinDialogComponent
+    IconPipe,
   ],
   imports: [
     BrowserModule,

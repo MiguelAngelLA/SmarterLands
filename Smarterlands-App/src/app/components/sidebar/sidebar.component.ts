@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
     this.binsService.getBins().subscribe((resp => {
       this.bins = resp.bins
       this.setSelected(this.bins[0].id)
+      console.log(this.bins[0].id);
     }))
   }
 

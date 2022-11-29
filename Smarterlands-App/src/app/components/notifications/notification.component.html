@@ -8,36 +8,40 @@
           <mat-icon id="edit">edit</mat-icon>
         </button>
     </div>
+    <div class="right-text-outer">
+      <p class="right-text">{{ binTitle }}</p>
+    </div>
+  </div>
 
-    <div class="sensors-outer">
-        <p class="sensors-title">Sensores</p>
-        <div class="sensors">
-            <div class="card-outer card-properties">
-                <div class="icon-outer">
-                    <i class="fa-solid fa-droplet icon-properties"></i>
-                </div>
+  <div class="sensors-outer" *ngIf="awaitFetch">
+    <p class="sensors-title">Sensores</p>
+    <div class="sensors">
+      <div class="card-outer card-properties">
+        <div class="icon-outer">
+          <i class="fa-solid fa-droplet icon-properties"></i>
+        </div>
 
-                <div class="text-percentage">10%</div>
-                <div class="text-name">Humedad Tierra</div>
-            </div>
+        <div class="text-percentage">{{ lastSensorReading.moisture }}%</div>
+        <div class="text-name">Soil Moisture</div>
+      </div>
 
             <div class="card-outer card-properties">
                 <div class="icon-outer">
                     <i class="fa-solid fa-temperature-half icon-properties"></i>
                 </div>
 
-                <div class="text-percentage">10°C</div>
-                <div class="text-name">Temperatura</div>
-            </div>
+        <div class="text-percentage">{{ lastSensorReading.temperature }}°C</div>
+        <div class="text-name">Temperature</div>
+      </div>
 
             <div class="card-outer card-properties">
                 <div class="icon-outer">
                     <i class="fa-solid fa-wind icon-properties"></i>
                 </div>
 
-                <div class="text-percentage">10%</div>
-                <div class="text-name">Humedad Aire</div>
-            </div>
+        <div class="text-percentage">{{ lastSensorReading.humidity }}%</div>
+        <div class="text-name">Air Humidity</div>
+      </div>
 
             <div class="card-outer card-properties">
                 <div class="icon-outer">
@@ -49,10 +53,11 @@
             </div>
         </div>
 
-        <div class="sensor-state-wrapper">
-            <p class="sensors-state">Latest Status</p>
-            <p class="sensors-state-info">{{ time | date: "medium" }}</p>
+        <div class="text-percentage">
+          {{ lastSensorReading.precipitation }}%
         </div>
+        <div class="text-name">Precipitation</div>
+      </div>
     </div>
 
     <div class="divLog" id="style1" *ngFor="let notification of lastThree">

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Bins, Bin, BinCustom, SingleBin } from '../interfaces/bins.interface';
 import { GenericResponse } from '../interfaces/response.interface';
+import { SensorResponse } from '../interfaces/sensor.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -96,5 +97,9 @@ export class BinsService {
     formData.append('width_dimension', bin.width_dimension);
     formData.append('height_dimension', bin.height_dimension);
     return this.http.put<GenericResponse>(`${this.baseUrl}/bin`, formData)
+  }
+
+  getSensorReadings(binId: number): Observable<SensorResponse> {
+    return this.http.get<SensorResponse>(`${this.baseUrl}/SensorReadings/${binId}`)
   }
 }

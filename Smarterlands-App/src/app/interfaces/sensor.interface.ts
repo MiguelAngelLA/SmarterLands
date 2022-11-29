@@ -1,18 +1,6 @@
-export interface SensorNotifacionResponse {
-    sensorNotfication: SensorNotfication;
-    status: number;
-}
-
-export interface SensorNotfication {
+export interface SensorResponse {
     sensorReadings: SensorReading[];
-    notifications: Notification[];
-}
-
-export interface Notification {
-    id: number;
-    message: string;
-    type: number;
-    time: Date;
+    status: number;
 }
 
 export interface SensorReading {
@@ -25,3 +13,12 @@ export interface SensorReading {
     bin_id: number;
     notification_id: number;
 }
+
+export interface SensorNotfication {
+    sensorReadings: SensorReading[];
+    notifications: Notification[];
+}
+
+
+
+

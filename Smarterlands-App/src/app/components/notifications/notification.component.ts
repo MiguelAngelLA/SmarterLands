@@ -6,7 +6,11 @@ import { InformationService } from '../../services/information.service';
 import { Subscription } from 'rxjs';
 import { WebsocketsService } from '../../services/websockets.service';
 import { ChatService } from '../../services/chat.service';
+import { SensorReading, SensorResponse } from '../../interfaces/sensor.interface';
 import { EditBinDialogComponent } from './edit-bin-dialog/edit-bin-dialog.component';
+
+
+
 
 @Component({
   selector: 'app-notification',
@@ -18,20 +22,16 @@ export class NotificationComponent implements OnInit {
 
   susbcription1$!: Subscription
   binId: any;
-  message: any = "stop";
+  wsMsg: any = "stop";
   type!: any;
   time!: any;
   lastThree!: any;
   notifications: any;
-  binTitle:any;
-
-  constructor(
-      private chatService: ChatService,
-      private webSocket: WebsocketsService,
-      private sensorNotification: BinsService,
-      private infService: InformationService,
-      private dialog: MatDialog
-    ) {
+  sensorReadings!: SensorReading[];
+  lastSensorReading!: SensorReading
+  awaitFetch: boolean = false
+  constructor(private chatService: ChatService, private changeDetector: ChangeDetectorRef, private webSocket: WebsocketsService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
+  binTitle: any;
     this.chatService.messages.subscribe((msg: any) => {
       console.log("Response from ws:" + JSON.stringify(msg));
     })
@@ -43,12 +43,23 @@ export class NotificationComponent implements OnInit {
         this.binId = resp
         this.getNotifications()
         this.getBinInfo();
+        this.getSensorReadings();
       })
+    },)
+  }
+
+  getSensorReadings() {
+    this.sensorNotification.getSensorReadings(this.binId).subscribe((resp) => {
+      this.sensorReadings = resp.sensorReadings
+      this.lastSensorReading = this.sensorReadings[0]
+      console.log(this.lastSensorReading);
+      this.awaitFetch = true
     })
   }
 
   sendMsg() {
-    this.chatService.messages.next(`${this.binId} ${this.message}`)
+
+    this.chatService.messages.next(`{"binID":${this.binId} "message":${this.wsMsg}}`)
   }
 
   getNotifications() {
@@ -56,7 +67,7 @@ export class NotificationComponent implements OnInit {
       this.notifications = resp.notifications;
       this.lastThree = this.notifications.slice(0, 3)
       this.time = this.lastThree[0].time
-      console.log(this.lastThree);
+      // console.log(this.lastThree);
     })
   }
 
