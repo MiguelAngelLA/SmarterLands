@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BinsService } from '../../services/bins.service';
 import { BinDimensionsComponent } from './bin-dimensions/bin-dimensions.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,9 +6,7 @@ import { InformationService } from '../../services/information.service';
 import { Subscription } from 'rxjs';
 import { WebsocketsService } from '../../services/websockets.service';
 import { ChatService } from '../../services/chat.service';
-
-
-
+import { EditBinDialogComponent } from './edit-bin-dialog/edit-bin-dialog.component';
 
 @Component({
   selector: 'app-notification',
@@ -17,6 +15,7 @@ import { ChatService } from '../../services/chat.service';
 
 })
 export class NotificationComponent implements OnInit {
+
   susbcription1$!: Subscription
   binId: any;
   message: any = "stop";
@@ -25,7 +24,14 @@ export class NotificationComponent implements OnInit {
   lastThree!: any;
   notifications: any;
   binTitle:any;
-  constructor(private chatService: ChatService, private changeDetector: ChangeDetectorRef, private webSocket: WebsocketsService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
+
+  constructor(
+      private chatService: ChatService,
+      private webSocket: WebsocketsService,
+      private sensorNotification: BinsService,
+      private infService: InformationService,
+      private dialog: MatDialog
+    ) {
     this.chatService.messages.subscribe((msg: any) => {
       console.log("Response from ws:" + JSON.stringify(msg));
     })
@@ -39,9 +45,6 @@ export class NotificationComponent implements OnInit {
         this.getBinInfo();
       })
     })
-
-
-
   }
 
   sendMsg() {
@@ -63,9 +66,15 @@ export class NotificationComponent implements OnInit {
     })
   }
 
+  openEditBin() {
+    this.dialog.open(EditBinDialogComponent, {
+      width: '20%',
+    })
+  }
+
   getBinInfo(){
     this.sensorNotification.getOneBin(this.binId).subscribe(res => {
-      this.binTitle=res.bin.name;
+      this.binTitle = res.bin.name;
     });
   }
 }

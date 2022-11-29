@@ -1,96 +1,87 @@
-<div id="right-sidepanel" ngClass="getNotifications() ">
-  <div class="panel-title">
-    <div class="right-image">
-      <i class="fa-solid fa-leaf"></i>
-    </div>
-    <div class="right-text-outer">
-      <p class="right-text">{{binTitle}}</p>
-    </div>
-  </div>
-
-  <div class="sensors-outer">
-    <p class="sensors-title">Sensores</p>
-    <div class="sensors">
-      <div class="card-outer card-properties">
-        <div class="icon-outer">
-          <i class="fa-solid fa-droplet icon-properties"></i>
+<div id="right-sidepanel">
+    <div class="panel-title">
+        <div class="right-image">
+            <i class="fa-solid fa-leaf"></i>
         </div>
-
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Humedad Tierra</div>
-      </div>
-
-      <div class="card-outer card-properties">
-        <div class="icon-outer">
-          <i class="fa-solid fa-temperature-half icon-properties"></i>
-        </div>
-
-        <div class="text-percentage">10°C</div>
-        <div class="text-name">Temperatura</div>
-      </div>
-
-      <div class="card-outer card-properties">
-        <div class="icon-outer">
-          <i class="fa-solid fa-wind icon-properties"></i>
-        </div>
-
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Humedad Aire</div>
-      </div>
-
-      <div class="card-outer card-properties">
-        <div class="icon-outer">
-          <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
-        </div>
-
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Precipitación</div>
-      </div>
+        <p class="right-text">{{binTitle}}</p>
+        <button mat-icon-button (click)="openEditBin()">
+          <mat-icon id="edit">edit</mat-icon>
+        </button>
     </div>
 
-    <div class="sensor-state-wrapper">
-      <p class="sensors-state">Latest Status</p>
-      <p class="sensors-state-info">{{ time | date: "medium" }}</p>
-    </div>
-  </div>
+    <div class="sensors-outer">
+        <p class="sensors-title">Sensores</p>
+        <div class="sensors">
+            <div class="card-outer card-properties">
+                <div class="icon-outer">
+                    <i class="fa-solid fa-droplet icon-properties"></i>
+                </div>
 
-  <div class="divLog" id="style1" *ngFor="let notification of lastThree">
-    <div class="log-data-outer">
-      <div
-        ngClass="{{ notification.type | outline }}"
-        class="data-text log-text"
-      >
-        {{ notification.message }}
-      </div>
-      <div
-        class="data-status status-green"
-        ngClass="{{ notification.type | color }}"
-      >
-        <div class="data-icon">
-          <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+                <div class="text-percentage">10%</div>
+                <div class="text-name">Humedad Tierra</div>
+            </div>
+
+            <div class="card-outer card-properties">
+                <div class="icon-outer">
+                    <i class="fa-solid fa-temperature-half icon-properties"></i>
+                </div>
+
+                <div class="text-percentage">10°C</div>
+                <div class="text-name">Temperatura</div>
+            </div>
+
+            <div class="card-outer card-properties">
+                <div class="icon-outer">
+                    <i class="fa-solid fa-wind icon-properties"></i>
+                </div>
+
+                <div class="text-percentage">10%</div>
+                <div class="text-name">Humedad Aire</div>
+            </div>
+
+            <div class="card-outer card-properties">
+                <div class="icon-outer">
+                    <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
+                </div>
+
+                <div class="text-percentage">10%</div>
+                <div class="text-name">Precipitación</div>
+            </div>
         </div>
-        <div class="data-time">{{ time | date: "shortTime" }}</div>
-      </div>
+
+        <div class="sensor-state-wrapper">
+            <p class="sensors-state">Latest Status</p>
+            <p class="sensors-state-info">{{ time | date: "medium" }}</p>
+        </div>
     </div>
-  </div>
 
-  <div class="more-logs">
-    <span class="more-logs-link">More logs...</span>
-  </div>
+    <div class="divLog" id="style1" *ngFor="let notification of lastThree">
+        <div class="log-data-outer">
+            <div ngClass="{{ notification.type | outline }}" class="data-text log-text">
+                {{ notification.message }}
+            </div>
+            <div class="data-status status-green" ngClass="{{ notification.type | color }}">
+                <div class="data-icon">
+                    <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+                </div>
+                <div class="data-time">{{ time | date: "shortTime" }}</div>
+            </div>
+        </div>
+    </div>
 
-  <div class="button-wrapper">
-    <button
-      class="bin-dimensions-button"
-      mat-flat-button
-      (click)="openBinDimensionDialog()"
-    >
+    <div class="more-logs">
+        <span class="more-logs-link">More logs...</span>
+    </div>
+
+    <div class="button-wrapper">
+        <button class="bin-dimensions-button" mat-flat-button (click)="openBinDimensionDialog()">
       Bin dimensions
     </button>
-  </div>
+    </div>
 
-  <div class="button-wrapper">
-    <button class="stop-button" mat-flat-button (click)="sendMsg()">
+    <div class="button-wrapper">
+        <button class="stop-button" mat-flat-button (click)="sendMsg()">
       stop
     </button>
-  </div>
+    </div>
 </div>
