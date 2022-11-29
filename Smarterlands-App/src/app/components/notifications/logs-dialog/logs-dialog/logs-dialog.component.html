@@ -1,0 +1,24 @@
+<div class="title" mat-dialog-title>Historical Logs</div>
+<div class="dialog" mat-dialog-content>
+  <div class="divLog" id="style1" *ngFor="let notification of notifications">
+    <div class="log-data-outer">
+      <div
+        ngClass="{{ notification.type | outline }}"
+        class="data-text log-text"
+      >
+        {{ notification.message }}
+      </div>
+      <div
+        class="data-status status-green"
+        ngClass="{{ notification.type | color }}"
+      >
+        <div class="data-icon">
+          <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+        </div>
+        <div class="data-time">
+          {{ notification.time | date: "shortTime" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

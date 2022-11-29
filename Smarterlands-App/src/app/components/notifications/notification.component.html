@@ -10,7 +10,9 @@
   </div>
 
   <div class="sensors-outer" *ngIf="awaitFetch">
-    <p class="sensors-title">Sensors</p>
+    <div class="sensorTitleWrapper">
+      <p class="sensors-title">Sensors</p>
+    </div>
     <div class="sensors">
       <div class="card-outer card-properties">
         <div class="icon-outer">
@@ -57,28 +59,32 @@
     </div>
   </div>
 
-  <div class="divLog" id="style1" *ngFor="let notification of lastThree">
-    <div class="log-data-outer">
-      <div
-        ngClass="{{ notification.type | outline }}"
-        class="data-text log-text"
-      >
-        {{ notification.message }}
-      </div>
-      <div
-        class="data-status status-green"
-        ngClass="{{ notification.type | color }}"
-      >
-        <div class="data-icon">
-          <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+  <div class="logWrapper">
+    <div class="divLog" id="style1" *ngFor="let notification of notifications">
+      <div class="log-data-outer">
+        <div
+          ngClass="{{ notification.type | outline }}"
+          class="data-text log-text"
+        >
+          {{ notification.message }}
         </div>
-        <div class="data-time">{{ time | date: "shortTime" }}</div>
+        <div
+          class="data-status status-green"
+          ngClass="{{ notification.type | color }}"
+        >
+          <div class="data-icon">
+            <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+          </div>
+          <div class="data-time">
+            {{ notification.time | date: "shortTime" }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="more-logs">
-    <span class="more-logs-link">More logs...</span>
+    <span class="more-logs-link" (click)="openLogsDialog()">More logs...</span>
   </div>
 
   <div class="button-wrapper">

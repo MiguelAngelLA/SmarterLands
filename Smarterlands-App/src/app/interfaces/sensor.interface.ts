@@ -14,10 +14,6 @@ export interface SensorReading {
     notification_id: number;
 }
 
-export interface SensorNotfication {
-    sensorReadings: SensorReading[];
-    notifications: Notification[];
-}
 
 
 

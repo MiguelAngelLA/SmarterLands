@@ -4,10 +4,10 @@ import { BinDimensionsComponent } from './bin-dimensions/bin-dimensions.componen
 import { MatDialog } from '@angular/material/dialog';
 import { InformationService } from '../../services/information.service';
 import { Subscription } from 'rxjs';
-import { WebsocketsService } from '../../services/websockets.service';
 import { ChatService } from '../../services/chat.service';
-import { SensorReading, SensorResponse } from '../../interfaces/sensor.interface';
+import { SensorReading } from '../../interfaces/sensor.interface';
 import { EditBinDialogComponent } from './edit-bin-dialog/edit-bin-dialog.component';
+import { LogsDialogComponent } from './logs-dialog/logs-dialog/logs-dialog.component';
 
 
 
@@ -25,7 +25,6 @@ export class NotificationComponent implements OnInit {
   wsMsg: any = "stop";
   type!: any;
   time!: any;
-  lastThree!: any;
   notifications: any;
   sensorReadings!: SensorReading[];
   lastSensorReading!: SensorReading
@@ -52,7 +51,7 @@ export class NotificationComponent implements OnInit {
     this.sensorNotification.getSensorReadings(this.binId).subscribe((resp) => {
       this.sensorReadings = resp.sensorReadings
       this.lastSensorReading = this.sensorReadings[0]
-      console.log(this.lastSensorReading);
+      // console.log(this.lastSensorReading);
       this.awaitFetch = true
     })
   }
@@ -63,11 +62,9 @@ export class NotificationComponent implements OnInit {
   }
 
   getNotifications() {
-    this.sensorNotification.getNotifications(this.binId).subscribe((resp) => {
+    this.sensorNotification.getTopNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
-      this.lastThree = this.notifications.slice(0, 3)
-      this.time = this.lastThree[0].time
-      // console.log(this.lastThree);
+      console.log(this.notifications);
     })
   }
 
@@ -87,5 +84,11 @@ export class NotificationComponent implements OnInit {
     this.sensorNotification.getOneBin(this.binId).subscribe(res => {
       this.binTitle = res.bin.name;
     });
+  }
+
+  openLogsDialog() {
+    this.dialog.open(LogsDialogComponent, {
+      width: '30%',
+    })
   }
 }

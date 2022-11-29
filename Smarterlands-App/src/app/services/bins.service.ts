@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Bins, Bin, BinCustom, SingleBin } from '../interfaces/bins.interface';
 import { GenericResponse } from '../interfaces/response.interface';
 import { SensorResponse } from '../interfaces/sensor.interface';
+import { Notifications } from '../interfaces/notifications.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -69,27 +70,32 @@ export class BinsService {
     return this.http.get<any>(`${this.baseUrl}/photos`)
   }
 
-  getNotifications(id: any) {
-    return this.http.get<any>(`${this.baseUrl}/Notifications/${id}`)
+
+  getNotifications(id: number) {
+    return this.http.get<Notifications>(`${this.baseUrl}/Notifications/${id}`)
   }
 
-  postBinCrop(bin: any, crop: any, data: any){
+  getTopNotifications(id: number) {
+    return this.http.get<Notifications>(`${this.baseUrl}/Notifications/Limit/${id}`)
+  }
+
+  postBinCrop(bin: any, crop: any, data: any) {
     var formData: any = new FormData();
-    formData.append('bin_id',bin);
-    formData.append('crop_id',crop);
-    formData.append('quantity',data.quantity);
-    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/AddCrop`,formData)
+    formData.append('bin_id', bin);
+    formData.append('crop_id', crop);
+    formData.append('quantity', data.quantity);
+    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/AddCrop`, formData)
   }
 
-  postRemoveBinCrop(bin: any, crop: any, data: any){
+  postRemoveBinCrop(bin: any, crop: any, data: any) {
     var formData: any = new FormData();
-    formData.append('bin_id',bin);
-    formData.append('crop_id',crop);
-    formData.append('quantity',data.quantity);
-    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/RemoveCrop`,formData)
+    formData.append('bin_id', bin);
+    formData.append('crop_id', crop);
+    formData.append('quantity', data.quantity);
+    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/RemoveCrop`, formData)
   }
 
-  putDimension(bin: BinCustom){
+  putDimension(bin: BinCustom) {
     var formData: any = new FormData();
     formData.append('id', bin.id);
     formData.append('name', bin.name);

@@ -24,6 +24,7 @@ import { ColorPipe } from './pipes/color.pipe';
 import { OutlinePipe } from './pipes/outline.pipe';
 import { IconPipe } from './pipes/icon.pipe';
 import { DeleteBinDialogComponent } from './components/notifications/delete-bin-dialog/delete-bin-dialog.component';
+import { LogsDialogComponent } from './components/notifications/logs-dialog/logs-dialog/logs-dialog.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { DeleteBinDialogComponent } from './components/notifications/delete-bin-
     EditBinDialogComponent,
     IconPipe,
     DeleteBinDialogComponent,
+    LogsDialogComponent
   ],
   imports: [
     BrowserModule,
