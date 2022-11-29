@@ -31,10 +31,31 @@ mat-icon {
 }
 
 .add {
-  margin: 20px auto 0 auto;
+  margin: 20px auto auto auto;
   color: #5cd279;
 }
 
 .selected {
   color: #5cd279;
+}
+
+::ng-deep .tooltip {
+  background-color: #5cd279;
+  font-size: 16px;
+}
+
+
+/* Add Crop Section */
+.add-crop{
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-seedling{
+  color: #5cd279;
+  cursor: pointer;
+  font-size: 25pt;
+  margin-bottom: 20px;
 }

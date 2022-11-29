@@ -1,0 +1,45 @@
+<div class="dialog">
+    <div class="title" mat-dialog-title>Bin dimensions</div>
+    <div class="dimension-content"  mat-dialog-content>
+        <div class="wrappers">
+            <mat-form-field appearance="outline">
+                <mat-label>Number of rows</mat-label>
+                <input matInput [(ngModel)]="rows" placeholder="Enter a number" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Number of columns</mat-label>
+                <input matInput [(ngModel)]="columns" placeholder="Enter a number" />
+            </mat-form-field>
+        </div>
+
+        <div class="legend">
+            <div class="legend__wrapper">
+                <div class="legend__square occupied"></div>
+                <p class="legend__text">Occupied crop slot</p>
+            </div>
+
+            <div class="legend__wrapper">
+                <div class="legend__square free"></div>
+                <p class="legend__text">Free crop slot</p>
+            </div>
+        </div>
+
+        <button mat-fab class="woosh-button" aria-label="Example icon button with a delete icon" (click)="moveBin()">
+            <mat-icon>swap_horiz</mat-icon>
+        </button>
+
+        <div class="container" [ngClass]="{'rotation': woosh}">
+            <mat-grid-list class="container__grid" [cols]="tempColumns" rowHeight="fit" gutterSize="2px">
+                <mat-grid-tile class="container__grid-items"*ngFor="let item of columnArray; index as i" [ngClass]="{'occupied': checkBin(i)}"></mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+
+    </div>
+
+    <div class="action-buttons" mat-dialog-action [align]="'end'">
+        <button mat-flat-button style="margin-right:10px" class="save-button" (click)="setDimensionAction()">Change Dimension</button>
+        <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+    </div>
+</div>

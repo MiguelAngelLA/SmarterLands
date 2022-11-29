@@ -1,71 +1,105 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BinsService } from 'src/app/services/bins.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { InformationService } from '../../../services/information.service';
+import * as alertify from 'alertifyjs';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  cropForm!:FormGroup;
-  actionButton : string = "Save";
-  constructor(private formBuilder : FormBuilder, private api : BinsService, @Inject(MAT_DIALOG_DATA) public editData : any, private dialogRef : MatDialogRef<DialogComponent>) { }
+  susbcription1$!: Subscription
+  cropForm!: FormGroup;
+  actionButton: string = "Save";
+  selectedImage: string = "https://localhost:7137/assets/crops/no-photo.png"
+  show : Boolean = true;
+  constructor(private formBuilder: FormBuilder, private infService: InformationService, private api: BinsService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) { }
+  test: any;
+  photosArray: any;
+  borderHolder: any;
+  cropsArray:any;
+  selectedCrop:any;
+  binID:any;
 
+  dialogTitle: String = "Add a crop to bin";
   ngOnInit(): void {
-    this.cropForm = this.formBuilder.group({
-      name : ['',Validators.required],
-      description : ['',Validators.required],
-      photo : ['',Validators.required],
-      optimal_moisture : ['',Validators.required],
-      optimal_temperature : ['',Validators.required],
+    setTimeout(() => {
+      this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
+        this.test
+        this.binID = resp;
+      })
+        ,
+        10000
     });
 
+    this.api.getCrop().subscribe( res =>{
+      this.cropsArray = res.crops;
+      console.log(this.cropsArray);
+    });
+    this.cropForm = this.formBuilder.group({
+      quantity: ['', Validators.required],
+    });
 
-
-    if(this.editData){
-      this.actionButton = "Edit"
-      this.cropForm.controls['name'].setValue(this.editData.name);
-      this.cropForm.controls['description'].setValue(this.editData.description);
-      this.cropForm.controls['photo'].setValue(this.editData.photo);
-      this.cropForm.controls['optimal_moisture'].setValue(this.editData.optimal_moisture);
-      this.cropForm.controls['optimal_temperature'].setValue(this.editData.optimal_temperature);
+    if (this.editData) {
+      console.log(this.editData);
+      this.actionButton = "Remove"
+      this.dialogTitle = "Remove crop quantity"
+      this.show = false;
+      this.cropForm.controls['quantity'].setValue(this.editData.quantity);
     }
-  }
+}
 
-  addCrop(){
-    if(!this.editData){
-      if(this.cropForm.valid) {
-        this.api.postCrop(this.cropForm.value).subscribe({
-          next : (res)=>{
-            alert("Crop Added sucessfully");
-            this.cropForm.reset();
-            this.dialogRef.close('save');
-          },
-          error : (err)=>{
-            alert("Error while adding the crop");
-          }
-        })
-      }
-    }
-    else{
-      this.editCrop()
-    }
-
-  }
-
-  editCrop(){
-    this.api.putCrop(this.cropForm.value,this.editData.id).subscribe({
-      next: (res)=>{
-        alert("Crop Edited")
-        console.log(res);
+addCrop() {
+  if(!this.editData){
+    this.api.postBinCrop(this.binID,this.selectedCrop,this.cropForm.value).subscribe({
+      next: (res) => {
+        alertify.set('notifier','position', 'top-center');
+        alertify.success('Crop added successfully');
         this.cropForm.reset();
-        this.dialogRef.close('update');
+        this.dialogRef.close('save');
       },
-      error : (err) =>{
-        alert ("Error while editing the crop")
-        console.log(err);
+      error: (err) => {
+        alertify.set('notifier','position', 'top-center');
+        alertify.error('Error while adding the crop');
       }
     })
+  }else{
+    this.removeCrop();
   }
+
+}
+
+removeCrop(){
+   this.api.postRemoveBinCrop(this.binID,this.editData.crop_id,this.cropForm.value).subscribe({
+     next: (res) => {
+      alertify.set('notifier','position', 'top-center');
+      alertify.success('Crop Removed sucessfully');
+       this.cropForm.reset();
+       this.dialogRef.close('update');
+     },
+     error: (err) => {
+      alertify.set('notifier','position', 'top-center');
+      alertify.error('Error while adding the crop');
+     }
+   })
+}
+
+saveSelectedCrop(item:any){
+  this.selectedCrop = item;
+}
+
+getPhotos() {
+  this.api.getPhotos().subscribe(resp => {
+    this.photosArray = resp.photos;
+  });
+}
+
+selectImage(image: any) {
+  this.selectedImage = image;
+  this.borderHolder = image;
+}
+
 }

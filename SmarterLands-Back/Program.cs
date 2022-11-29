@@ -1,11 +1,12 @@
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
+using websocket_server.Server_Functions; 
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddWebSocketManager();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,6 +30,11 @@ ProjectConfig.Configuration = JsonConvert.DeserializeObject<ProjectConfig>(json)
 
 var app = builder.Build();
 
+// websocket feature
+app.UseWebSockets();
+app.MapSockets("/ws", app.Services.GetService<MessageSocket>());
+//app.Urls.Add("http://0.0.0.0:5003");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -43,7 +49,6 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/assets"
 });
 
-app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 

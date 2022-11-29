@@ -1,0 +1,18 @@
+.optimal-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.save-button {
+  background-color: #378c53;
+  color: white;
+}
+
+.action-buttons {
+  margin-top: 10px;
+}

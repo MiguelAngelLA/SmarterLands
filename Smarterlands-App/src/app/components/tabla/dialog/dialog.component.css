@@ -1,14 +1,66 @@
-mat-form-field{
+.title {
+    color: #6c757d;
+    border-bottom: 1px #adb5bd8A solid;
+}
+
+mat-form-field {
     width: 100%;
 }
 
-.optimal-wrapper{
+.optimal-wrapper {
     display: flex;
     flex-direction: row;
-    gap:10px;
+    gap: 10px;
 }
 
-.save-button{
+.save-button {
     background-color: #378C53;
-    color:white;
+    color: white;
+}
+
+.action-buttons {
+    margin-top: 15px;
+}
+
+img {
+    height: 96px;
+    width: 96px;
+}
+
+.image-title {
+    font-size: 14pt;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.selected {
+    outline: solid 1px #378C53;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.list{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.list__photo{
+    width: 50px;
+    height: 50px;
+}
+
+.option{
+    height: 60px;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }

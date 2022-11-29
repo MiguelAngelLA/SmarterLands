@@ -1,0 +1,42 @@
+<div class="title" mat-dialog-title>{{formTitle}}</div>
+<div mat-dialog-content>
+    <form [formGroup]="cropForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input  formControlName="name" matInput placeholder="Name">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+    
+        <div class="optimal-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Optimal Moisture</mat-label>
+                <input  formControlName="optimal_moisture" matInput placeholder="Optimal Moisture">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Optimal Temperature</mat-label>
+                <input formControlName="optimal_temperature" matInput placeholder="Optimal Temperature">
+            </mat-form-field>
+        </div>
+        
+        <div class="image-title">Select image</div>
+        <div class="image-container-wrapper">
+            <div class="image-container">
+                <div class="image-wrapper" *ngFor="let image of photosArray" [ngClass]="{ selected: borderHolder == image }">
+                    <img src="{{image}}" alt="cropimage" (click)="selectImage(image)">
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="action-buttons" mat-dialog-action [align]="'end'">
+    <button mat-flat-button style="margin-right:10px" class="save-button" (click)="addCrop()">{{actionButton}}</button>
+    <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+</div>
+

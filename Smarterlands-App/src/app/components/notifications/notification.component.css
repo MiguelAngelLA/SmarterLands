@@ -1,171 +1,233 @@
-
 /* Title and Icon*/
 
-#right-sidepanel{
-    height: 100vh;
-    width: 300px;
-    background: white;
+#right-sidepanel {
+  height: 100vh;
+  width: 300px;
+  background: white;
 }
 
-.panel-title{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    justify-content: center;
+.panel-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
 }
-.right-image{
-    display: flex;
-    background-color: #378C53;
-    border-radius: 100px;
-    padding: 5px;
-    width:60px;
-    height: 60px;
-    margin-top: 20px;
-}
-
-.fa-leaf{
-    margin: auto;
-    color:white;
-    font-size: 35px;
+.right-image {
+  display: flex;
+  background-color: #378c53;
+  border-radius: 100px;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  margin-top: 20px;
 }
 
-.right-text{
-    color: #378C53;
-    font-size: 18pt;
-    margin-top: 30px;
+.fa-leaf {
+  margin: auto;
+  color: white;
+  font-size: 35px;
+}
+
+.right-text {
+  color: #378c53;
+  font-size: 18pt;
+  margin-top: 30px;
 }
 
 /*Sensor Information*/
 
-.sensors-outer{
-    margin-top: 40px;
-} 
-
-.sensors{
-    display: grid;
-    grid-template-columns: 150px 150px;
-    grid-row: auto auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 35px;
-    justify-content: center;
+.sensors-outer {
+  margin-top: 40px;
 }
 
-.sensors-title{
-    color: #378C53;
-    margin-left: 20px;
-    font-size: 18px;
+.sensors {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-row: auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 35px;
+  justify-content: center;
 }
 
-.sensor-state-wrapper{
-    display: flex;
-    flex-direction: column;
-    margin-top:20px;
-    justify-content: center;
-    align-items: center;
+.sensors-title {
+  color: #378c53;
+  margin-left: 20px;
+  font-size: 18px;
 }
 
-.sensors-state{
-    color: #378C53;
+.sensor-state-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  justify-content: center;
+  align-items: center;
 }
 
-.sensors-state-info{
-    color: #B0AAA2;
+.sensors-state {
+  color: #378c53;
 }
 
-.card-outer{
-    position: relative;
-    background-color: #378C53;
-    height: 60px;
-    width:110px;
-    border-radius: 8px;
-    margin: auto;
+.sensors-state-info {
+  color: #b0aaa2;
 }
 
-.card-properties{
-    display: flex;
-    flex-direction: column;
+.card-outer {
+  position: relative;
+  background-color: #378c53;
+  height: 60px;
+  width: 110px;
+  border-radius: 8px;
+  margin: auto;
 }
 
-.icon-outer{
-    display: flex;
-    margin: auto;
-    position:absolute;
-    background-color: #378C53;
-    top:-10px;
-    right:-10px;
-    border:3px solid white;
-    border-radius: 150px;
-    padding: 5px;
-    width:20px;
-    height: 20px;
+.card-properties {
+  display: flex;
+  flex-direction: column;
 }
 
-.icon-properties{
-    margin: auto;
-    color:white;
-    font-size: 15px;
+.icon-outer {
+  display: flex;
+  margin: auto;
+  position: absolute;
+  background-color: #378c53;
+  top: -10px;
+  right: -10px;
+  border: 3px solid white;
+  border-radius: 150px;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
 }
 
-.text-percentage{
-    font-size: 20pt;
-    font-weight: bold;
-    margin: auto;
-    color:white;
+.icon-properties {
+  margin: auto;
+  color: white;
+  font-size: 15px;
 }
 
-.text-name{
-    position: absolute;
-    bottom:-10px;
-    right: 5.5px;
-    font-size: 10pt;
-    background-color: white;
-    border-radius: 10px;
-    width: 90%;
-    text-align: center;
-    border:1px solid #378C53;
-    color:#378C53;
-} 
+.text-percentage {
+  font-size: 20pt;
+  font-weight: bold;
+  margin: auto;
+  color: white;
+}
+
+.text-name {
+  position: absolute;
+  bottom: -10px;
+  right: 5.5px;
+  font-size: 10pt;
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  padding: 2px;
+  text-align: center;
+  border: 1px solid #378c53;
+  color: #378c53;
+}
 
 /*Logs*/
 
-
-.log-data-outer{
-    display: grid;
-    grid-template-columns: 2.5fr 0.5fr;
-    margin:10px;
+.log-data-outer {
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr;
+  margin: 10px;
 }
 
-.data-text{
-    display:flex;
-    background-color: white;
-    align-items: center;
-    border: solid 1px #378C53;
-    border-radius: 16px 0px 0px 16px;
+.data-text {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #378c53;
+  border-radius: 16px 0px 0px 16px;
 }
 
-.data-status{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-radius: 0px 16px 16px 0px;
-    padding: 5px;
+.data-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 0px 16px 16px 0px;
+  padding: 5px;
+  width: 50px;
+  font-size: 11px;
 }
 
-.status-green{
-    background-color: #59C067;
+.data-icon {
+  font-size: 20px;
 }
 
-.status-red{
-    background-color: #DE3730;
+/* Buttons */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.status-yellow{
-    background-color: #EDC148;
+.bin-dimensions-button {
+  background-color: #378c53 !important;
+  color: white;
+  padding: 5px;
+  width: 200px;
+  font-size: 12pt;
+  margin-top: 70px;
+  position: fixed;
+  bottom: 120px;
 }
 
-.data-icon{
-    font-size: 20px;
+.stop-button {
+  background-color: #d62828 !important;
+  color: white;
+  padding: 5px;
+  width: 200px;
+  font-size: 12pt;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 40px;
+}
+
+.more-logs {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+.more-logs-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #59c067;
+}
+.red {
+  background-color: #d62828;
+}
+
+.green {
+  background-color: #5cd279;
+}
+
+.gray {
+  background-color: #cccccc;
+}
+
+.yellow {
+  background-color: #ffe047;
+}
+
+.red-outline {
+  border: solid 2px #d62828;
+}
+
+.green-outline {
+  border: solid 2px #5cd279;
+}
+
+.gray-outline {
+  border: solid 2px #cccccc;
+}
+
+.yellow-outline {
+  border: solid 2px #ffe047;
 }

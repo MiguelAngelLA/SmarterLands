@@ -1,0 +1,95 @@
+.dimension-content {
+    overflow-x: hidden;
+    height: 450px;
+}
+
+.container {
+    margin: 30px auto;
+    max-width: 400px;
+    border-radius: 10px;
+    background: #fff;
+    transition: all 1s;
+    /* overflow: hidden; */
+    gap: 10px;
+}
+
+.container__grid{
+    height: 300px;
+}
+
+.container__grid-items{
+    background-color: #e9ecef;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.rotation {
+    transform: rotateX(65deg) rotateZ(-35deg);
+}
+
+.title {
+    color: #6c757d;
+    border-bottom: 1px #adb5bd8A solid;
+}
+
+.wrappers {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.save-button {
+    background-color: #378C53;
+    color: white;
+}
+
+.mat-fab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px !important;
+    width: 50px !important;
+    background-color: #378C53;
+}
+
+.woosh-button {
+    float: right;
+}
+
+.legend{
+    float: left;
+}
+
+.legend__wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.legend__square{
+    width: 20px;
+    height: 20px;
+}
+
+.legend__text{
+    font-size: 10pt;
+    color: #6c757d;
+    margin: 0;
+}
+
+mat-grid-tile {
+    background: rgb(205, 205, 205);
+}
+.occupied{
+	background-color: #378C538A;
+}
+
+.free{
+    background-color: #e9ecef;
+}
+
+

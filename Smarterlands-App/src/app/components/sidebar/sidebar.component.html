@@ -5,11 +5,22 @@
     <img class="logo" src="./../../../assets/logo.png" alt="" />
     <div *ngFor="let bin of bins" class="bins">
       <mat-icon
+        matTooltip="{{ bin.name }}"
+        matTooltipClass="tooltip"
+        matTooltipPosition="right"
         (click)="setSelected(bin.id)"
         [ngClass]="{ selected: selectedId == bin.id }"
         >dashboard</mat-icon
       >
     </div>
-    <mat-icon class="add">add</mat-icon>
+    <mat-icon (click)="createBin()" class="add">add</mat-icon>
+
+    <div class="add-crop">
+      <i  matTooltip="Add Crop"
+          matTooltipClass="tooltip"
+          matTooltipPosition="right"
+          class="fa-solid fa-seedling"
+          (click)="openTableDialog()"></i>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
