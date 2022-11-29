@@ -56,7 +56,6 @@ export class SidebarComponent implements OnInit {
         this.getBins();
       }
     })
-
   }
 
   openTableDialog() {
