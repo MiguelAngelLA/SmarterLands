@@ -17,30 +17,34 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  constructor(private binsService: BinsService, private infService: InformationService, private dialog: MatDialog) { }
+
   bins: any = [];
   selectedId: number = 0;
   crops: Bin[] = [];
   bin!: Bin;
   x: any;
+
+  constructor(
+    private binsService: BinsService,
+    private infService: InformationService,
+    private dialog: MatDialog
+  ) { }
+
   ngOnInit(): void {
     this.getBins()
 
   }
 
-
   getBins() {
     this.binsService.getBins().subscribe((resp => {
       this.bins = resp.bins
-      this.infService.sendBin(this.bins[0].id)
+      this.setSelected(this.bins[0].id)
     }))
-
   }
 
   setSelected(id: number) {
     this.selectedId = id;
     this.infService.sendBin(this.selectedId)
-
   }
 
 
