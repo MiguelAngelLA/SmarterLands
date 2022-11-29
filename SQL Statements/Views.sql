@@ -24,11 +24,11 @@ create view VW_GetSensorReadings as
 select * from sensor_readings 
 go
 
-alter view VW_GetNotificationsLimit as
+create view VW_GetNotificationsLimit as
 select top 4 * from notifications 
 go
 
-alter view VW_GetSensorReadingsLimit as
+create view VW_GetSensorReadingsLimit as
 select top 4 * from sensor_readings 
 go
 
