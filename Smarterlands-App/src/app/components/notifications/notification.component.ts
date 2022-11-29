@@ -24,6 +24,7 @@ export class NotificationComponent implements OnInit {
   time!: any;
   lastThree!: any;
   notifications: any;
+  binTitle:any;
   constructor(private chatService: ChatService, private changeDetector: ChangeDetectorRef, private webSocket: WebsocketsService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
     this.chatService.messages.subscribe((msg: any) => {
       console.log("Response from ws:" + JSON.stringify(msg));
@@ -35,6 +36,7 @@ export class NotificationComponent implements OnInit {
       this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
         this.binId = resp
         this.getNotifications()
+        this.getBinInfo();
       })
     })
 
@@ -59,5 +61,11 @@ export class NotificationComponent implements OnInit {
     this.dialog.open(BinDimensionsComponent, {
       width: '50%',
     })
+  }
+
+  getBinInfo(){
+    this.sensorNotification.getOneBin(this.binId).subscribe(res => {
+      this.binTitle=res.bin.name;
+    });
   }
 }

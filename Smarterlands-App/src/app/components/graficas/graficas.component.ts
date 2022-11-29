@@ -36,7 +36,7 @@ export class GraficasComponent implements OnInit {
     this.tempChart = new Chart("tempChart", {
       type: 'line',
       data: {
-        labels: ["tavo", "tavo2", "tavotest", "tavest", "tavusi", "tachurro", "churrosi"],
+        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
         datasets: [{
           label: 'My First Dataset',
           data: [65, 59, 80, 81, 56, 55, 40],
@@ -51,7 +51,7 @@ export class GraficasComponent implements OnInit {
     this.humidityChart = new Chart("humidityChart", {
       type: 'line',
       data: {
-        labels: ["tavo", "tavo2", "tavotest", "tavest", "tavusi", "tachurro", "churrosi"],
+        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
         datasets: [{
           label: 'My First Dataset',
           data: [65, 59, 80, 81, 56, 55, 40],
@@ -66,7 +66,7 @@ export class GraficasComponent implements OnInit {
     this.humidityChart = new Chart("soilHumidityChart", {
       type: 'line',
       data: {
-        labels: ["tavo", "tavo2", "tavotest", "tavest", "tavusi", "tachurro", "churrosi"],
+        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
         datasets: [{
           label: 'My First Dataset',
           data: [65, 59, 80, 81, 56, 55, 40],
