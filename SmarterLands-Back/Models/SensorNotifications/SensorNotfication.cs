@@ -24,7 +24,7 @@ public class SensorNotfication
 
         public static SensorNotfication getSensorNotifications(int id)
         {
-            SqlCommand command = new SqlCommand(select + " where bin_id = " + id + " order by [time] asc");
+            SqlCommand command = new SqlCommand(select + " where bin_id = " + id + " order by [time] desc");
             return SensorNotificationsMapper.ToList(SqlServerConnection.ExecuteQuery(command));
         }
 }
