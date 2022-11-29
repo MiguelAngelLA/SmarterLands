@@ -23,6 +23,7 @@ import { EditBinDialogComponent } from './components/notifications/edit-bin-dial
 import { ColorPipe } from './pipes/color.pipe';
 import { OutlinePipe } from './pipes/outline.pipe';
 import { IconPipe } from './pipes/icon.pipe';
+import { DeleteBinDialogComponent } from './components/notifications/delete-bin-dialog/delete-bin-dialog.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { IconPipe } from './pipes/icon.pipe';
     OutlinePipe,
     EditBinDialogComponent,
     IconPipe,
+    DeleteBinDialogComponent,
   ],
   imports: [
     BrowserModule,

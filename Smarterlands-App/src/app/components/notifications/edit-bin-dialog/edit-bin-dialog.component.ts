@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BinsService } from 'src/app/services/bins.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { InformationService } from '../../../services/information.service';
 import * as alertify from 'alertifyjs';
 import { Bin } from 'src/app/interfaces/bins.interface';
+import { DeleteBinDialogComponent } from '../delete-bin-dialog/delete-bin-dialog.component';
+
 @Component({
   selector: 'app-edit-bin-dialog',
   templateUrl: './edit-bin-dialog.component.html',
@@ -30,17 +32,18 @@ export class EditBinDialogComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: BinsService,
+    private apiService: BinsService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialogRef: MatDialogRef<EditBinDialogComponent>,
-    private infService: InformationService
+    private infService: InformationService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
 
     this.susbcription1$ = this.infService.selectedBin$.subscribe(resp => {
       this.binID = resp;
-      this.api.getOneBin(this.binID).subscribe( res => {
+      this.apiService.getOneBin(this.binID).subscribe( res => {
         let response = res.bin;
         this.cropObject.id = response.id;
         this.cropObject.name = response.name;
@@ -57,8 +60,15 @@ export class EditBinDialogComponent implements OnInit {
     });
 }
 
+deleteDialog() {
+  this.dialog.open(DeleteBinDialogComponent, {
+    width: '30%',
+    data: this.cropObject.id
+  })
+}
+
 editCrop() {
-    this.api.putDimension(this.cropObject).subscribe({
+    this.apiService.putDimension(this.cropObject).subscribe({
       next: (res) => {
         if (res.status != 0){
           alertify.set('notifier','position', 'top-center');

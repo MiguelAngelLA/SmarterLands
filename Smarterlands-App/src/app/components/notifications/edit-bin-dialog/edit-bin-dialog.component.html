@@ -14,7 +14,12 @@
     </form>
 </div>
 
+
 <div class="action-buttons" mat-dialog-action [align]="'end'">
-    <button mat-flat-button style="margin-right: 10px" class="save-button" (click)="editCrop()">Save</button>
-    <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+    <button mat-icon-button style="margin-right: 10px" (click)="deleteDialog()">
+      <mat-icon id="delete">delete</mat-icon>
+    </button>
+
+    <button mat-flat-button style="margin-right: 10px" color="warn" mat-dialog-close>Close</button>
+    <button mat-flat-button class="save-button" (click)="editCrop()">Save</button>
 </div>
