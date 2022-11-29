@@ -69,6 +69,7 @@ editCrop() {
           alertify.success('Bin Information Saved Successfully');
           this.binEditForm.reset();
           this.dialogRef.close('save');
+          this.infService.sendBin(this.cropObject.id);
         }
       },
       error: (err) => {
