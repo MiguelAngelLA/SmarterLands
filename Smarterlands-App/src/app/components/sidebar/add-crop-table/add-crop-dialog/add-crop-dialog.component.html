@@ -4,26 +4,33 @@
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input  formControlName="name" matInput placeholder="Name">
+            <mat-error *ngIf="formValidation('name')">{{validationErrors('name')}}</mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
             <textarea formControlName="description" matInput></textarea>
+            <mat-error *ngIf="formValidation('description')">{{validationErrors('description')}}</mat-error>
         </mat-form-field>
     
         <div class="optimal-wrapper">
             <mat-form-field appearance="outline">
                 <mat-label>Optimal Moisture</mat-label>
                 <input  formControlName="optimal_moisture" matInput placeholder="Optimal Moisture">
+                <mat-error *ngIf="formValidation('optimal_moisture')">{{validationErrors('optimal_moisture')}}</mat-error>
             </mat-form-field>
     
             <mat-form-field appearance="outline">
                 <mat-label>Optimal Temperature</mat-label>
                 <input formControlName="optimal_temperature" matInput placeholder="Optimal Temperature">
+                <mat-error *ngIf="formValidation('optimal_temperature')">{{validationErrors('optimal_temperature')}}</mat-error>
             </mat-form-field>
         </div>
         
-        <div class="image-title">Select image</div>
+        <div class="image__title-wrapper">
+            <div class="image-title">Select image</div>
+            <mat-error *ngIf="si">* Please select an image</mat-error>
+        </div>
         <div class="image-container-wrapper">
             <div class="image-container">
                 <div class="image-wrapper" *ngFor="let image of photosArray" [ngClass]="{ selected: borderHolder == image }">
