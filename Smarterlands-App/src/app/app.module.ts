@@ -40,7 +40,7 @@ import { IconPipe } from './pipes/icon.pipe';
     AddCropDialogComponent,
     ColorPipe,
     OutlinePipe,
-    EditBinDialogComponent
+    EditBinDialogComponent,
     IconPipe,
   ],
   imports: [
