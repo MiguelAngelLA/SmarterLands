@@ -46,6 +46,7 @@ export class NotificationComponent implements OnInit {
       try {
         this.wsResponse = JSON.parse(msg.data)
         infService.sendGraph(msg.data)
+        console.log(this.wsResponse);
       }
       catch {
 
@@ -71,6 +72,8 @@ export class NotificationComponent implements OnInit {
     this.sensorNotification.getSensorReadings(this.binId).subscribe((resp) => {
       this.sensorReadings = resp.sensorReadings
       this.lastSensorReading = this.sensorReadings[0]
+      this.wsResponse = this.lastSensorReading
+      console.log(this.lastSensorReading);
       this.awaitFetch = true
     })
   }

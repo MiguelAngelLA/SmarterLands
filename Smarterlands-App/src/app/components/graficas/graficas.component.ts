@@ -15,15 +15,22 @@ export class GraficasComponent implements OnInit {
 
   constructor(private api: BinsService, private infService: InformationService) {
     infService.streamedGraph$.subscribe((resp) => {
-      console.log(resp);
-      let jsonResponse = JSON.parse(resp)
-      let formattedDate = new Date(jsonResponse.time).toLocaleTimeString()
-      this.timeArray.push(formattedDate)
-      this.temperatureArray.push(jsonResponse.temperature)
-      this.moistureArray.push(jsonResponse.moisture)
-      this.humidityArray.push(jsonResponse.humidity)
-      this.destroyCharts();
-      this.createCharts();
+      try {
+        console.log(resp);
+        let jsonResponse = JSON.parse(resp)
+        let formattedDate = new Date(jsonResponse.time).toLocaleTimeString()
+        this.timeArray.push(formattedDate)
+        this.temperatureArray.push(jsonResponse.temperature)
+        this.moistureArray.push(jsonResponse.moisture)
+        this.humidityArray.push(jsonResponse.humidity)
+        this.destroyCharts();
+        this.createCharts();
+      }
+      catch {
+
+      }
+
+
     })
   }
   tempChart: any;
@@ -81,6 +88,7 @@ export class GraficasComponent implements OnInit {
       data: {
         labels: this.timeArray,
         datasets: [{
+          tension: 0.6,
           label: 'Temperature',
           data: this.temperatureArray,
           fill: true,
