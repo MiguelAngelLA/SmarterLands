@@ -23,8 +23,14 @@ export class GraficasComponent implements OnInit {
         this.temperatureArray.push(jsonResponse.temperature)
         this.moistureArray.push(jsonResponse.moisture)
         this.humidityArray.push(jsonResponse.humidity)
-        this.destroyCharts();
-        this.createCharts();
+        console.log(this.timeArray);
+        if (this.timeArray.length >= 20) {
+          this.timeArray.shift()
+          this.tempChart.shift()
+          this.moistureArray.shift()
+          this.humidityArray.shift()
+        }
+        this.updateCharts()
       }
       catch {
 
@@ -44,7 +50,7 @@ export class GraficasComponent implements OnInit {
   temperatureArray: any[] = []
   moistureArray: any[] = []
   humidityArray: any[] = []
-
+  maxGraphs: any[] = []
   ngOnInit(): void {
     setTimeout(() => {
       this.Subscription1$ = this.infService.selectedBin$.subscribe(resp => {
@@ -75,7 +81,8 @@ export class GraficasComponent implements OnInit {
 
   getCharts() {
     this.api.getSensorReadings(this.binId).subscribe(resp => {
-      resp.sensorReadings.forEach(element => {
+      this.maxGraphs = resp.sensorReadings.slice(0, 19)
+      this.maxGraphs.forEach(element => {
         let formattedDate = new Date(element.time).toLocaleTimeString()
         this.timeArray.push(formattedDate)
         this.temperatureArray.push(element.temperature)
@@ -86,6 +93,12 @@ export class GraficasComponent implements OnInit {
     })
   }
 
+
+  updateCharts() {
+    this.tempChart.update();
+    this.humidityChart.update();
+    this.soilHumidityChart.update();
+  }
   destroyCharts() {
     this.tempChart.destroy();
     this.humidityChart.destroy();

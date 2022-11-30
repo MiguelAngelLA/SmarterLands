@@ -6,7 +6,7 @@
         ngClass="{{ notification.type | outline }}"
         class="data-text log-text"
       >
-        {{ notification.message }}
+        {{ notification.type | message }}
       </div>
       <div
         class="data-status status-green"
