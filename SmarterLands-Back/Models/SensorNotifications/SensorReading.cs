@@ -70,7 +70,7 @@ public class SensorReading
 
     public static List<SensorReading> GetLimit(int bin_id)
     {
-        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + bin_id + " order by time desc");
+        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + bin_id + " order by time asc");
         return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 
