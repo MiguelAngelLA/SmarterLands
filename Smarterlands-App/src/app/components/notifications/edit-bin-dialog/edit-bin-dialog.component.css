@@ -1,0 +1,12 @@
+.save-button {
+    background-color: #378C53;
+    color: white;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+#delete {
+    color: gray;
+}

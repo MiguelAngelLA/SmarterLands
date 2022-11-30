@@ -47,7 +47,7 @@ public class Bin
     }
     public static List<Bin> GetAll()
     {
-        SqlCommand command = new SqlCommand(select + " order by [date_created] asc");
+        SqlCommand command = new SqlCommand(select + " order by [date_created] desc");
         return BinMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
     public static Bin GetOne(int id)

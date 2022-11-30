@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Bins, Bin, BinCustom, SingleBin } from '../interfaces/bins.interface';
+import { GenericResponse } from '../interfaces/response.interface';
+import { SensorResponse } from '../interfaces/sensor.interface';
+import { Notifications } from '../interfaces/notifications.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +34,7 @@ export class BinsService {
     formData.append('description', bin.description)
     formData.append('width_dimension', bin.width_dimension)
     formData.append('height_dimension', bin.height_dimension)
-    return this.http.post<Bin>(`${this.baseUrl}/bin`, formData)
+    return this.http.post<GenericResponse>(`${this.baseUrl}/bin`, formData)
   }
 
   postCrop(data: any, image: string) {
@@ -41,7 +44,7 @@ export class BinsService {
     formData.append('photo', image)
     formData.append('optimal_moisture', data.optimal_moisture)
     formData.append('optimal_temperature', data.optimal_temperature)
-    return this.http.post<any>(`${this.baseUrl}/crops`, formData);
+    return this.http.post<GenericResponse>(`${this.baseUrl}/crops`, formData);
   }
 
   putCrop(data: any, data2: any, image: string) {
@@ -52,11 +55,11 @@ export class BinsService {
     formData.append('photo', image)
     formData.append('optimal_moisture', data.optimal_moisture)
     formData.append('optimal_temperature', data.optimal_temperature)
-    return this.http.put<any>(`${this.baseUrl}/crops`, formData);
+    return this.http.put<GenericResponse>(`${this.baseUrl}/crops`, formData);
   }
 
   deleteCrop(data: any) {
-    return this.http.delete<any>(`${this.baseUrl}/crops/` + data);
+    return this.http.delete<GenericResponse>(`${this.baseUrl}/crops/` + data);
   }
 
   getCrop() {
@@ -67,32 +70,46 @@ export class BinsService {
     return this.http.get<any>(`${this.baseUrl}/photos`)
   }
 
-  getNotifications(id: any) {
-    return this.http.get<any>(`${this.baseUrl}/Notifications/${id}`)
-  }
-  
-  postBinCrop(bin:any,crop:any,data:any){
-    var formData: any = new FormData();
-    formData.append('bin_id',bin);
-    formData.append('crop_id',crop);
-    formData.append('quantity',data.quantity);
-    return this.http.post<Bins>(`${this.baseUrl}/bin/AddCrop`,formData)
-  }
-  postRemoveBinCrop(bin:any,crop:any,data:any){
-    var formData: any = new FormData();
-    formData.append('bin_id',bin);
-    formData.append('crop_id',crop);
-    formData.append('quantity',data.quantity);
-    return this.http.post<Bins>(`${this.baseUrl}/bin/RemoveCrop`,formData)
+
+  getNotifications(id: number) {
+    return this.http.get<Notifications>(`${this.baseUrl}/Notifications/${id}`)
   }
 
-  putDimension(bin:BinCustom){
+  getTopNotifications(id: number) {
+    return this.http.get<Notifications>(`${this.baseUrl}/Notifications/Limit/${id}`)
+  }
+
+  postBinCrop(bin: any, crop: any, data: any) {
     var formData: any = new FormData();
-    formData.append('id',bin.id);
-    formData.append('name',bin.name);
-    formData.append('description',bin.description);
-    formData.append('width_dimension',bin.width_dimension);
-    formData.append('height_dimension',bin.height_dimension);
-    return this.http.put<Bin>(`${this.baseUrl}/bin`, formData)
+    formData.append('bin_id', bin);
+    formData.append('crop_id', crop);
+    formData.append('quantity', data.quantity);
+    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/AddCrop`, formData)
+  }
+
+  postRemoveBinCrop(bin: any, crop: any, data: any) {
+    var formData: any = new FormData();
+    formData.append('bin_id', bin);
+    formData.append('crop_id', crop);
+    formData.append('quantity', data.quantity);
+    return this.http.post<GenericResponse>(`${this.baseUrl}/bin/RemoveCrop`, formData)
+  }
+
+  putDimension(bin: BinCustom) {
+    var formData: any = new FormData();
+    formData.append('id', bin.id);
+    formData.append('name', bin.name);
+    formData.append('description', bin.description);
+    formData.append('width_dimension', bin.width_dimension);
+    formData.append('height_dimension', bin.height_dimension);
+    return this.http.put<GenericResponse>(`${this.baseUrl}/bin`, formData)
+  }
+
+  getSensorReadings(binId: number): Observable<SensorResponse> {
+    return this.http.get<SensorResponse>(`${this.baseUrl}/SensorReadings/${binId}`)
+  }
+
+  deleteBin(binId: number): Observable<GenericResponse>  {
+    return this.http.delete<GenericResponse>(`${this.baseUrl}/bin/` + binId);
   }
 }

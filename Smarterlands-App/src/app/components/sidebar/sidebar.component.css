@@ -40,20 +40,18 @@ mat-icon {
 }
 
 ::ng-deep .tooltip {
-  background-color: #5cd279;
   font-size: 16px;
 }
 
-
 /* Add Crop Section */
-.add-crop{
+.add-crop {
   margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.fa-seedling{
+.fa-seedling {
   color: #5cd279;
   cursor: pointer;
   font-size: 25pt;

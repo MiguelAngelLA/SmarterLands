@@ -184,8 +184,8 @@ begin
 -- validate
 	set @status = 0; -- no error
 	if not exists (select * from bins where id = @id) set @status = 1 -- Bin does not exist
-	if exists (select * from bin_crop where bin_id = @id) set @status = 2 -- Bin has crops :(
-	if exists (select * from sensor_readings where bin_id = @id) set @status = 6 -- Bin has sensor readings
+	--if exists (select * from bin_crop where bin_id = @id) set @status = 2 -- Bin has crops :(
+	--if exists (select * from sensor_readings where bin_id = @id) set @status = 6 -- Bin has sensor readings
 	if @status = 0 begin	
 		--transaction
 		begin transaction

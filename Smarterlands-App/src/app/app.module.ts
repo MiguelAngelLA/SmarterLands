@@ -19,9 +19,13 @@ import { BinDimensionsComponent } from './components/notifications/bin-dimension
 import { RouterModule } from '@angular/router';
 import { AddCropTableComponent } from './components/sidebar/add-crop-table/add-crop-table.component';
 import { AddCropDialogComponent } from './components/sidebar/add-crop-table/add-crop-dialog/add-crop-dialog.component';
+import { EditBinDialogComponent } from './components/notifications/edit-bin-dialog/edit-bin-dialog.component';
 import { ColorPipe } from './pipes/color.pipe';
 import { OutlinePipe } from './pipes/outline.pipe';
 import { IconPipe } from './pipes/icon.pipe';
+import { DeleteBinDialogComponent } from './components/notifications/delete-bin-dialog/delete-bin-dialog.component';
+import { LogsDialogComponent } from './components/notifications/logs-dialog/logs-dialog/logs-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +42,10 @@ import { IconPipe } from './pipes/icon.pipe';
     AddCropDialogComponent,
     ColorPipe,
     OutlinePipe,
-    IconPipe
+    EditBinDialogComponent,
+    IconPipe,
+    DeleteBinDialogComponent,
+    LogsDialogComponent
   ],
   imports: [
     BrowserModule,

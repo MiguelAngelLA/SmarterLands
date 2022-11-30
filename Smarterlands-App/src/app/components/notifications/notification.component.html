@@ -1,23 +1,26 @@
-<div id="right-sidepanel" ngClass="getNotifications() ">
+<div id="right-sidepanel">
   <div class="panel-title">
     <div class="right-image">
       <i class="fa-solid fa-leaf"></i>
     </div>
-    <div class="right-text-outer">
-      <p class="right-text">Cultivos Frutales</p>
-    </div>
+    <p class="right-text">{{ binTitle }}</p>
+    <button mat-icon-button (click)="openEditBin()">
+      <mat-icon id="edit">edit</mat-icon>
+    </button>
   </div>
 
-  <div class="sensors-outer">
-    <p class="sensors-title">Sensores</p>
+  <div class="sensors-outer" *ngIf="awaitFetch">
+    <div class="sensorTitleWrapper">
+      <p class="sensors-title">Sensors</p>
+    </div>
     <div class="sensors">
       <div class="card-outer card-properties">
         <div class="icon-outer">
           <i class="fa-solid fa-droplet icon-properties"></i>
         </div>
 
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Humedad Tierra</div>
+        <div class="text-percentage">{{ lastSensorReading.moisture }}%</div>
+        <div class="text-name">Soil Moisture</div>
       </div>
 
       <div class="card-outer card-properties">
@@ -25,8 +28,8 @@
           <i class="fa-solid fa-temperature-half icon-properties"></i>
         </div>
 
-        <div class="text-percentage">10°C</div>
-        <div class="text-name">Temperatura</div>
+        <div class="text-percentage">{{ lastSensorReading.temperature }}°C</div>
+        <div class="text-name">Temperature</div>
       </div>
 
       <div class="card-outer card-properties">
@@ -34,8 +37,8 @@
           <i class="fa-solid fa-wind icon-properties"></i>
         </div>
 
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Humedad Aire</div>
+        <div class="text-percentage">{{ lastSensorReading.humidity }}%</div>
+        <div class="text-name">Air Humidity</div>
       </div>
 
       <div class="card-outer card-properties">
@@ -43,8 +46,10 @@
           <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
         </div>
 
-        <div class="text-percentage">10%</div>
-        <div class="text-name">Precipitación</div>
+        <div class="text-percentage">
+          {{ lastSensorReading.precipitation }}%
+        </div>
+        <div class="text-name">Precipitation</div>
       </div>
     </div>
 
@@ -54,28 +59,32 @@
     </div>
   </div>
 
-  <div class="divLog" id="style1" *ngFor="let notification of lastThree">
-    <div class="log-data-outer">
-      <div
-        ngClass="{{ notification.type | outline }}"
-        class="data-text log-text"
-      >
-        {{ notification.message }}
-      </div>
-      <div
-        class="data-status status-green"
-        ngClass="{{ notification.type | color }}"
-      >
-        <div class="data-icon">
-          <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+  <div class="logWrapper">
+    <div class="divLog" id="style1" *ngFor="let notification of notifications">
+      <div class="log-data-outer">
+        <div
+          ngClass="{{ notification.type | outline }}"
+          class="data-text log-text"
+        >
+          {{ notification.message }}
         </div>
-        <div class="data-time">{{ time | date: "shortTime" }}</div>
+        <div
+          class="data-status status-green"
+          ngClass="{{ notification.type | color }}"
+        >
+          <div class="data-icon">
+            <i class="fa-solid" ngClass="{{ notification.type | icon }}"></i>
+          </div>
+          <div class="data-time">
+            {{ notification.time | date: "shortTime" }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="more-logs">
-    <span class="more-logs-link">More logs...</span>
+    <span class="more-logs-link" (click)="openLogsDialog()">More logs...</span>
   </div>
 
   <div class="button-wrapper">

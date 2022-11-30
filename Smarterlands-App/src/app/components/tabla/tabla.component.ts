@@ -37,7 +37,7 @@ export class TablaComponent implements OnInit {
         this.getAllCrops();
       })
         ,
-        10000
+        1000
     })
   }
 

@@ -25,11 +25,11 @@ select * from sensor_readings
 go
 
 create view VW_GetNotificationsLimit as
-select top 5 * from notifications 
+select top 4 * from notifications 
 go
 
 create view VW_GetSensorReadingsLimit as
-select top 5 * from sensor_readings 
+select top 4 * from sensor_readings 
 go
 
 --create view VW_GetSensorReading as
