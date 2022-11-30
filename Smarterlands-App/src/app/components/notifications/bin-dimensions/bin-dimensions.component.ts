@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BinsService } from 'src/app/services/bins.service';
 import { BinCustom } from 'src/app/interfaces/bins.interface';
 import * as alertify from 'alertifyjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InformationService } from 'src/app/services/information.service';
 import { Subscription } from 'rxjs';
 @Component({
@@ -32,8 +33,8 @@ export class BinDimensionsComponent implements OnInit {
   cropsQuantity: number = 5;
   colorArray: any[] = [];
   binID: any;
-
-  constructor(private api: BinsService, private cdRef: ChangeDetectorRef, private infService: InformationService) { }
+  dimensionForm!: FormGroup;
+  constructor(private api: BinsService, private cdRef: ChangeDetectorRef, private infService: InformationService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -52,13 +53,19 @@ export class BinDimensionsComponent implements OnInit {
       })
         ,
         10000
-    })
+    });
+
+    this.dimensionForm = this.formBuilder.group({
+      column: ['',[Validators.required, Validators.max(10)]],
+      row: ['',[Validators.required, Validators.max(10)]]
+    });
   }
 
   setDimension(): void{
     this.columnArray = [];
     this.rowArray = [];
 
+    console.log(this.dimensionForm.value);
     this.tempColumns = this.columns;
     for(let i = 0; i < this.columns * this.rows; i++){
       this.columnArray.push(i);
@@ -70,42 +77,48 @@ export class BinDimensionsComponent implements OnInit {
   }
 
   setDimensionAction(): void{
-    this.columnArray = [];
-    this.rowArray = [];
-    let bin : BinCustom = {
-      id: 0,
-      name: '',
-      description: '',
-      width_dimension: 0,
-      height_dimension: 0
-    };
-    bin.id = this.binId;
-    bin.name = this.binName;
-    bin.description = this.binDesc;
-    bin.width_dimension = this.columns;
-    bin.height_dimension = this.rows;
+    if(this.dimensionForm.valid){
+      this.columnArray = [];
+      this.rowArray = [];
+      console.log(this.dimensionForm.value);
+      let bin : BinCustom = {
+        id: 0,
+        name: '',
+        description: '',
+        width_dimension: 0,
+        height_dimension: 0
+      };
+      bin.id = this.binId;
+      bin.name = this.binName;
+      bin.description = this.binDesc;
+      bin.width_dimension = this.columns;
+      bin.height_dimension = this.rows;
+  
+      this.tempColumns = this.columns;
+      for(let i = 0; i < this.columns * this.rows; i++){
+        this.columnArray.push(i);
+      }
+  
+      for(let i = 0; i < this.rows; i++){
+        this.rowArray.push(i);
+      }
 
-    this.tempColumns = this.columns;
-    for(let i = 0; i < this.columns * this.rows; i++){
-      this.columnArray.push(i);
+      this.api.putDimension(bin).subscribe({
+         next: (res) =>{
+          alertify.set('notifier','position', 'top-center');
+          alertify.success('Changed successfully');
+         },
+         error: (err) =>{
+          alertify.error("There has been a problem");
+         }
+       })
     }
-
-    for(let i = 0; i < this.rows; i++){
-      this.rowArray.push(i);
+    else{
+      alertify.set('notifier','position', 'top-center');
+      alertify.error('Fields are not correct');
     }
-
-    console.log(bin.id);
-
-    this.api.putDimension(bin).subscribe({
-       next: (res) =>{
-        alertify.set('notifier','position', 'top-center');
-        alertify.success('Changed successfully');
-       },
-       error: (err) =>{
-        alertify.error("There has been a problem");
-       }
-     })
   }
+
   checkBin(item: number): boolean{
     let array = [...Array(this.cropsQuantity).keys()]
     if (array.includes(item)){
@@ -116,6 +129,17 @@ export class BinDimensionsComponent implements OnInit {
 
   moveBin(): void{
     this.woosh =! this.woosh;
+  }
+
+  formValidation(input:string) : boolean {
+    return(!this.dimensionForm.get(input)?.valid)
+  }
+
+  validationErrors(input:string) : string {
+    if(this.dimensionForm.get(input)?.hasError('max')) {
+      return 'A value of maximum 10 is allowed'
+    }
+      return 'Easter Egg'
   }
 
 }

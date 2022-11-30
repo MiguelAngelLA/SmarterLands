@@ -1,17 +1,25 @@
 <div class="dialog">
     <div class="title" mat-dialog-title>Bin dimensions</div>
     <div class="dimension-content"  mat-dialog-content>
-        <div class="wrappers">
-            <mat-form-field appearance="outline">
-                <mat-label>Number of rows</mat-label>
-                <input matInput [(ngModel)]="rows" placeholder="Enter a number" />
-            </mat-form-field>
+        <form [formGroup]="dimensionForm">
+            <div class="wrappers">
+                <div class="form__wrapper">
+                    <mat-form-field class="this-feels-better" appearance="outline">
+                        <mat-label>Number of rows</mat-label>
+                        <input formControlName="row" matInput [(ngModel)]="rows" placeholder="Enter a number" />
+                        <mat-error *ngIf="formValidation('row')">{{validationErrors('row')}}</mat-error>
+                    </mat-form-field>
+                </div>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Number of columns</mat-label>
-                <input matInput [(ngModel)]="columns" placeholder="Enter a number" />
-            </mat-form-field>
-        </div>
+                <div class="form__wrapper">
+                    <mat-form-field class="this-feels-better" appearance="outline">
+                        <mat-label>Number of columns</mat-label>
+                        <input formControlName="column" matInput [(ngModel)]="columns" placeholder="Enter a number" />
+                        <mat-error *ngIf="formValidation('column')">{{validationErrors('column')}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+         </form>
 
         <div class="legend">
             <div class="legend__wrapper">
