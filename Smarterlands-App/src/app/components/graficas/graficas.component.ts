@@ -49,16 +49,27 @@ export class GraficasComponent implements OnInit {
     setTimeout(() => {
       this.Subscription1$ = this.infService.selectedBin$.subscribe(resp => {
         this.binId = resp;
-        this.getCharts();
+        this.loadCharts();
       })
-
     }, 100)
+
+  }
+
+
+
+  loadCharts() {
+    this.temperatureArray = []
+    this.moistureArray = []
+    this.humidityArray = []
+    this.timeArray = []
+    if (this.tempChart != undefined) {
+      this.destroyCharts();
+    }
+    this.getCharts()
     setTimeout(() => {
 
       this.createCharts()
     }, 500)
-
-
   }
 
 
@@ -104,6 +115,7 @@ export class GraficasComponent implements OnInit {
       data: {
         labels: this.timeArray,
         datasets: [{
+          tension: 0.6,
           label: 'Soil Moisture',
           data: this.moistureArray,
           fill: true,
@@ -117,8 +129,10 @@ export class GraficasComponent implements OnInit {
     this.humidityChart = new Chart("soilHumidityChart", {
       type: 'line',
       data: {
+
         labels: this.timeArray,
         datasets: [{
+          tension: 0.6,
           label: 'Air Humidity',
           data: this.humidityArray,
           fill: true,

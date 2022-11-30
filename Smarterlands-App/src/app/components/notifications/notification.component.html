@@ -59,12 +59,12 @@
 
   <div class="logWrapper">
     <div class="divLog" id="style1" *ngFor="let notification of notifications">
-      <div class="log-data-outer">
+      <div @fade class="log-data-outer">
         <div
           ngClass="{{ notification.type | outline }}"
           class="data-text log-text"
         >
-          {{ notification.message }}
+          {{ notification.type | message }}
         </div>
         <div
           class="data-status status-green"
@@ -97,7 +97,7 @@
 
   <div class="button-wrapper">
     <button class="stop-button" mat-flat-button (click)="sendMsg()">
-      stop
+      STOP
     </button>
   </div>
 </div>

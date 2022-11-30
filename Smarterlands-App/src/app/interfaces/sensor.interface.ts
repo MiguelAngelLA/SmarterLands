@@ -12,6 +12,7 @@ export interface SensorReading {
     precipitation: number;
     bin_id: number;
     notification_id: number;
+    notification_type?: number
 }
 
 

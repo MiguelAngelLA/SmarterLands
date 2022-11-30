@@ -8,6 +8,7 @@ import { ChatService } from '../../services/chat.service';
 import { SensorReading } from '../../interfaces/sensor.interface';
 import { EditBinDialogComponent } from './edit-bin-dialog/edit-bin-dialog.component';
 import { LogsDialogComponent } from './logs-dialog/logs-dialog/logs-dialog.component';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 
@@ -16,6 +17,14 @@ import { LogsDialogComponent } from './logs-dialog/logs-dialog/logs-dialog.compo
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 
 })
 export class NotificationComponent implements OnInit {
@@ -26,7 +35,7 @@ export class NotificationComponent implements OnInit {
   type!: any;
   time!: any;
   x: any;
-  notifications: any;
+  notifications: any[] = [];
   sensorReadings!: SensorReading[];
   lastSensorReading!: SensorReading
   awaitFetch: boolean = false
@@ -46,7 +55,7 @@ export class NotificationComponent implements OnInit {
       try {
         this.wsResponse = JSON.parse(msg.data)
         infService.sendGraph(msg.data)
-        console.log(this.wsResponse);
+        this.getLiveNotifications();
       }
       catch {
 
@@ -64,6 +73,7 @@ export class NotificationComponent implements OnInit {
         this.getNotifications()
         this.getBinInfo();
         this.getSensorReadings();
+
       })
     },)
   }
@@ -82,9 +92,16 @@ export class NotificationComponent implements OnInit {
     this.chatService.messages.next(`{"binID":${this.binId} "message":${this.wsMsg}}`)
   }
 
+  getLiveNotifications() {
+    let object = { type: this.wsResponse.notification_type, time: this.wsResponse.time }
+    this.notifications.unshift(object)
+    this.notifications.pop()
+  }
+
   getNotifications() {
     this.sensorNotification.getTopNotifications(this.binId).subscribe((resp) => {
       this.notifications = resp.notifications;
+
       console.log(this.notifications);
     })
   }

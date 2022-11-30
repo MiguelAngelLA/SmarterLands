@@ -15,8 +15,8 @@ namespace websocket_server.Server_Functions
         public override async Task Receive(WebSocket webSocket, WebSocketReceiveResult receiveResult, ArraySegment<byte> buffer)
         {
             string message = Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count);
-            await BroadcastMessage("'" + message + "'");
-            SensorReading sensorReading = JsonConvert.DeserializeObject<SensorReading>(message);
+            await BroadcastMessage( message );
+   /*        SensorReading sensorReading = JsonConvert.DeserializeObject<SensorReading>(message);
             sensorReading.Time = new DateTime();
             string notificationBody = "";
 
@@ -48,7 +48,7 @@ namespace websocket_server.Server_Functions
                 sensorReading.Bin_id,
                 notificationBody,
                 (byte)sensorReading.Notification_id);
-
+            */
 
             // 0 bueno 
             // 1 warning 

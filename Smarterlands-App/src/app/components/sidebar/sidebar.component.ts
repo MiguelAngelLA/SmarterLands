@@ -45,6 +45,7 @@ export class SidebarComponent implements OnInit {
   setSelected(id: number) {
     this.selectedId = id;
     this.infService.sendBin(this.selectedId)
+
   }
 
 
