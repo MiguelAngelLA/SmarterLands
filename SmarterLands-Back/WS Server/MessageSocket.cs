@@ -11,8 +11,7 @@ namespace websocket_server.Server_Functions
 
         public override async Task Receive(WebSocket webSocket, WebSocketReceiveResult receiveResult, ArraySegment<byte> buffer)
         {
-            var socketID = Connection.getID(webSocket);
-            await BroadcastMessage($"{socketID} sent the message {Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count)}");
+            await BroadcastMessage(Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count));
         }
 
         public override async Task OnConnect(WebSocket websocket)
