@@ -13,7 +13,7 @@ namespace websocket_server.Server_Functions
 
         public override async Task Receive(WebSocket webSocket, WebSocketReceiveResult receiveResult, ArraySegment<byte> buffer)
         {
-            var message = @"'" + Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count) + "'";
+            var message = Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count) ;
             await BroadcastMessage(message);
             //string escapedMessage = Regex.Escape(Encoding.UTF8.GetString(buffer.ToArray(), 0, receiveResult.Count));
             Console.WriteLine(message);

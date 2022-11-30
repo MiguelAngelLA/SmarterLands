@@ -5,7 +5,7 @@ export interface SensorResponse {
 
 export interface SensorReading {
     id: number;
-    time: Date;
+    time: any;
     temperature: number;
     humidity: number;
     moisture: number;
@@ -13,6 +13,8 @@ export interface SensorReading {
     bin_id: number;
     notification_id: number;
 }
+
+
 
 
 

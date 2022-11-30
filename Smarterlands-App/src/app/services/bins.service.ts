@@ -109,7 +109,7 @@ export class BinsService {
     return this.http.get<SensorResponse>(`${this.baseUrl}/SensorReadings/${binId}`)
   }
 
-  deleteBin(binId: number): Observable<GenericResponse>  {
+  deleteBin(binId: number): Observable<GenericResponse> {
     return this.http.delete<GenericResponse>(`${this.baseUrl}/bin/` + binId);
   }
 }

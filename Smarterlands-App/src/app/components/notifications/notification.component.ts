@@ -25,14 +25,34 @@ export class NotificationComponent implements OnInit {
   wsMsg: any = "stop";
   type!: any;
   time!: any;
+  x: any;
   notifications: any;
   sensorReadings!: SensorReading[];
   lastSensorReading!: SensorReading
   awaitFetch: boolean = false
   binTitle: any;
+  wsResponse: SensorReading = {
+    id: 0,
+    time: "2015-05-16T05:50:06",
+    temperature: 0,
+    humidity: 0,
+    moisture: 0,
+    precipitation: 0,
+    bin_id: 0,
+    notification_id: 0
+  };
   constructor(private chatService: ChatService, private sensorNotification: BinsService, private infService: InformationService, private dialog: MatDialog) {
     this.chatService.messages.subscribe((msg: any) => {
-      console.log("Response from ws:" + JSON.stringify(msg));
+      try {
+        this.wsResponse = JSON.parse(msg.data)
+        infService.sendGraph(msg.data)
+      }
+      catch {
+
+      }
+
+
+
     })
   }
 
@@ -51,13 +71,11 @@ export class NotificationComponent implements OnInit {
     this.sensorNotification.getSensorReadings(this.binId).subscribe((resp) => {
       this.sensorReadings = resp.sensorReadings
       this.lastSensorReading = this.sensorReadings[0]
-      // console.log(this.lastSensorReading);
       this.awaitFetch = true
     })
   }
 
   sendMsg() {
-
     this.chatService.messages.next(`{"binID":${this.binId} "message":${this.wsMsg}}`)
   }
 

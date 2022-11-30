@@ -19,7 +19,7 @@
           <i class="fa-solid fa-droplet icon-properties"></i>
         </div>
 
-        <div class="text-percentage">{{ lastSensorReading.moisture }}%</div>
+        <div class="text-percentage">{{ wsResponse.moisture }}%</div>
         <div class="text-name">Soil Moisture</div>
       </div>
 
@@ -28,7 +28,7 @@
           <i class="fa-solid fa-temperature-half icon-properties"></i>
         </div>
 
-        <div class="text-percentage">{{ lastSensorReading.temperature }}°C</div>
+        <div class="text-percentage">{{ wsResponse.temperature }}°C</div>
         <div class="text-name">Temperature</div>
       </div>
 
@@ -37,7 +37,7 @@
           <i class="fa-solid fa-wind icon-properties"></i>
         </div>
 
-        <div class="text-percentage">{{ lastSensorReading.humidity }}%</div>
+        <div class="text-percentage">{{ wsResponse.humidity }}%</div>
         <div class="text-name">Air Humidity</div>
       </div>
 
@@ -46,16 +46,14 @@
           <i class="fa-solid fa-cloud-showers-heavy icon-properties"></i>
         </div>
 
-        <div class="text-percentage">
-          {{ lastSensorReading.precipitation }}%
-        </div>
+        <div class="text-percentage">{{ wsResponse.precipitation }}%</div>
         <div class="text-name">Precipitation</div>
       </div>
     </div>
 
     <div class="sensor-state-wrapper">
       <p class="sensors-state">Latest Status</p>
-      <p class="sensors-state-info">{{ time | date: "medium" }}</p>
+      <p class="sensors-state-info">{{ wsResponse.time | date: "medium" }}</p>
     </div>
   </div>
 

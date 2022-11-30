@@ -74,9 +74,4 @@ public class SensorReading
         return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
 
-    public static List<SensorReading> GetLimit(int bin_id)
-    {
-        SqlCommand command = new SqlCommand(select_limit + " where bin_id = " + bin_id + " order by time");
-        return SensorReadingMapper.ToList(SqlServerConnection.ExecuteQuery(command));
-    }
 }
