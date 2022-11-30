@@ -12,33 +12,6 @@ import { InformationService } from '../../services/information.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GraficasComponent implements OnInit {
-
-  constructor(private api: BinsService, private infService: InformationService) {
-    infService.streamedGraph$.subscribe((resp) => {
-      try {
-        console.log(resp);
-        let jsonResponse = JSON.parse(resp)
-        let formattedDate = new Date(jsonResponse.time).toLocaleTimeString()
-        this.timeArray.push(formattedDate)
-        this.temperatureArray.push(jsonResponse.temperature)
-        this.moistureArray.push(jsonResponse.moisture)
-        this.humidityArray.push(jsonResponse.humidity)
-        console.log(this.timeArray);
-        if (this.timeArray.length >= 20) {
-          this.timeArray.shift()
-          this.tempChart.shift()
-          this.moistureArray.shift()
-          this.humidityArray.shift()
-        }
-        this.updateCharts()
-      }
-      catch {
-
-      }
-
-
-    })
-  }
   tempChart: any;
   humidityChart: any;
   soilHumidityChart: any;
@@ -51,6 +24,28 @@ export class GraficasComponent implements OnInit {
   moistureArray: any[] = []
   humidityArray: any[] = []
   maxGraphs: any[] = []
+  hideGraphs: boolean = false;
+
+  constructor(private api: BinsService, private infService: InformationService) {
+    infService.streamedGraph$.subscribe((resp) => {
+      try {
+        console.log(resp);
+        let jsonResponse = JSON.parse(resp)
+        let formattedDate = new Date(jsonResponse.time).toLocaleTimeString()
+        this.timeArray.push(formattedDate)
+        this.temperatureArray.push(jsonResponse.temperature)
+        this.moistureArray.push(jsonResponse.moisture)
+        this.humidityArray.push(jsonResponse.humidity)
+        console.log(this.timeArray);
+        this.updateCharts()
+      }
+      catch {
+
+      }
+    })
+  }
+
+
   ngOnInit(): void {
     setTimeout(() => {
       this.Subscription1$ = this.infService.selectedBin$.subscribe(resp => {
@@ -72,39 +67,42 @@ export class GraficasComponent implements OnInit {
       this.destroyCharts();
     }
     this.getCharts()
-    setTimeout(() => {
-
-      this.createCharts()
-    }, 500)
   }
 
 
   getCharts() {
     this.api.getSensorReadings(this.binId).subscribe(resp => {
-      this.maxGraphs = resp.sensorReadings.slice(0, 19)
-      this.maxGraphs.forEach(element => {
+      if (resp.sensorReadings != undefined){
+        this.maxGraphs = resp.sensorReadings
+        this.maxGraphs.forEach(element => {
         let formattedDate = new Date(element.time).toLocaleTimeString()
         this.timeArray.push(formattedDate)
         this.temperatureArray.push(element.temperature)
         this.moistureArray.push(element.moisture)
         this.humidityArray.push(element.humidity)
       });
+        setTimeout(() => {
+
+          this.createCharts()
+        }, 500)
+      }else{
+        this.hideGraphs = true
+      }
 
     })
   }
-
 
   updateCharts() {
     this.tempChart.update();
     this.humidityChart.update();
     this.soilHumidityChart.update();
   }
+
   destroyCharts() {
     this.tempChart.destroy();
     this.humidityChart.destroy();
     this.soilHumidityChart.destroy();
   }
-
 
   createCharts() {
     this.tempChart = new Chart("tempChart", {
