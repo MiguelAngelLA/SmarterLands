@@ -73,7 +73,7 @@ export class GraficasComponent implements OnInit {
   getCharts() {
     this.api.getSensorReadings(this.binId).subscribe(resp => {
       if (resp.sensorReadings != undefined){
-        this.maxGraphs = resp.sensorReadings
+        this.maxGraphs = resp.sensorReadings.slice(0,400)
         this.maxGraphs.forEach(element => {
         let formattedDate = new Date(element.time).toLocaleTimeString()
         this.timeArray.push(formattedDate)

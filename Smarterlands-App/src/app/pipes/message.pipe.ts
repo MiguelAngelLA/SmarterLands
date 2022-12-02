@@ -13,6 +13,8 @@ export class MessagePipe implements PipeTransform {
         return "Warning: incoming storm"
       case 2:
         return "Error: Data malformed!"
+        case 3:
+          return "Bin irrigated"
       default:
         return "Unknown Error"
     }

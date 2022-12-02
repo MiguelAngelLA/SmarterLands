@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map, Subject } from 'rxjs';
 import { WebsocketsService } from './websockets.service';
 
-const CHAT_URL = 'ws://172.18.5.28:5003/ws';
+const CHAT_URL = 'ws://192.168.248.252:5003/ws';
 
 
 

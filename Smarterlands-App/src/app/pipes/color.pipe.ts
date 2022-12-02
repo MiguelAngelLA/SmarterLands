@@ -13,6 +13,8 @@ export class ColorPipe implements PipeTransform {
         return "yellow"
       case 2:
         return "red"
+      case 3:
+        return "green"
       default:
         return "gray"
     }
