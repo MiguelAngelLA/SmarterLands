@@ -1,0 +1,68 @@
+.log-data-outer {
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr;
+  margin: 10px auto 0 auto;
+  align-self: center;
+  width: 80%;
+}
+
+.data-text {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #378c53;
+  border-radius: 16px 0px 0px 16px;
+}
+
+.data-icon {
+  font-size: 20px;
+}
+
+.data-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 0px 16px 16px 0px;
+  padding: 5px;
+  width: 50px;
+  font-size: 11px;
+}
+
+.divLog {
+  display: flex;
+}
+
+.red {
+  background-color: #d62828;
+}
+
+.green {
+  background-color: #5cd279;
+}
+
+.gray {
+  background-color: #cccccc;
+}
+
+.yellow {
+  background-color: #c9aa0e;
+}
+
+.red-outline {
+  border: solid 2px #d62828;
+}
+
+.green-outline {
+  border: solid 2px #5cd279;
+}
+
+.gray-outline {
+  border: solid 2px #cccccc;
+}
+
+.yellow-outline {
+  border: solid 2px #c9aa0e;
+}

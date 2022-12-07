@@ -12,18 +12,91 @@ import { InformationService } from '../../services/information.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GraficasComponent implements OnInit {
-
-  constructor(private api: BinsService, private ïnfService: InformationService) { }
   tempChart: any;
   humidityChart: any;
   soilHumidityChart: any;
+  binId: number = 0
   test: any;
+  Subscription1$!: Subscription
+  Graph$!: Subscription
+  timeArray: any[] = []
+  temperatureArray: any[] = []
+  moistureArray: any[] = []
+  humidityArray: any[] = []
+  maxGraphs: any[] = []
+  hideGraphs: boolean = false;
+
+  constructor(private api: BinsService, private infService: InformationService) {
+    infService.streamedGraph$.subscribe((resp) => {
+      try {
+        console.log(resp);
+        let jsonResponse = JSON.parse(resp)
+        let formattedDate = new Date(jsonResponse.time).toLocaleTimeString()
+        this.timeArray.push(formattedDate)
+        this.temperatureArray.push(jsonResponse.temperature)
+        this.moistureArray.push(jsonResponse.moisture)
+        this.humidityArray.push(jsonResponse.humidity)
+        console.log(this.timeArray);
+        this.updateCharts()
+      }
+      catch {
+
+      }
+    })
+  }
+
 
   ngOnInit(): void {
-    this.charts()
+    setTimeout(() => {
+      this.Subscription1$ = this.infService.selectedBin$.subscribe(resp => {
+        this.binId = resp;
+        this.loadCharts();
+      })
+    }, 100)
 
   }
 
+
+
+  loadCharts() {
+    this.temperatureArray = []
+    this.moistureArray = []
+    this.humidityArray = []
+    this.timeArray = []
+    if (this.tempChart != undefined) {
+      this.destroyCharts();
+    }
+    this.getCharts()
+  }
+
+
+  getCharts() {
+    this.api.getSensorReadings(this.binId).subscribe(resp => {
+      if (resp.sensorReadings != undefined){
+        this.maxGraphs = resp.sensorReadings.slice(0,400)
+        this.maxGraphs.forEach(element => {
+        let formattedDate = new Date(element.time).toLocaleTimeString()
+        this.timeArray.push(formattedDate)
+        this.temperatureArray.push(element.temperature)
+        this.moistureArray.push(element.moisture)
+        this.humidityArray.push(element.humidity)
+      });
+        setTimeout(() => {
+
+          this.createCharts()
+        }, 500)
+      }else{
+        this.hideGraphs = true
+      }
+
+    })
+  }
+
+  updateCharts() {
+    this.tempChart.update();
+    this.humidityChart.update();
+    this.soilHumidityChart.update();
+  }
 
   destroyCharts() {
     this.tempChart.destroy();
@@ -31,15 +104,15 @@ export class GraficasComponent implements OnInit {
     this.soilHumidityChart.destroy();
   }
 
-
-  charts() {
+  createCharts() {
     this.tempChart = new Chart("tempChart", {
       type: 'line',
       data: {
-        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
+        labels: this.timeArray,
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          tension: 0.6,
+          label: 'Temperature',
+          data: this.temperatureArray,
           fill: true,
           borderColor: '#378C53', // Add custom color border (Line)
           backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)
@@ -48,13 +121,14 @@ export class GraficasComponent implements OnInit {
       },
     });
 
-    this.humidityChart = new Chart("humidityChart", {
+    this.soilHumidityChart = new Chart("humidityChart", {
       type: 'line',
       data: {
-        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
+        labels: this.timeArray,
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          tension: 0.6,
+          label: 'Soil Moisture',
+          data: this.moistureArray,
           fill: true,
           borderColor: '#378C53', // Add custom color border (Line)
           backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)
@@ -66,10 +140,12 @@ export class GraficasComponent implements OnInit {
     this.humidityChart = new Chart("soilHumidityChart", {
       type: 'line',
       data: {
-        labels: ["Default", "Default", "Default", "Default", "Default", "Default", "Default"],
+
+        labels: this.timeArray,
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          tension: 0.6,
+          label: 'Air Humidity',
+          data: this.humidityArray,
           fill: true,
           borderColor: '#378C53', // Add custom color border (Line)
           backgroundColor: '#2DC6534D', // Add custom color background (Points and Fill)

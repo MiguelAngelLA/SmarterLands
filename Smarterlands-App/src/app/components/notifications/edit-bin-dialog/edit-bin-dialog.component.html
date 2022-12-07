@@ -1,0 +1,25 @@
+<div class="title" mat-dialog-title>{{dialogTitle}}</div>
+<div class="dialog" mat-dialog-content>
+    <form [formGroup]="binEditForm">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" [(ngModel)]="cropObject.name" matInput placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" [(ngModel)]="cropObject.description" placeholder="Description" matInput></textarea>
+        </mat-form-field>
+    </form>
+</div>
+
+
+<div class="action-buttons" mat-dialog-action [align]="'end'">
+    <button mat-icon-button style="margin-right: 10px" (click)="deleteDialog()">
+      <mat-icon id="delete">delete</mat-icon>
+    </button>
+
+    <button mat-flat-button style="margin-right: 10px" color="warn" mat-dialog-close>Close</button>
+    <button mat-flat-button class="save-button" (click)="editCrop()">Save</button>
+</div>

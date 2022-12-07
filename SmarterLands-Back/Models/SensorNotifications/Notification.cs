@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 public class Notification
 {
     public static string select = "select * from VW_GetNotifications";
-    public static string select_limit = "select * from VW_GetNotificationsLimit";
+    public static string select_limit = "select top 4 * from notifications";
 
     private int _id;
     private string _message;

@@ -13,6 +13,8 @@ export class IconPipe implements PipeTransform {
         return "fa-exclamation"
       case 2:
         return "fa-xmark"
+        case 3:
+          return "fa-droplet"
       default:
         return "fa-question"
     }

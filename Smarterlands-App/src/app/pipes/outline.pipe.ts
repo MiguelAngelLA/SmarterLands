@@ -13,6 +13,8 @@ export class OutlinePipe implements PipeTransform {
         return "yellow-outline"
       case 2:
         return "red-outline"
+        case 3:
+          return "green-outline"
       default:
         return "gray-outline"
     }

@@ -31,14 +31,14 @@ namespace SmarterLands_Back.Controllers
             NotificationViewModel vm = new NotificationViewModel();
             vm.Notifications = Notification.GetLimit(id);
             vm.Status = 0;
-            if (!vm.Notifications.Any())
+           if (!vm.Notifications.Any())
             {
                 MessageResponse mr = new MessageResponse();
                 mr.Status = 1;
                 mr.Message = "NoNotificationsFoundError";
                 return Ok(mr);
             }
-
+   
             return Ok(vm);
         }
     }
